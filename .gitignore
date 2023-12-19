@@ -11,3 +11,4 @@ composer.lock
 /public/assets
 package-lock.json
 /storage/cache/twig/*
+.php-cs-fixer.cache
