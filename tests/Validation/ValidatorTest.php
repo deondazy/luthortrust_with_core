@@ -1,11 +1,11 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-use Doctrine\ORM\EntityRepository;
 use Denosys\App\Database\Entities\User;
+use Denosys\Core\Validation\ValidationException;
+use Denosys\Core\Validation\Validator;
 use Doctrine\ORM\EntityManagerInterface;
-use Denosys\Core\Form\Validation\Validator;
-use Denosys\Core\Form\Validation\ValidationException;
+use Doctrine\ORM\EntityRepository;
+use PHPUnit\Framework\TestCase;
 
 class ValidatorTest extends TestCase
 {
@@ -27,7 +27,7 @@ class ValidatorTest extends TestCase
 
         $result = (new Validator)->validate($data, $rules);
 
-        $this->assertTrue($result);
+        $this->assertEquals($data, $result);
     }
 
     /**
@@ -101,6 +101,6 @@ class ValidatorTest extends TestCase
 
         $result = $validator->validate($data, $rules);
 
-        $this->assertTrue($result);
+        $this->assertEquals($data, $result);
     }
 }
