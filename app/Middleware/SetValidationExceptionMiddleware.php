@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Denosys\App\Middleware;
 
-use Denosys\Core\Form\Validation\ValidationException;
 use Denosys\Core\Http\RedirectResponse;
 use Denosys\Core\Session\SessionInterface;
+use Denosys\Core\Validation\ValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\MiddlewareInterface;
