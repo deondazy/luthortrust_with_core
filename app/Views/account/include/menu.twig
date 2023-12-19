@@ -1,0 +1,73 @@
+<!-- Main sidebar -->
+<div class="sidebar sidebar-main sidebar-default">
+    <div class="sidebar-content">
+        <!-- Main navigation -->
+        <div class="sidebar-category sidebar-category-visible">
+            <div class="category-content no-padding">
+                <ul class="navigation navigation-main navigation-accordion">
+                    <li class="navigation-header"><span>My Accounts</span></li>
+                    <li>
+                        <a href="#">
+                            <span>Account Summary</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Transaction Details</span>
+                        </a>
+                    </li>
+
+                    <li class="navigation-header"><span>Account Transfers</span></li>
+                    <li>
+                        <a href="#">
+                            <span>Transfer to Beneficiary</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Transfer to {{ config('app.name') }} A/C</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Transfer to Other Banks</span>
+                        </a>
+                    </li>
+
+                    <li class="navigation-header"><span>Self Service</span></li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li>
+                            <a href="{{ url_for('admin.index') }}">
+                                <span>Admin Dashboard</span>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    <li>
+                        <a href="#">
+                            <span>Add Beneficiary</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Change Transfer Pin</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Change Password</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <form action="{{ url_for('logout') }}" method="POST">
+                            <button type="submit" class="bg-white no-border text-left btn-block">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /main navigation -->
+    </div>
+</div>
+<!-- /main sidebar -->

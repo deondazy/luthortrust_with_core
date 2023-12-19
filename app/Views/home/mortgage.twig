@@ -1,0 +1,304 @@
+{% extends "layouts/app.twig" %}
+
+{% block title 'Mortgage'|title %}
+
+{% block content %}
+<section class="page-header page-header-modern page-header-background overlay overlay-show overlay-color-primary overlay-op-9 border-0 m-0" data-plugin-parallax data-plugin-options="{'speed': 1.5, 'parallaxHeight': '125%', 'fadeIn': true}" data-image-src="assets/images/demos/finance/backgrounds/background-1.jpg">
+    <div class="container position-relative z-index-2">
+        <div class="row text-center text-md-start">
+            <div class="col-md-8 order-2 order-md-1 align-self-center p-static">
+                <h1 class="font-weight-bold text-color-light text-10 mb-0">{{ block('title') }}</h1>
+            </div>
+            <div class="col-md-4 order-1 order-md-2 align-self-center">
+                <ul class="breadcrumb breadcrumb-light d-block text-md-end text-4 mb-0">
+                    <li><a href="{{ url_for('home') }}" class="text-decoration-none">Home</a></li>
+                    <li class="text-uppercase active">{{ block('title') }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section border-0 m-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h4 class="font-weight-bold">Mortgage Options</h4>
+                <p><?= ___($site->name . ' offers different types of home loans to meet a wide variety of needs.</p>
+            </div>
+
+            <div class="col-md-3">
+                <h4 class="font-weight-bold">Mortgage 101</h4>
+                <p>There are many factors to consider when deciding which mortgage will work for you.</p>
+            </div>
+
+            <div class="col-md-3">
+                <h4 class="font-weight-bold">Mortgage Calculators</h4>
+                <p>Estimate payments throughout the home buying and mortgage payment process.</p>
+            </div>
+
+            <div class="col-md-3">
+                <h4 class="font-weight-bold">Mortgage Servicing</h4>
+                <p>Resolve potential problems and get your questions answered on existing mortgage loans.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section overlay overlay-show overlay-color-primary custom-overlay-opacity-95 border-0 m-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="font-weight-bold text-white">Current Rates</h2>
+                <p class="text-white mb-5">Rates and APR as of 6/6/2018 at 9:53 AM CST and is subject to change without notice.</p>
+
+                <h3 class="font-weight-bold text-white pt-5">Conventional Rates</h3>
+                <p class="text-white">In most counties, these loans are less than or equal to $453,100.</p>
+
+                <table class="text-white table">
+                    <thead>
+                    <tr>
+                        <th>Product</th>
+
+                        <th>Interest Rates</th>
+
+                        <th>Discount Points</th>
+
+                        <th>APR</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            30 Year Fixed Rate
+                        </td>
+                        <td>
+                            <p class="text-white">4.625%</p>
+                        </td>
+                        <td>
+                            <p class="text-white">0.875%</p>
+                        </td>
+                        <td>
+                            <p class="text-white">4.840%</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="text-white">20 Year Fixed Rate</p>
+                        </td>
+                        <td>
+                            <p class="text-white">4.375%</p>
+                        </td>
+                        <td>
+                            <p class="text-white">1.125%</p>
+                        </td>
+                        <td>
+                            <p class="text-white">4.698%</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="text-white">15 Year Fixed Rate</p>
+                        </td>
+                        <td>
+                            <p class="text-white">3.875%</p>
+                        </td>
+                        <td>
+                            <p class="text-white">1.250%</p>
+                        </td>
+                        <td>
+                            <p class="text-white">4.301%</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="text-white">10 Year Fixed Rate</p>
+                        </td>
+                        <td>
+                            <p class="text-white">3.875%</p>
+                        </td>
+                        <td>
+                            <p class="text-white">1.000%</p>
+                        </td>
+                        <td>
+                            <p class="text-white">4.435%</p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section border-0 m-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold">Jumbo Rates</h3>
+                <p>Jumbo mortgage products are for loan amounts that exceed $453,100.</p>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Product</th>
+
+                        <th>Interest Rates</th>
+
+                        <th>Discount Points</th>
+
+                        <th>APR</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <p>30 Year Fixed Rate</p>
+                        </td>
+                        <td>
+                            <p>4.375%</p>
+                        </td>
+                        <td>
+                            <p>0.875%</p>
+                        </td>
+                        <td>
+                            <p>4.551%</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>20 Year Fixed Rate</p>
+                        </td>
+                        <td>
+                            <p>4.375%</p>
+                        </td>
+                        <td>
+                            <p>0.875%</p>
+                        </td>
+                        <td>
+                            <p>4.618%</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>15 Year Fixed Rate</p>
+                        </td>
+                        <td>
+                            <p>4.125%</p>
+                        </td>
+                        <td>
+                            <p>1.125%</p>
+                        </td>
+                        <td>
+                            <p>4.472%</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>10 Year Fixed Rate</p>
+                        </td>
+                        <td>
+                            <p>4.125%</p>
+                        </td>
+                        <td>
+                            <p>1.125%</p>
+                        </td>
+                        <td>
+                            <p>4.625%</p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section border-0 m-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="font-weight-bold">Choose a Calculator</h2>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <h5>How much can I borrow?</h5>
+                        <p>Your down payment, credit score, and income affect how much you can borrow.<br /></p>
+                    </div>
+
+                    <div class="col-md-3">
+                        <h5>How much will my payments be?</h5>
+                        <p>Calculate your monthly mortgage payments before you buy your dream home.<br /></p>
+                    </div>
+
+                    <div class="col-md-3">
+                        <h5>15 year or 30 year?</h5>
+                        <p>Which option is right for you: a 15 or 30-year fixed-rate mortgage loan?<br /></p>
+                    </div>
+
+                    <div class="col-md-3">
+                        <h5>What will my closing costs be?</h5>
+                        <p>Typically, home closing costs are between 2% and 5% of the purchase price.<br /></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section overlay overlay-show overlay-color-primary custom-overlay-opacity-95 border-0 m-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-light font-weight-bold">Details you need to make a smart decision</h3>
+                <h3 class="font-weight-bold text-light pt-3">General Disclosures</h3>
+                <ul class="text-white">
+                    <li class="mb-2">All loan applications are subject to Borrower eligibility, Loan Program requirements, and Underwriting approval.</li>
+                    <li class="mb-2">Interest Rates, including those published or quoted, are not guaranteed until Locked in.</li>
+                    <li class="mb-2">Locked Interest Rates are subject to the terms of the Lock Agreement.</li>
+                    <li class="mb-2">Interest Rates subject to change without notice.</li>
+                    <li class="mb-2">Additional Loan Products / Programs and Pricing options may be available (e.g. FHA, VA, USDA, etc.).</li>
+                    <li class="mb-2">Other terms, conditions, and restrictions may apply.</li>
+                    <li class="mb-2">On some products, ') . $site->name . ___(' offers discounted rates to borrowers who obtain a qualified ') . $site->name . ___(' bank account and establish a monthly auto debit of their mortgage account from that account.  For qualifying mortgage products, the rates displayed reflect this auto debit rate reduction.  Please consult with one of our loan officers for further details.</li>
+                    <li class="mb-2">All examples assume that this loan will be in first lien position.</li>
+                    <li class="mb-2">If the down payment is less than 20%, mortgage insurance may be required and could increase the monthly payment and APR. The payment amount does not include homeowner\'s insurance, flood insurance (if applicable), or property taxes which must be paid in addition to your loan payment.</li>
+                    <li class="mb-2">The displayed Annual Percentage Rate (APR) is a measure of the cost to borrow money expressed as a yearly percentage. For mortgage loans, excluding home equity lines of credit, it includes the interest rate plus other charges or fees (such as mortgage insurance, discount points, etc.). For home equity lines, the APR simply reflects the interest rate. When shopping for a mortgage, you can use the APR to compare the costs of similar loans between lenders.</li>
+                    <li class="mb-2">Interest rates and annual percentage rates (APRs) are based on current market rates, are for informational purposes only, are subject to change without notice and may be subject to pricing add-ons related to property type, loan amount, loan-to-value, credit score, refinance with cash out and other variables—call for details. This is not a credit decision or a commitment to lend.</li>
+                    <li class="mb-2">Additional closing costs may apply. Refer to your Loan Estimate (LE) for specific details.</li>
+                </ul>
+
+                <h3 class="font-weight-bold text-light pt-5">Conventional Products</h3>
+                <ul class="text-white">
+                    <li class="mb-2">This is a Purchase Transaction of an Owner-Occupied, Single-Family Primary Residence; Detached 1-Unit Property in Jefferson County, Alabama.</li>
+                    <li class="mb-2">The Loan Amount is $200,000, with an Appraised Value of $250,000, at approximately 80% Loan-to-Value (20% Down Payment). No secondary/subordinate financing.  <br /></li>
+                    <li class="mb-2">An ESCROW Account for the payment of Property Taxes and Homeowner\'s Insurance will be established with this loan. Escrows are not waived.</li>
+                    <li class="mb-2">The Median Credit Score used in this example is 720.</li>
+                    <li class="mb-2">Debt-to-Income Ratio is less than or equal to 45%.</li>
+                    <li class="mb-2">The Lock Commitment Period for this Interest Rate is 45 Days.</li>
+                    <li class="mb-2">Discount Points for this Interest Rate are the closest available option to 1.00.</li>
+                </ul>
+
+                <h3 class="font-weight-bold text-light pt-5">Jumbo Products</h3>
+                <ul class="text-white">
+                    <li class="mb-2">This is a Purchase Transaction of an Owner-Occupied, Single-Family Primary Residence; Detached 1-Unit Property in Harris County, Texas.</li>
+                    <li class="mb-2">The Loan Amount is $660,000, with an Appraised Value of $880,000, at approximately 75% Loan-to-Value (25% Down Payment). No secondary/subordinate financing.  </li>
+                    <li class="mb-2">An ESCROW Account for the payment of Property Taxes and Homeowner\'s Insurance will be established with this loan. Escrows are not waived.</li>
+                    <li class="mb-2">The Median Credit Score used in this example is 740.</li>
+                    <li class="mb-2">Debt-to-Income Ratio is less than or equal to 43%.</li>
+                    <li class="mb-2">The Lock Commitment Period for this Interest Rate is 45 Days.</li>
+                    <li class="mb-2">Discount Points for this Interest Rate are the closest available option to 1.00.</li>
+                </ul>
+
+                <p class="font-weight-bold text-white">Definitions</p>
+                <ul class="text-white">
+                    <li class="mb-2">"Conventional" Products refer to those mortgage applications with Loan Amounts less than or equal to $453,100 in most counties.</li>
+                    <li class="mb-2">"Jumbo" Products refer to those mortgage applications with Loan Amount greater than $453,100.</li>
+                    <li class="mb-2">Fixed Rate Mortgage - The Interest Rate is fixed for the life of the loan. The Monthly Principal &amp; Interest Payment cannot change.</li>
+                </ul>
+
+                <div class="font-weight-bold text-white">NMLS ID 402936</div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

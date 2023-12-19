@@ -1,0 +1,145 @@
+{% extends "layouts/app.twig" %}
+
+{% block title 'Financial Services and Online Banking'|title %}
+
+{% block content %}
+    <div class="owl-carousel owl-carousel-light owl-carousel-light-init-fadeIn owl-theme manual dots-inside dots-horizontal-center show-dots-hover show-dots-xs nav-style-1 nav-arrows-thin nav-inside nav-inside-plus nav-dark nav-lg nav-font-size-lg show-nav-hover mb-0" data-plugin-options="{'autoplay': false, 'autoplayTimeout': 7000}" data-dynamic-height="['calc(100vh - 318px)','calc(100vh - 318px)','calc(100vh - 161px)','calc(100vh - 161px)','calc(100vh - 161px)']" style="height: calc(100vh - 318px);">
+        <div class="owl-stage-outer">
+            <div class="owl-stage">
+                <!-- Carousel Slide 1 -->
+                <div class="owl-item position-relative overflow-hidden hero-sec">
+                    <div class="overlay"></div>
+                    <div class="background-image-wrapper position-absolute top-0 left-0 right-0 bottom-0" data-appear-animation="kenBurnsToLeft" data-appear-animation-duration="30s" data-plugin-options="{'minWindowWidth': 0}" data-carousel-onchange-show style="background-image: url({{ asset('assets/images/demos/finance/slides/slide-1.jpg') }}); background-size: cover; background-position: center;"></div>
+                    <div class="container position-relative z-index-3 h-100">
+                        <div class="row align-items-center justify-content-end h-100">
+                            <div class="col-lg-8 col-xl-7 text-center text-md-end">
+                                <h2 class="font-weight-bold text-white line-height-4 text-4 text-md-6 mb-2 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="800" data-plugin-options="{'minWindowWidth': 0}">Everyone loves fewer fees.</h2>
+                                <h1 class="text-white font-weight-bold text-9 text-md-11 line-height-2 mb-4 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="1100" data-plugin-options="{'minWindowWidth': 0}">Goodbye, overdraft fees on accounts overdrawn by $20 or less at the end of the day. Hello, more great updates.</h1>
+                                <a href="{{ url_for('login') }}" class="btn btn-primary font-weight-bold positive-ls-3 btn-px-5 btn-py-3 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="1400" data-plugin-options="{'minWindowWidth': 0}">LOGIN ONLINE BANKING</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="home-intro" class="home-intro bg-dark m-0" style="overflow:visible">
+        <div class="container py-2">
+            <div class="row align-items-center text-center text-md-start">
+                <div class="col-lg-6 mb-3 mb-lg-0">
+                    <p class="text-color-light text-5-5 line-height-4 mb-0">
+                        <span style="text-transform:uppercase;font-weight:700;font-size:30px;display:block;margin-bottom:5px;">Dedicated to the Doers</span>
+                    <p class="text-color-light opacity-8 font-weight-normal text-3-5 px-4 px-md-0 mb-3 mb-lg-0">
+                        <span>Small business is the backbone of our country. It drives jobs, creates prosperity and boosts local economies. We're proud to contribute to that growth by investing in America's small business owners. When you bank with Live Oak, you can be proud too.</span>
+                    </p>
+                </div>
+                <div class="col-lg-6 text-center text-md-start text-lg-end" style="margin-bottom: -100px;">
+                    <section class="parallax section section-parallax h-100 m-0" data-plugin-parallax data-plugin-options="{'speed': 1.5, 'horizontalPosition': '100%'}" data-image-src="/assets/images/demos/finance/backgrounds/bg-1.jpg" style="min-height: 315px;">
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section bg-color-grey-scale-1 border-0 m-0">
+        <div class="container pt-5 pb-3">
+            <div class="row">
+                <div class="col text-center">
+                    <h2 class="text-color-dark font-weight-bold text-8" style="padding-top: 60px;">WHY {{ config('app.name') }}</h2>
+                </div>
+            </div>
+            <div class="row process custom-process justify-content-center mt-4">
+                <div class="process-step col-md-9 col-lg-4 mb-5 mb-lg-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="200">
+                    <div class="process-step-circle border-width-3 mb-3">
+                        <strong class="process-step-circle-content">
+                            <img width="58" height="58" src="{{ asset('assets/images/demos/finance/icons/box.svg') }}" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-stroke-color-primary'}" />
+                        </strong>
+                    </div>
+                    <div class="process-step-content px-4">
+                        <h4 class="font-weight-bold text-6 pb-1 mb-2">Know-How</h4>
+                        <p class="text-3-5 text-color-dark mb-0">We'll take you where you need to go with our deep industry and product expertise.</p>
+                    </div>
+                </div>
+                <div class="process-step col-md-9 col-lg-4 mb-5 mb-lg-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="400">
+                    <div class="process-step-circle border-width-3 mb-3">
+                        <strong class="process-step-circle-content">
+                            <img width="58" height="58" src="{{ asset('assets/images/demos/finance/icons/refresh-cw.svg') }}" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-stroke-color-primary'}" />
+                        </strong>
+                    </div>
+                    <div class="process-step-content px-4">
+                        <h4 class="font-weight-bold text-6 pb-1 mb-2">Efficiency</h4>
+                        <p class="text-3-5 text-color-dark mb-0">Our commitment to efficiency and transparency helps you avoid costly mistakes.</p>
+                    </div>
+                </div>
+                <div class="process-step col-md-9 col-lg-4 mb-5 mb-lg-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
+                    <div class="process-step-circle border-width-3 mb-3">
+                        <strong class="process-step-circle-content">
+                            <img width="58" height="58" src="{{ asset('assets/images/demos/finance/icons/people.svg') }}" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-fill-color-primary'}" />
+                        </strong>
+                    </div>
+                    <div class="process-step-content px-4">
+                        <h4 class="font-weight-bold text-6 pb-1 mb-2">Service</h4>
+                        <p class="text-3-5 text-color-dark mb-0">We strive to provide unmatched service and an unwavering dedication to your success.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 p-0">
+                <section class="parallax section section-parallax h-100 m-0" data-plugin-parallax data-plugin-options="{'speed': 1.5, 'horizontalPosition': '100%'}" data-image-src="/assets/images/demos/finance/backgrounds/bg-3.jpg" style="min-height: 315px;">
+                </section>
+            </div>
+            <div class="col-lg-6 p-0">
+                <div class="h-100 m-0">
+                    <div class="row m-0">
+                        <div class="col-half-section col-half-section-left py-5">
+                            <div class="p-3">
+                                <h2 class="font-weight-bold text-8 mb-4 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="400" data-plugin-options="{'minWindowWidth': 0}">Investment Solutions</h2>
+                                <p class="text-3-5 pb-2 mb-4 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="600" data-plugin-options="{'minWindowWidth': 0}">As part of the {{ config('app.name') }} Group, a global financial services group with operations in over 30 countries, {{ config('app.name') }} Investment Solutions offers local expertise with a global reach.</p>
+                                <a href="{{ url_for('investments') }}" class="btn border rounded-0 px-5 btn-py-3 font-weight-bold positive-ls-2 text-color-dark bg-color-hover-primary text-color-hover-light appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="800" data-plugin-options="{'minWindowWidth': 0}">LEARN MORE</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 order-2 order-lg-1 p-0">
+                <div class="h-100 m-0">
+                    <div class="row m-0">
+                        <div class="col-half-section col-half-section-right py-5 ms-auto">
+                            <div class="p-3">
+                                <h2 class="font-weight-bold text-8 mb-4 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="400" data-plugin-options="{'minWindowWidth': 0}">Digital Banking Services</h2>
+                                <p class="text-3-5 pb-2 mb-4 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="600" data-plugin-options="{'minWindowWidth': 0}">Banking on the go, easy and convenient ways to do transactions... any time, anywhere with our Digital Banking Services</p>
+                                <a href="{{ url_for('digital-services') }}" class="btn border rounded-0 px-5 btn-py-3 font-weight-bold positive-ls-2 text-color-dark bg-color-hover-primary text-color-hover-light appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="800" data-plugin-options="{'minWindowWidth': 0}">LEARN MORE</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 order-1 order-lg-2 p-0">
+                <section class="parallax section section-parallax h-100 m-0" data-plugin-parallax data-plugin-options="{'speed': 1.5, 'horizontalPosition': '100%'}" data-image-src="/assets/images/demos/finance/backgrounds/bg-4.jpg" style="min-height: 315px;">
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <section class="section overlay overlay-show overlay-color-primary custom-overlay-opacity-95 border-0 m-0" style="background-size: cover; background: url({{ asset('assets/images/demos/finance/backgrounds/background-1.jpg') }}) center;">
+        <div class="container position-relative z-index-2 pt-5">
+            <div class="row">
+                <div class="col text-center">
+                    <h2 class="font-weight-bold text-color-light text-11 line-height-3 line-height-md-1 mb-5">YOUR DRIVE DRIVES US</h2>
+                    <p class="text-color-light text-3-5 line-height-9">Business owners across the nation have chosen {{ config('app.name') }} to fund their dreams and drive their success. Discover the ways we've helped our customers achieve more.
+                        <br /><br />
+                        <a href="{{ url_for('contact') }}" class="btn btn-default">CONTACT US</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

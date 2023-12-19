@@ -1,0 +1,193 @@
+{% extends "layouts/app.twig" %}
+
+{% block title 'Investments'|title %}
+
+{% block content %}
+    <section class="page-header page-header-modern page-header-background overlay overlay-show overlay-color-primary overlay-op-9 border-0 m-0" data-plugin-parallax data-plugin-options="{'speed': 1.5, 'parallaxHeight': '125%', 'fadeIn': true}" data-image-src="assets/images/demos/finance/backgrounds/background-1.jpg">
+        <div class="container position-relative z-index-2">
+            <div class="row text-center text-md-start">
+                <div class="col-md-8 order-2 order-md-1 align-self-center p-static">
+                    <h1 class="font-weight-bold text-color-light text-10 mb-0">{{ block('title') }}</h1>
+                </div>
+                <div class="col-md-4 order-1 order-md-2 align-self-center">
+                    <ul class="breadcrumb breadcrumb-light d-block text-md-end text-4 mb-0">
+                        <li><a href="{{ url_for('home') }}" class="text-decoration-none">Home</a></li>
+                        <li class="text-uppercase active">{{ block('title') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section border-0 m-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h6 class="font-weight-bold">overview</h6>
+                    <h2 class="font-weight-bold">Investment Solutions for every stage of life</h2>
+                    <p>Regardless of what financial stage you are in, {{ config('app.name') }} Investment Solutions is here to help. Benefit from the guidance of our experienced investment team with Full-Service Investments, or manage investments yourself with Self-Directed Investments. Either way, you'll enjoy the ease and convenience of online investing.</p>
+                    <p>For individuals residing outside the U.S., we also offer full-service investing through our International Investments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section border-0 m-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h6 class="font-weight-bold">Solutions</h6>
+
+                    <h2 class="font-weight-bold">Self-Directed Investments</h2>
+                    <p>Manage investments yourself with a self-directed brokerage account. Within minutes, easily open an account online and begin investing in:</p>
+                    <ul>
+                        <li>Equities</li>
+                        <li>Exchanged-Traded Funds (ETFs)</li>
+                        <li>Mutual Funds</li>
+                        <li>Options<sup>1</sup></li>
+                        <li>Margin Accounts<sup>2</sup></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section border-0 m-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="font-weight-bold">Full-Service Investments</h2>
+                    <p>Our trusted investment team can assist you with retirement plans, personal investments, and insurance solutions. Whatever your goal, we've got the experience and know-how to help make your money work harder.<br /></p>
+
+                    <h3 class="font-weight-bold pt-3">Personal retirement solutions—aligning goals with resources</h3>
+                    <p>Our financial advisers can work with you to establish effective habits that will help you realize your retirement goals. Our Retirement Solutions include:</p>
+                    <ul>
+                        <li>IRAs</li>
+                        <li>Lifetime Income Solutions</li>
+                        <li>Fixed Annuities*</li>
+                        <li>Variable Annuities*</li>
+                    </ul>
+
+                    <h5 class="font-weight-bold pt-3">Personal investment solutions to fit your specific needs</h5>
+                    <ul>
+                        <li>Mutual Funds</li>
+                        <li>Unit Investment Trusts</li>
+                        <li>Fixed Annuities<sup>3,*</sup></li>
+                        <li>Variable Annuities<sup>4,3,*</sup></li>
+                        <li>Equity Linked CDs<sup>5</sup></li>
+                        <li>Professionally managed portfolios including {{ config('app.name') }} SmartPath® Portfolios of mutual funds or separately managed accounts<sup>6</sup></li>
+                        <li>529 and Other College Savings Programs</li>
+                        <li>Fixed Income Securities</li>
+                        <li>Discount Brokerage Services</li>
+                        <li>Wealth Transfer Solutions<sup>3</sup></li>
+                    </ul>
+
+                    <h5 class="font-weight-bold pt-3">Personalized, cost-effective insurance solutions<sup>3</sup></h5>
+                    <p>Insurance can provide for loved ones, safeguard earnings capacity, and protect hard-earned assets. Through our affiliate, {{ config('app.name') }} Insurance Agency, Inc.<sup>3</sup>, we can help you assess your coverage and evaluate protection products from a wide variety of insurance companies to find cost-effective and innovative solutions.</p>
+                    <ul>
+                        <li>Term Life Insurance</li>
+                        <li>Permanent Life Insurance</li>
+                        <li>Long-Term Care Insurance</li>
+                        <li>Disability Insurance</li>
+                        <li>Insurance Solutions for Your Business</li>
+                    </ul>
+
+                    <h3 class="font-weight-bold pt-3">Business retirement solutions for you and your employees</h3>
+                    <p>A business retirement plan provides tax advantages, helps attract and retain employees, and most importantly, provides for retirement. We can assist you in considering solutions that maximize these benefits and navigate the complexities of today's tax environment.</p>
+                    <ul>
+                        <li>Simple IRA</li>
+                        <li>Simplified Employee Pension Plans (SEPs)</li>
+                    </ul>
+
+                    <h4 class="font-weight-bold pt-3">Your Retirement Check-Up</h4>
+                    <p>Use this tool whether you're just starting or verifying an existing plan.</p>
+
+                    <h4 class="font-weight-bold pt-3">Preparing for Education Costs</h4>
+                    <p>Start planning for the cost of college and graduate school for you, your kids, or your grandchildren.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section border-0 m-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="font-weight-bold">International Investments</h2>
+                    <p>Even if you reside outside the U.S., {{ config('app.name') }} investment solutions are available to you. Here are two services we offer to you:</p>
+
+                    <h3 class="font-weight-bold pt-3">Cash Accounts</h3>
+                    <p>Your cash account is a central brokerage account in the United States. Its primary purpose is the purchase, sale, and custody of investment products. The principal operations that can be performed with a cash account are:</p>
+                    <ul>
+                        <li>Deposit of funds through electronic transfer</li>
+                        <li>Purchase / sale of securities</li>
+                        <li>Custody of securities</li>
+                        <li>Withdrawal of funds through a payment order</li>
+                        <li>Deposits or transfers of securities</li>
+                    </ul>
+                    <p>Account statements are issued monthly only when there has been account activity; otherwise, they are delivered quarterly with all account activities, operations details, securities positions, updated portfolio assessment, and available balances. The account statements are delivered by courier.</p>
+
+                    <h3 class="font-weight-bold pt-3">Margin Accounts</h3>
+
+                    <p>Once your cash account has been established, it can be converted into a margin account.<sup>2</sup><br /></p>
+                    <ul>
+                        <li>A margin account allows you to obtain a loan for a percentage of your portfolio value, depending on the type of asset. Your portfolio value will be held in guarantee of payment when the values that comprise it are eligible to do so.<sup>7</sup></li>
+                        <li>Margin accounts have certain risks that investors must be aware of in order to deal with the consequences in case of market fluctuations.<sup>8</sup></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section overlay overlay-show overlay-color-primary custom-overlay-opacity-95 border-0 m-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="font-weight-bold text-light">Details you need to make a smart decision</h3>
+
+                    <p><span class="text-white">Links to third party sites are provided for your convenience and do not constitute an endorsement. {{ config('app.name') }} does not provide, is not responsible for, and does not guarantee the products, services or overall content available at third party sites. These sites may not have the same privacy, security or accessibility standards.</span></p>
+
+                    <p><span class="text-white"><sup>*</sup> If you are in an annuity through a tax-advantaged retirement plan, such as an IRA, you will realize no additional tax advantage from an annuity and should therefore only consider other features of the annuity.</span></p>
+
+                    <p><span class="text-white"><sup>1</sup> Options trading entails a significant level of risk and is not appropriate for all investors. Certain requirements must be met to trade options. Options transactions will be subject to the execution, delivery, and acceptance of separate agreements with Pershing LLC, the clearing firm for {{ config('app.name') }} Securities Inc. You should consult with your tax advisor since options trading may affect your tax situation.<br /></span></p>
+
+                    <p><span class="text-white"><sup>2 </sup>All margin transactions will be subject to the execution, delivery, and acceptance of separate agreements with Pershing, LLC, the clearing firm for {{ config('app.name') }} Investment Solutions, a Division of {{ config('app.name') }} Securities Inc.</span><br /></p>
+
+                    <p><span class="text-white"><sup>3</sup> Insurance products are offered through {{ config('app.name') }} Insurance Agency Inc. Insurance products are NOT FDIC insured, are NOT bank deposits, have no bank guarantee, and are NOT insured by any other Federal Government Agency. {{ config('app.name') }} Insurance Agency Inc., an affiliate of Compass Bank.</span><br /></p>
+
+                    <p><span class="text-white"><sup>4 </sup>Securities and Investment products offered through {{ config('app.name') }} Investment Solutions, a division of {{ config('app.name') }} Securities Inc, member FINRA and SIPC and an affiliate of Compass Bank. Securities and Investment Products: are NOT deposits, are NOT FDIC insured, are NOT bank guaranteed, are NOT insured by any other Federal Government Agency and may LOSE value.</span><br /></p>
+
+                    <p><span class="text-white"><sup>5 </sup>Please carefully review the terms and conditions for any Equity Linked CD's in which you invest for important information related to FDIC deposit insurance. Selling an Equity Linked CD prior to maturity is subject to market fluctuations and proceeds from the sale could be substantially less than the original deposit amount.</span><br /></p>
+
+                    <p><span class="text-white"><sup>6</sup> Advisory services are offered through {{ config('app.name') }} Wealth Solutions, Inc., a SEC registered investment advisor, an affiliate of Compass Bank. Investors should note there are risks inherent in all investments, such as fluctuations in investment principal. No investment strategy can guarantee a profit or protect against loss.</span></p>
+
+                    <p><span class="text-white"><sup>7</sup>You must always contact {{ config('app.name') }} Investment Solutions to verify the amount available based on your portfolio before requesting any operation involving margin credit.</span><br /></p>
+
+                    <p><span class="text-white"><sup>8</sup>In some cases, the drop in value of the instruments constituting the guarantee can be so large that it becomes necessary to sell some or all of the portfolio to cover the guarantee proportion established in the margin credit contract. Your loss can be greater than the value of your account. This is why the investor must be aware of the risks involved in this type of account.</span></p>
+
+                    <p><span class="text-white">Securities and Investment products offered through {{ config('app.name') }} Investment Solutions, a division of {{ config('app.name') }} Securities Inc., member FINRA and SIPC and an affiliate of Compass Bank. Insurance products are offered through {{ config('app.name') }} Insurance Agency, Inc., an affiliate of Compass Bank.<br /></span></p>
+
+                    <table class="table text-white">
+                        <tbody>
+                        <tr class="title">
+                            <td colspan="2">Securities and Insurance Products:</td>
+                        </tr>
+                        <tr>
+                            <td>ARE NOT DEPOSITS</td>
+                            <td>ARE NOT FDIC INSURED</td>
+                        </tr>
+                        <tr>
+                            <td>ARE NOT BANK GUARANTEED</td>
+                            <td>MAY LOSE VALUE</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">ARE NOT INSURED BY ANY FEDERAL GOVERNMENT AGENCY</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

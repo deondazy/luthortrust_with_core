@@ -1,0 +1,103 @@
+{% extends "layouts/app.twig" %}
+
+{% block title 'Contact'|title %}
+
+{% block content %}
+    <section class="page-header page-header-modern page-header-background overlay overlay-show overlay-color-primary overlay-op-9 border-0 m-0" data-plugin-parallax data-plugin-options='{"speed": 1.5, "parallaxHeight": "125%", "fadeIn": true}' data-image-src="assets/images/demos/finance/backgrounds/background-1.jpg">
+        <div class="container position-relative z-index-2">
+            <div class="row text-center text-md-start">
+                <div class="col-md-8 order-2 order-md-1 align-self-center p-static">
+                    <h1 class="font-weight-bold text-color-light text-10 mb-0">{{ block('title') }}</h1>
+                </div>
+                <div class="col-md-4 order-1 order-md-2 align-self-center">
+                    <ul class="breadcrumb breadcrumb-light d-block text-md-end text-4 mb-0">
+                        <li><a href="{{ url_for('home') }}" class="text-decoration-none">Home</a></li>
+                        <li class="text-uppercase active">{{ block('title') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section border-0 m-0">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-7 col-lg-5">
+                    <h2 class="font-weight-bold text-8 ls-0 mb-3">Get in touch</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <form class="contact-form form-with-icons" action="{{ url_for('contact.post') }}" method="post">
+                        {% if has_flash('success') %}
+                            <div class="alert alert-success">{{ get_flash('success') }}</div>
+                        {% endif %}
+
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label for="fullName" class="form-label mb-1 text-2">Full Name</label>
+                                <div class="position-relative">
+                                    <i class="icons icon-user text-color-primary text-3 position-absolute left-15 top-50pct transform3dy-n50"></i>
+                                    <input id="fullName" type="text" data-msg-required="Please enter your name." maxlength="100" class="form-control text-3 h-auto py-2" name="name" required autofocus>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-lg-6">
+                                <label for="email" class="form-label mb-1 text-2">Email Address</label>
+                                <div class="position-relative">
+                                    <i class="icons icon-envelope text-color-primary text-3 position-absolute left-15 top-50pct transform3dy-n50"></i>
+                                    <input id="email" type="email" data-msg-required="Please enter your email address." maxlength="100" class="form-control text-3 h-auto py-2" name="email" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label for="message" class="form-label mb-1 text-2">Message</label>
+                                <div class="position-relative">
+                                    <i class="icons icon-bubble text-color-primary text-3 position-absolute left-15 top-15"></i>
+                                    <textarea id="message" maxlength="5000" data-msg-required="Please enter your message." rows="8" class="form-control text-3 h-auto py-2" name="message" required=""></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="submit" class="btn btn-primary font-weight-bold positive-ls-3 btn-px-5 py-3" value="SEND REQUEST" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-dark border-0 m-0">
+        <div class="container py-5-5">
+            <div class="row align-items-center">
+                <div class="col-md-12 mb-12 mb-md-0 text-center">
+                    <h3 class="font-weight-bold text-light line-height-1 text-4 ls-0 mb-1 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="200">Get down to business.</h3>
+                    <h2 class="font-weight-bold text-light text-8 ls-0 mb-3 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="400">Everyone loves fewer fees.</h2>
+                    <p class="line-height-9 text-3-5 pe-md-4 pe-lg-5 mb-5-5 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="600">Goodbye, overdraft fees on accounts overdrawn by $20 or less at the end of the day. Hello, more great updates.</p>
+
+                    <a href="{{ url_for('login') }}" class="btn btn-primary font-weight-bold positive-ls-3 btn-px-5 py-3 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="800">ONLINE BANKING</a>
+                </div>
+
+                <!---<div class="col-md-6 divider-left-border custom-mobile-remove-divider-left-border border-color-light-4">
+                    <div class="ps-md-4 ps-lg-4 py-md-5 ms-md-4">
+                        <div class="d-flex align-items-center text-light appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="900">
+                            <i class="icons icon-phone text-9 position-relative bottom-1"></i>
+                            <a href="tel:0123456789" class="text-4-5 font-weight-bold text-light opacity-hover-8 text-decoration-none ps-3-5">(800) 123-4567</a>
+                        </div>
+                        <div class="d-flex align-items-center my-5-5 appear-animation text-light" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="1100">
+                            <img width="38" height="38" src="assets/images/demos/finance/icons/email.svg" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-fill-color-light'}" />
+                            <a href="mailto:test@email.com" class="text-4-5 font-weight-bold opacity-hover-8 text-decoration-none text-light  ps-3-5">
+                                <span class="__cf_email__" data-cfemail=""><?= ___('test@email.com') ?></span>
+                            </a>
+                        </div>
+                        <div class="d-flex align-items-center pe-lg-5 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="1300">
+                            <img width="38" height="38" src="assets/images/demos/finance/icons/map-pin.svg" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-fill-color-light'}" />
+                            <p class="font-weight-bold text-light  text-4-5 mb-0 ps-3-5 pe-lg-5 me-lg-5"><?= ___('123 Street Name, New York NY 10000, USA') ?></p>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </section>
+{% endblock %}

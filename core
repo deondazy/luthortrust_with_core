@@ -1,0 +1,38 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+ini_set('display_errors', '1');
+
+use Denosys\Core\Application as Denosys;
+use Doctrine\Migrations\DependencyFactory;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Console\Application as ConsoleApplication;
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Doctrine\Migrations\Configuration\Migration\PhpFile;
+use Doctrine\Migrations\Configuration\EntityManager\ExistingEntityManager;
+use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
+
+$app = (require_once __DIR__ . '/bootstrap/app.php');
+$container = $app->getContainer();
+
+$config = $container->get('config');
+$entityManager = $container->get(EntityManagerInterface::class);
+
+$dependencyFactory = DependencyFactory::fromEntityManager(
+    new PhpFile(__DIR__ . '/config/migrations.php'),
+    new ExistingEntityManager($entityManager)
+);
+
+$migrationCommands = require __DIR__ . '/commands/migrations.php';
+$customCommands    = require __DIR__ . '/commands/custom.php';
+
+$console = new ConsoleApplication(config('app.name'), Denosys::VERSION);
+
+ConsoleRunner::addCommands($console, new SingleManagerProvider($entityManager));
+
+$console->addCommands($migrationCommands($dependencyFactory));
+$console->addCommands($customCommands($config, $app));
+
+$console->run();

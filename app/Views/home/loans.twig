@@ -1,0 +1,147 @@
+{% extends "layouts/app.twig" %}
+
+{% block title 'Loans'|title %}
+
+{% block content %}
+<section class="page-header page-header-modern page-header-background overlay overlay-show overlay-color-primary overlay-op-9 border-0 m-0" data-plugin-parallax data-plugin-options="{'speed': 1.5, 'parallaxHeight': '125%', 'fadeIn': true}" data-image-src="/assets/images/demos/finance/backgrounds/background-1.jpg">
+    <div class="container position-relative z-index-2">
+        <div class="row text-center text-md-start">
+            <div class="col-md-8 order-2 order-md-1 align-self-center p-static">
+                <h1 class="font-weight-bold text-color-light text-10 mb-0">{{ block('title') }}</h1>
+            </div>
+            <div class="col-md-4 order-1 order-md-2 align-self-center">
+                <ul class="breadcrumb breadcrumb-light d-block text-md-end text-4 mb-0">
+                    <li><a href="{{ url_for('home') }}" class="text-decoration-none">Home</a></li>
+                    <li class="text-uppercase active">{{ block('title') }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section border-0 m-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center font-weight-black">A variety of loan options to fit your needs</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section border-0 m-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="font-weight-bold">{{ config('app.name') }} Express Personal Loans</h2>
+                <p class="lead">Get the money you need, fast with a personal loan</p>
+                <p>Consolidate debt or finance major purchases with our Express Personal Loan. Our competitive low rates make borrowing affordable and easy. Apply for a personal loan online, with potential same-day funding upon approval.</p>
+                <p><b>Benefits Include:</b></p>
+                <ul>
+                    <li>Competitive personal loan rates</li>
+                    <li>No collateral requirements</li>
+                    <li>Affordable borrowing</li>
+                    <li>Rate discount with set up of recurring auto-debit loan payments</li>
+                    <li>Simplified budgeting</li>
+                    <li>Fast access to your funds</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section border-0 m-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="font-weight-bold">Auto Loans</h2>
+                <p class="lead">Make buying your next car affordable and hassle-free</p>
+                <p>Buy new or used you'll get the same competitive rate. Flexible terms and no prepayment penalties make paying off your car faster and easier than ever. Apply for a car loan today and enjoy the benefits of financing through {{ config('app.name') }}.</p>
+
+                <p class="font-weight-bold">Benefits Include:</p>
+
+                <ul>
+                    <li>Competitive fixed auto loan rates</li>
+                    <li>Rate discount with set up of recurring auto-debit loan payments</li>
+                    <li>No documentation fees</li>
+                    <li>Same-day decisions on most applications</li>
+                    <li>Free online insurance quotes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section border-0 m-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="font-weight-bold">Home Equity Line of Credit</h2>
+                <p class="lead">Tap into your home's equity when you need it</p>
+                <p>Utilize your home's equity to finance home improvements, major purchases, or unexpected expenses. With a Home Equity Line of Credit (HELOC), you can easily access available credit when you need it. Enjoy low monthly payments and competitive HELOC rates when you apply online.</p>
+                <p><span class="strong">Benefits Include:</span><br />
+                </p>
+                <ul>
+                    <li>Lower rates than most other loan options</li>
+                    <li>Rate discount with set up of recurring auto-debit loan payments</li>
+                    <li>Flexible access to funds for almost any purpose</li>
+                    <li>Flexible repayment options</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section border-0 m-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="font-weight-bold">Home Equity Loans</h2>
+                <p class="lead">Make your home's equity work for you</p>
+                <p>Use your home’s equity for almost any purpose including home improvements, unexpected expenses, and major purchases. With a home equity loan, funds are disbursed as a lump sum, making it a great option when you need to borrow a specific amount. Apply online and get your low rate today.</p>
+                <p class="font-weight-bold">Benefits Include:</p>
+                <ul>
+                    <li>Lower rates than most other loan options<br />
+                    </li>
+                    <li>Funds disbursed as lump sum<br />
+                    </li>
+                    <li>Fixed home equity loan rates, with fixed monthly payments<br />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section border-0 m-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="font-weight-bold">Mortgage Loans</h2>
+                <p class="lead">Buy, renovate, build, or refinance a home</p>
+                <p>Find a mortgage loan that fits your needs. No matter if you're a first-time home buyer or an existing homeowner looking to refinance, we offer a variety of loan options for every situation. Apply for a mortgage loan today to make financing your home fast and easy.</p>
+                <p class="font-weight-bold">Benefits May Include:
+                </p>
+                <ul>
+                    <li>Refinancing for a lower rate</li>
+                    <li>Converting equity into cash</li>
+                    <li>Fixed and adjustable-rate options</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section overlay overlay-show overlay-color-primary custom-overlay-opacity-95 border-0 m-0">
+    <div class="container position-relative z-index-2">
+        <div class="row">
+            <div class="col-md-8">
+                <h2 class="text-light">Details you need to make a smart decision</h2>
+                <p class="text-white lead">All loans subject to program eligibility, underwriting and collateral requirements and approval, including credit approval.</p>
+                <p class="text-white"><b>Debt Consolidation:</b> The relative benefits you receive from loan consolidation will vary depending on your individual circumstances. If your Home Equity Line has a longer term than the bills you are consolidating, you may not realize savings over the entire terms of your Home Equity Line. Home-secured credit may include expenses, including hazard and flood insurance, which are not required for comparison lines of credit.</p>
+                <p class="text-white">{{ config('app.name') }} is a trade name of Compass Bank, a member of the {{ config('app.name') }} Group. Compass Bank, Member FDIC and an Equal Housing Lender.</p>
+            </div>
+        </div><!-- /.row -->
+    </div>
+</section>
+{% endblock %}

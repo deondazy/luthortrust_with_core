@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %} | {{ config('app.name', 'Luthor Trust') }}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link id="googleFonts" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet" type="text/css">
+
+<!--    {{ vite(['assets/css/app.css', 'assets/css/app.scss', 'assets/js/app.js']) }}-->
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/animate/animate.compat.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/simple-line-icons/css/simple-line-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/owl.carousel/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/owl.carousel/assets/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/magnific-popup/magnific-popup.min.css') }}">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/theme-elements.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/theme-blog.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/theme-shop.css') }}">
+
+    <!-- Demo CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/demos/demo-finance.css') }}">
+
+    <!-- Skin CSS -->
+    <link id="skinCSS" rel="stylesheet" href="{{ asset('assets/css/skins/skin-finance.css') }}">
+
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+
+    <style>
+        .hero-sec .overlay {
+            position: absolute;
+            background: rgba(0, 0, 0, .4);
+            width: 100%;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+        }
+    </style>
+
+    <!-- Head Libs -->
+    <script src="{{ asset('assets/vendor/modernizr/modernizr.min.js') }}"></script>
+</head>
+<body>
+    <div class="body">
+        {% include 'include/navigation.twig' %}
+
+        <div role="main" class="main">{% block content %}{% endblock %}</div>
+
+        <footer id="footer" class="footer-reveal bg-light border-0 m-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright bg-light m-0 pt-3-5 pb-5">
+                <div class="container">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-12 col-sm-auto text-center text-sm-start order-2 order-sm-1">
+                            <p class="text-3">{{ config('app.name') }} © {{ "now"|date("Y") }}. All Rights Reserved.</p>
+                        </div>
+                        <div class="col-12 col-sm-auto order-1 order-sm-2 mb-2 mb-sm-0">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <ul class="nav nav-pills">
+                                    <li>
+                                        <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                                    </li>
+
+                                    <li>
+                                        <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+                                    </li>
+
+                                    <li>
+                                        <a class="nav-link" href="{{ url_for('privacy') }}">Privacy and Security</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+<!-- Vendor -->
+<script src="{{ asset('assets/vendor/plugins/js/plugins.min.js') }}"></script>
+
+<!-- Theme Base, Components and Settings -->
+<script src="{{ asset('assets/js/theme.js') }}"></script>
+
+<!-- Theme Initialization Files -->
+<script src="{{ asset('assets/js/theme.init.js') }}"></script>
+</html>

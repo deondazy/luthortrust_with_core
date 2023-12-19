@@ -1,0 +1,12 @@
+{% extends "layouts/dashboard.twig" %}
+
+{% block title 'Dashboard | Account'|title %}
+
+{% block content %}
+
+    <div>Hello World</div>
+
+    <div>{{ user.firstName }}</div>
+    <div>{{ user.roles|first }}</div>
+
+{% endblock %}

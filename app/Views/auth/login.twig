@@ -1,0 +1,74 @@
+{% extends "layouts/app.twig" %}
+
+{% block title 'Login Online Banking'|title %}
+
+{% block content %}
+    <section class="page-header page-header-modern page-header-background overlay overlay-show overlay-color-primary overlay-op-9 border-0 m-0" data-plugin-parallax data-plugin-options="{'speed': 1.5, 'parallaxHeight': '125%', 'fadeIn': true}" data-image-src="{{ asset('assets/images/demos/finance/backgrounds/background-1.jpg') }}">
+        <div class="container position-relative z-index-2">
+            <div class="row text-center text-md-start">
+                <div class="col-md-8 order-2 order-md-1 align-self-center p-static">
+                    <h1 class="font-weight-bold text-color-light text-10 mb-0">{{ block('title') }}</h1>
+                </div>
+                <div class="col-md-4 order-1 order-md-2 align-self-center">
+                    <ul class="breadcrumb breadcrumb-light d-block text-md-end text-4 mb-0">
+                        <li><a href="{{ url_for('home') }}" class="text-decoration-none">{{ config('app.name') }}</a></li>
+                        <li class="text-uppercase active">{{ block('title') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section border-0 m-0">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-7 col-lg-5">
+                    <h2 class="font-weight-bold text-8 ls-0 mb-1">Login</h2>
+                    <p class="mb-5">Enter your Online Banking credentials to gain access.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <form action="{{ url_for('login.post') }}" class="contact-form form-with-icons col-lg-6" method="post">
+                        {% if errors %}
+                            <div class="alert alert-danger">
+                                <div class="help-block">{{ errors | first }}</div>
+                            </div>
+                        {% endif %}
+
+                        <div class="row">
+                            <div class="form-group col-lg-12">
+                                <label for="username" class="form-label mb-1 text-2">Username</label>
+                                <div class="position-relative">
+                                    <i class="icons icon-user text-color-primary text-3 position-absolute left-15 top-50pct transform3dy-n50"></i>
+                                    <input id="username" tabindex="1" type="text" data-msg-required="Please enter your username." maxlength="100" class="form-control text-3 h-auto py-2" name="UserNameInput" autofocus>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-lg-12">
+                                <label for="password" class="form-label mb-1 text-2">Password</label>
+                                <div class="position-relative">
+                                    <i class="icons icon-lock text-color-primary text-3 position-absolute left-15 top-50pct transform3dy-n50"></i>
+                                    <input id="password" tabindex="2" type="password" data-msg-required="Please enter your password.'" class="form-control text-3 h-auto py-2" name="PasswordInput">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-lg-12">
+                                <div class="position-relative custom-checkbox-1 form-check">
+                                    <input id="remember-me" tabindex="3" type="checkbox" class="form-check-input" name="remember">
+                                    <label for="remember-me" class="form-check-label text-2">Save login (I trust this computer)</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input tabindex="3" type="submit" class="btn btn-primary font-weight-bold positive-ls-3 btn-px-5 py-3" value="LOGIN ONLINE BANKING" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

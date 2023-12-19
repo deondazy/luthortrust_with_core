@@ -1,0 +1,115 @@
+{% extends "layouts/app.twig" %}
+
+{% block title 'Digital Services'|title %}
+
+{% block content %}
+    <section class="page-header page-header-modern page-header-background overlay overlay-show overlay-color-primary overlay-op-9 border-0 m-0" data-plugin-parallax data-plugin-options="{'speed': 1.5, 'parallaxHeight': '125%', 'fadeIn': true}" data-image-src="assets/images/demos/finance/backgrounds/background-1.jpg">
+        <div class="container position-relative z-index-2">
+            <div class="row text-center text-md-start">
+                <div class="col-md-8 order-2 order-md-1 align-self-center p-static">
+                    <h1 class="font-weight-bold text-color-light text-10 mb-0">{{ block('title') }}</h1>
+                </div>
+                <div class="col-md-4 order-1 order-md-2 align-self-center">
+                    <ul class="breadcrumb breadcrumb-light d-block text-md-end text-4 mb-0">
+                        <li><a href="{{ url_for('home') }}" class="text-decoration-none">Home</a></li>
+                        <li class="text-uppercase active">{{ block('title') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section border-0 m-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-center font-weight-black">Banking on the go... any time, anywhere with our Digital Banking Services</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section border-0 m-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="font-weight-bold">Mobile Banking</h2>
+                    <p>We know life is hectic. That's why we designed our award-winning Mobile Banking App to handle what you need wherever you are. From depositing checks and paying bills to transferring money and viewing account balances, Mobile Banking is one of the fastest, easiest and most convenient ways to manage your accounts. In fact, it's been named a Mobile Banking Leader in functionality by Javelin for three years running.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section border-0 m-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="font-weight-bold">{{ config('app.name') }} Wallet</h2>
+                    <h3><span class="lead">Safe + Secure + Smart</span></h3>
+                    <p>{{ config('app.name') }} Wallet provides convenient control of your {{ config('app.name') }} debit and credit cards. You can activate your new card, change your PIN, set up account alerts, redeem rewards in real time, and even temporarily or permanently block use of your card.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section border-0 m-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="font-weight-bold">Apps to make faster payments</h2>
+                    <p>{{ config('app.name') }} Visa® Cards are eligible for enrollment in Apple Pay,   Google Pay, and Samsung Pay, which allows you to pay retailers directly from your mobile device.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section border-0 m-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="font-weight-bold">Online Banking</h2>
+                    <p class="lead">The tools to bank your way</p>
+                    <p>Online Banking from {{ config('app.name') }} allows you to manage your money when you want, where you want — all you need is an Internet connection. Whether you are paying bills, checking statements, or transferring funds, you can fully manage your accounts with the peace of mind that your money and your personal information will remain safe and secure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section border-0 m-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="font-weight-bold">ATM Banking</h2>
+                    <p class="lead">Full-service banking, 24 hours a day</p>
+                    <p>If you thought ATMs were just for withdrawing cash, you haven't been to a {{ config('app.name') }} ATM lately. Our ATMs give you 24/7 access to your account, 365 days a year, allowing you to make cash or check deposits, transfer money, withdraw cash, view account balances, and even print a mini-statement. Our ATMs are also fluent in both English and Spanish and can speak to our blind or visually impaired customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section border-0 m-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="font-weight-bold">Remote Banking</h2>
+                    <p class="lead">Access to your own team of personal bankers</p>
+                    <p>When you open a {{ config('app.name') }} checking account online, you'll be assigned a team of dedicated concierge bankers at no extra cost. They're experienced financial advisers who you can contact via text, email, chat, or phone. You will be able to take care of almost anything remotely instead of heading to a branch location — saving you valuable time and money. Discover a new level of personal service.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section overlay overlay-show overlay-color-primary custom-overlay-opacity-95 border-0 m-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="font-weight-bold text-white">Details you need to make a smart decision</h3>
+                    <p><span class="text-white">Apple, the Apple logo, and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries. Apple Pay and Touch ID are trademarks of Apple Inc.</span></p>
+                    <p><span class="text-white">Google, the Google logo are trademarks of Google Inc., registered in the U.S. and other countries. Google Pay is a trademark of Google Inc.</span></p>
+                    <p><span class="text-white">Samsung, the Samsung logo are trademarks of Samsung Inc., registered in the U.S. and other countries. Samsung Pay is a trademark of Samsung Inc.</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
