@@ -192,6 +192,12 @@ class Validator implements ValidatorInterface
             $table = $constraint['table'];
             $repository = $this->entityManager->getRepository($this->namespace . $this->classifyTableName($table));
 
+            if ($repository === null) {
+                throw new ValidationException([
+                    'table' => "Table $table does not exist."
+                ]);
+            }
+
             if ($repository->count([$field => $data[$field]])) {
                 $validator->error($field, "{field} is already in use.");
             }
