@@ -47,6 +47,13 @@ class Validator implements ValidatorInterface
     private array $errors = [];
 
     /**
+     * Unique validation constraints.
+     * 
+     * @var array
+     */
+    private array $uniqueConstraints = [];
+
+    /**
      * Validates the given data based on the given rules.
      *
      * @param array $data
@@ -77,7 +84,7 @@ class Validator implements ValidatorInterface
                         $ruleParts[1]
                     ),
                     'unique' => $this->applyUniqueRule(
-                        $validator,
+                        // $validator,
                         $field,
                         $ruleParts[1]
                     ),
@@ -95,6 +102,8 @@ class Validator implements ValidatorInterface
                 };
             }
         }
+
+        $this->applyBatchUniqueRules($validator, $data);
 
         if ($validator->validate()) {
             $this->validatedData = $validator->data();
@@ -167,22 +176,34 @@ class Validator implements ValidatorInterface
     }
 
     private function applyUniqueRule(
-        ValitronValidator $validator,
         string $field,
-        string $pluralSnakeCaseTableName
+        string $tableName
     ): void {
+        $this->uniqueConstraints[] = [
+            'field' => $field,
+            'table' => $tableName
+        ];
+    }
+
+    private function applyBatchUniqueRules(ValitronValidator $validator, array $data): void
+    {
+        foreach ($this->uniqueConstraints as $constraint) {
+            $field = $constraint['field'];
+            $table = $constraint['table'];
+            $repository = $this->entityManager->getRepository($this->namespace . $this->classifyTableName($table));
+
+            if ($repository->count([$field => $data[$field]])) {
+                $validator->error($field, "{field} is already in use.");
+            }
+        }
+    }
+
+    private function classifyTableName(string $tableName): string
+    {
         if (is_null($this->inflector)) {
             $this->inflector = InflectorFactory::create()->build();
         }
-
-        $singularSnakeCaseTableName = $this->inflector->singularize($pluralSnakeCaseTableName);
-        $classCaseName = $this->inflector->classify($singularSnakeCaseTableName);
-        $className = $this->namespace . $classCaseName;
-
-        $validator->rule(function (string $field, string $value, array $params, array $fields
-        ) use ($className) {
-            return !$this->entityManager->getRepository($className)->count([$field => $value]);
-        }, $field)->message('{field} is already in use.');
+        return $this->inflector->classify($this->inflector->singularize($tableName));
     }
 
     public function setValidationEntityManager(EntityManagerInterface $entityManager): self
