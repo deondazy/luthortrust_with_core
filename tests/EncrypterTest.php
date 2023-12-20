@@ -18,35 +18,23 @@ class EncrypterTest extends TestCase
         $this->encrypter = new Encrypter($this->validKey);
     }
 
-    /**
-     * @covers Encrypter::__construct
-     */
     public function test_constructor_with_valid_key(): void
     {
         $this->assertInstanceOf(Encrypter::class, $this->encrypter);
     }
 
-    /**
-     * @covers Encrypter::__construct
-     */
     public function test_constructor_with_short_key_length(): void
     {
         $this->expectException(InvalidKeyException::class);
         new Encrypter(base64_encode('short_key'));
     }
 
-    /**
-     * @covers Encrypter::__construct
-     */
     public function test_constructor_with_invalid_key(): void
     {
         $this->expectException(InvalidKeyException::class);
         new Encrypter('invalid_key');
     }
 
-    /**
-     * @covers Encrypter::isValidKey
-     */
     public function test_is_valid_key_with_valid_length(): void
     {
         $this->assertTrue(Encrypter::isValidKey(
@@ -54,16 +42,12 @@ class EncrypterTest extends TestCase
         );
     }
 
-    /**
-     * @covers Encrypter::isValidKey
-     */
     public function test_is_valid_key_with_invalid_length(): void
     {
         $this->assertFalse(Encrypter::isValidKey('short_key'));
     }
 
     /**
-     * @covers Encrypter::encrypt
      * @dataProvider encryption_data_provider
      */
     public function test_encrypt_with_valid_data_and_serialization(mixed $data, bool $serialize): void
@@ -83,9 +67,6 @@ class EncrypterTest extends TestCase
         ];
     }
 
-    /**
-     * @covers Encrypter::encrypt
-     */
     public function test_encrypt_with_valid_data_without_serialization(): void
     {
         $data = 'test_data';
@@ -94,18 +75,12 @@ class EncrypterTest extends TestCase
         $this->assertIsString($encrypted);
     }
 
-    /**
-     * @covers Encrypter::encrypt
-     */
     public function test_encrypt_with_invalid_data(): void
     {
         $this->expectException(EncryptException::class);
         $this->encrypter->encrypt([], false);
     }
 
-    /**
-     * @covers Encrypter::decrypt
-     */
     public function test_decrypt_with_valid_encrypted_data_and_unserialization(): void
     {
         $data = 'test_data';
@@ -114,9 +89,6 @@ class EncrypterTest extends TestCase
         $this->assertEquals($data, $decrypted);
     }
 
-    /**
-     * @covers Encrypter::decrypt
-     */
     public function test_decrypt_with_valid_encrypted_data_without_unserialization(): void
     {
         $data = 'test_data';
@@ -125,18 +97,12 @@ class EncrypterTest extends TestCase
         $this->assertEquals($data, $decrypted);
     }
 
-    /**
-     * @covers Encrypter::decrypt
-     */
     public function test_decrypt_with_invalid_encrypted_data(): void
     {
         $this->expectException(DecryptException::class);
         $this->encrypter->decrypt('invalid_data', true);
     }
 
-    /**
-     * @covers Encrypter::generateKey
-     */
     public function test_generate_key(): void
     {
         $key = Encrypter::generateKey();
@@ -145,9 +111,6 @@ class EncrypterTest extends TestCase
         );
     }
 
-    /**
-     * @covers Encrypter::getKey
-     */
     public function test_get_key(): void
     {
         $key = Encrypter::generateKey();
