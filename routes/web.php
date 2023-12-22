@@ -1,20 +1,20 @@
 <?php
 
+use Denosys\App\Database\Entities\User;
+use Doctrine\ORM\EntityManagerInterface;
+use Denosys\App\Database\Entities\Country;
+use Denosys\App\Middleware\AuthMiddleware;
 use Denosys\App\Controllers\AuthController;
 use Denosys\App\Controllers\HomeController;
-use Denosys\App\Controllers\AccountController;
-use Denosys\App\Database\Entities\Country;
-use Denosys\App\Database\Entities\User;
-use Denosys\App\Middleware\AdminAccessMiddleware;
 use Denosys\App\Middleware\GuestMiddleware;
-use Denosys\App\Middleware\AuthMiddleware;
+use Denosys\App\Controllers\AccountController;
+use Denosys\App\Middleware\AdminAccessMiddleware;
+use Slim\Interfaces\RouteCollectorProxyInterface;
 use Denosys\App\Controllers\Admin\ClientController;
 use Denosys\App\Controllers\Admin\DashboardController;
-use Denosys\Core\Routing\Route;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-return function ($router) {
+return function (RouteCollectorProxyInterface $router) {
     $router->get('/', [HomeController::class, 'index'])->setName('home');
     $router->get('/loans', [HomeController::class, 'loans'])->setName('loans');
     $router->get('/mortgage', [HomeController::class, 'mortgage'])->setName('mortgage');
@@ -25,8 +25,8 @@ return function ($router) {
     $router->get('/privacy', [HomeController::class, 'privacy'])->setName('privacy');
 
     // Authentication Routes
-    $router->group('', function ($router) {
-        $router->get('/login', [AuthController::class, 'showLoginForm'])->setName('login');
+    $router->group('', function (RouteCollectorProxyInterface $router) {
+        $router->get('/login', [AuthController::class, 'create'])->setName('login');
         $router->post('/login', [AuthController::class, 'login'])->setName('login.post');
         $router->get('/register', [AuthController::class, 'showRegistrationForm'])->setName('register');
         $router->post('/register', [AuthController::class, 'register'])->setName('register.post');
@@ -36,13 +36,13 @@ return function ($router) {
     $router->post('/logout', [AuthController::class, 'logout'])->setName('logout');
 
 
-    $router->group('/account', function ($router) {
+    $router->group('/account', function (RouteCollectorProxyInterface $router) {
         $router->get('', [AccountController::class, 'index'])->setName('account.index');
         $router->get('/profile', [AccountController::class, 'profile'])->setName('account.profile');
     })->add(AuthMiddleware::class);
 
     // Admin Routes
-    $router->group('/admin', function ($router) {
+    $router->group('/admin', function (RouteCollectorProxyInterface $router) {
         $router->get('', [DashboardController::class, 'index'])->setName('admin.index');
 
         // Client Routes
