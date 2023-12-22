@@ -118,7 +118,7 @@ class Validator implements ValidatorInterface
      * Get the validated attributes and values.
      *
      * @return array
-     * 
+     *
      * @throws ValidationException
      */
     public function validated(): array
