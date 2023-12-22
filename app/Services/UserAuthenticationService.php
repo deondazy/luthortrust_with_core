@@ -8,16 +8,17 @@ use DateTime;
 use Denosys\App\Database\Entities\Country;
 use Denosys\App\Database\Entities\User;
 use Denosys\App\DataObjects\UserData;
+use Denosys\App\DTO\UserDTO;
 use Denosys\Core\Security\CurrentUser;
+use Denosys\Core\Validation\Validator;
 use Doctrine\ORM\EntityManagerInterface;
-use Denosys\Core\FormValidation\FormValidation;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authentication\AuthenticationTrustResolverInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserAuthenticationService
 {
@@ -54,9 +55,10 @@ class UserAuthenticationService
             'requireTax'    => ['optional'],
         ];
 
-        (new FormValidation())
-            ->setValidationEntityManager($this->entityManager)
-            ->validate($data->toArray(), $rules);
+        $validator = new Validator();
+        $validator->setValidationEntityManager($this->entityManager);
+        $validator->validate($data->toArray(), $rules);
+        // dd($validator->validated());
 
         $user = new User();
         $user
@@ -169,20 +171,20 @@ class UserAuthenticationService
         $this->entityManager->flush();
     }
 
-    private function getUserData(Request $request): UserData
+    private function getUserData(Request $request): UserDTO
     {
         $formData = $request->getParsedBody();
 
-        return new UserData(
-            email: $formData['email'] ?? null,
-            username: $formData['username'] ?? null,
+        return new UserDTO(
+            email: $formData['email'],
+            username: $formData['username'],
             password: $formData['password'] ?? null,
             mobileNumber: $formData['mobileNumber'] ?? null,
-            firstName: $formData['firstName'] ?? null,
+            firstName: $formData['firstName'],
             middleName: $formData['middleName'] ?? null,
-            lastName: $formData['lastName'] ?? null,
+            lastName: $formData['lastName'],
             gender: $formData['gender'] ?? null,
-            dateOfBirth: $formData['dateOfBirth'] ?? null,
+            dateOfBirth: $formData['dateOfBirth'],
             address: $formData['address'] ?? null,
             city: $formData['city'] ?? null,
             state: $formData['state'] ?? null,
