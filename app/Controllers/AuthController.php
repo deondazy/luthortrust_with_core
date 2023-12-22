@@ -4,34 +4,41 @@ declare(strict_types=1);
 
 namespace Denosys\App\Controllers;
 
+use Denosys\App\Requests\Auth\LoginRequest;
 use Denosys\Core\Controller\AbstractController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface;
 use Denosys\App\Services\UserAuthenticationService;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 class AuthController extends AbstractController
 {
-    public function showLoginForm(): Response
+    public function create(): Response
     {
-        return $this->view('auth.login', ['current_timezone' => date_default_timezone_get()]);
+        return $this->view('auth.login');
     }
 
-    public function login(
-        ServerRequestInterface $request,
-        UserAuthenticationService $authService
-    ): Response {
-        $formData = $request->getParsedBody();
+    public function login(LoginRequest $request): Response {
 
-        try {
-            $authService->login($formData);
+        $request->authenticate();
 
-            return $this->redirectToRoute('account.index');
-        } catch (AuthenticationException $e) {
-            return $this->redirectToRoute('login')
-                ->withFlash('error', $e->getMessage());
-        }
+        return $this->redirectToRoute('account.index');
     }
+
+    // public function login(
+    //     ServerRequestInterface $request,
+    //     UserAuthenticationService $authService
+    // ): Response {
+    //     $formData = $request->getParsedBody();
+
+    //     // try {
+    //     $authService->login($formData);
+
+    //     return $this->redirectToRoute('account.index');
+    //     // } catch (AuthenticationException $e) {
+    //     //     return $this->redirectToRoute('login')
+    //     //         ->withFlash('error', $e->getMessage());
+    //     // }
+    // }
 
     public function showRegistrationForm(): Response
     {
