@@ -8,6 +8,7 @@ use Denosys\App\Repository\UserRepository;
 use Denosys\App\Repository\CountryRepository;
 use Denosys\Core\Controller\AbstractController;
 use Denosys\App\Services\UserAuthenticationService;
+use Denosys\App\Services\UserUpdateService;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -41,14 +42,14 @@ class ClientController extends AbstractController
         return $this->view('admin.client.edit', compact('client', 'countries'));
     }
 
-    public function update(Request $request, UserRepository $user, UserAuthenticationService $userService, int $id): Response
+    public function update(Request $request, UserUpdateService $userUpdateService, int $id): Response
     {
-        if (is_null($client = $user->find($id))) {
-            return $this->redirectToRoute('admin.client.index')
-                ->withFlash('error', 'User not found');
-        }
+        // if (is_null($client = $user->find($id))) {
+        //     return $this->redirectToRoute('admin.client.index')
+        //         ->withFlash('error', 'User not found');
+        // }
 
-        $userService->updateUser($client, $request);
+        $userUpdateService->updateUser($id, $formData);
 
         return $this->redirectToRoute('admin.client.index')
             ->withFlash('success', 'User updated successfully');
