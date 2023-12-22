@@ -37,6 +37,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "pestphp/pest": "^1.23",
         "phpunit/phpunit": "^9.5",
         "sebastian/phpcpd": "^6.0",
         "symfony/var-dumper": "^6.3",
@@ -57,11 +58,14 @@
         }
     },
     "scripts": {
-        "test-php": "vendor/bin/phpunit --colors=always --verbose --coverage-text --coverage-clover coverage.xml"
+        "test-php": "./vendor/bin/pest --coverage-clover coverage.xml"
     },
     "config": {
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
