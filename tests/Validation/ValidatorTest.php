@@ -7,199 +7,155 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use PHPUnit\Framework\TestCase;
 
-class ValidatorTest extends TestCase
-{
-    private Validator $validator;
-    private EntityManagerInterface $entityManager;
-    private EntityRepository $repository;
+beforeEach(function () {
+    $this->validator = new Validator();
+    $this->entityManager = $this->createMock(EntityManagerInterface::class);
+    $this->repository = $this->createMock(EntityRepository::class);
+    $this->validator->setValidationEntityManager($this->entityManager);
+});
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->validator = new Validator();
-        $this->entityManager = $this->createMock(EntityManagerInterface::class);
-        $this->repository = $this->createMock(EntityRepository::class);
-        $this->validator->setValidationEntityManager($this->entityManager);
-    }
+test('validation passes', function () {
+    $data = [
+        'name' => 'John Doe',
+        'email' => 'john@example.com',
+        'age' => 25
+    ];
+    $rules = [
+        'name' => ['required'],
+        'email' => ['required', 'email'],
+        'age' => ['required', 'numeric']
+    ];
 
-    public function test_validation_passes(): void
-    {
-        $data = [
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
-            'age' => 25
-        ];
-        $rules = [
-            'name' => ['required'],
-            'email' => ['required', 'email'],
-            'age' => ['required', 'numeric']
-        ];
+    $result = $this->validator->validate($data, $rules);
 
-        $result = $this->validator->validate($data, $rules);
+    expect($data)->toBe($result);
+});
 
-        $this->assertSame($data, $result);
-    }
+test('validation fails', function () {
+    $data = [
+        'name' => null,
+        'email' => 'john@example',
+        'age' => 'twenty'
+    ];
+    $rules = [
+        'name' => ['required'],
+        'email' => ['required', 'email'],
+        'age' => ['required', 'numeric']
+    ];
 
-    public function test_validation_fails(): void
-    {
-        $data = [
-            'name' => null,
-            'email' => 'john@example',
-            'age' => 'twenty'
-        ];
-        $rules = [
-            'name' => ['required'],
-            'email' => ['required', 'email'],
-            'age' => ['required', 'numeric']
-        ];
+    $this->validator->validate($data, $rules);
+})->throws(ValidationException::class, 'Form validation error(s)');
 
-        $this->expectException(ValidationException::class);
-        $this->expectExceptionMessage('Form validation error(s)');
-        $this->expectExceptionCode(422);
+test('standard validation rules', function () {
+    $data = [
+        'name' => '',
+        'email' => 'john@example',
+        'age' => 'twenty'
+    ];
+    $rules = [
+        'name' => ['required'],
+        'email' => ['required', 'email'],
+        'age' => ['required', 'numeric']
+    ];
+    $this->validator->validate($data, $rules);
+})->throws(ValidationException::class, 'Form validation error(s)');
 
-        $this->validator->validate($data, $rules);
-    }
+test('apply unique rule successfully', function () {
+    $data = ['email' => 'john@example.com'];
+    $rules = ['email' => ['unique:users']];
 
-    public function test_standard_validation_rules(): void
-    {
-        $data = [
-            'name' => '',
-            'email' => 'john@example',
-            'age' => 'twenty'
-        ];
-        $rules = [
-            'name' => ['required'],
-            'email' => ['required', 'email'],
-            'age' => ['required', 'numeric']
-        ];
+    $this->repository->expects($this->once())
+        ->method('count')
+        ->with($data)
+        ->willReturn(0);
 
-        $this->expectException(ValidationException::class);
-        $this->expectExceptionMessage('Form validation error(s)');
-        $this->expectExceptionCode(422);
+    $this->entityManager->expects($this->once())
+        ->method('getRepository')
+        ->with(User::class)
+        ->willReturn($this->repository);
 
-        $this->validator->validate($data, $rules);
-    }
+    $result = $this->validator->validate($data, $rules);
 
-    public function test_apply_unique_rule_successfully(): void
-    {
-        $data = ['email' => 'john@example.com'];
-        $rules = ['email' => ['unique:users']];
+    expect($result)->toBe($data);
+});
 
-        $this->repository->expects($this->once())
-            ->method('count')
-            ->with(['email' => 'john@example.com'])
-            ->willReturn(0);
+test('validate unique constraint violation', function () {
+    $data = ['email' => 'john@example.com'];
+    $rules = ['email' => ['unique:users']];
 
-        $this->entityManager->expects($this->once())
-            ->method('getRepository')
-            ->with(User::class)
-            ->willReturn($this->repository);
+    $this->repository->expects($this->once())
+        ->method('count')
+        ->with($data)
+        ->willReturn(1);
 
-        $result = $this->validator->validate($data, $rules);
+    $this->entityManager->expects($this->once())
+        ->method('getRepository')
+        ->with($this->equalTo('Denosys\\App\\Database\\Entities\\User'))
+        ->willReturn($this->repository);
 
-        $this->assertSame($data, $result);
-    }
+    $this->validator->validate($data, $rules);
+})->throws(ValidationException::class);
 
-    public function test_validate_unique_constraint_violation(): void
-    {
-        $data = ['email' => 'john@example.com'];
-        $rules = ['email' => ['unique:users']];
+test('validate unique constraint with non existing field', function () {
+    $data = ['non existing field' => 'value'];
+    $rules = ['non existing field' => ['unique:users']];
 
-        $this->repository->expects($this->once())
-            ->method('count')
-            ->with(['email' => 'john@example.com'])
-            ->willReturn(1);
+    $this->validator->validate($data, $rules);
+})->throws(ValidationException::class);
 
-        $this->entityManager->expects($this->once())
-            ->method('getRepository')
-            ->with($this->equalTo('Denosys\\App\\Database\\Entities\\User'))
-            ->willReturn($this->repository);
+test('validate unique constraint with null value', function () {
+    $data = ['email' => null];
+    $rules = ['email' => ['unique:users']];
 
-        $this->expectException(ValidationException::class);
+    $this->validator->validate($data, $rules);
+})->throws(ValidationException::class);
 
-        $this->validator->validate($data, $rules);
-    }
+test('validated returns validated data when no errors', function () {
+    $data = ['name' => 'Jane Doe'];
 
-    public function test_validate_unique_constraint_with_non_existing_field(): void
-    {
-        $data = ['non_existing_field' => 'value'];
-        $rules = ['non_existing_field' => ['unique:users']];
+    $this->validator->validate($data, ['name' => ['required']]);
+    $validatedData = $this->validator->validated();
 
-        $this->expectException(ValidationException::class);
+    expect($validatedData)->toBe($data);
+});
 
-        $this->validator->validate($data, $rules);
-    }
+test('validated throws exception when errors present', function () {
+    $data = ['name' => ''];
 
-    public function test_validate_unique_constraint_with_null_value(): void
-    {
-        $data = ['email' => null];
-        $rules = ['email' => ['unique:users']];
+    $this->validator->validate($data, ['name' => ['required']]);
+    $this->validator->validated();
+})->throws(ValidationException::class);
 
-        $this->expectException(ValidationException::class);
+test('fails returns true when validation fails', function () {
+    $data = ['name' => ''];
 
-        $this->validator->validate($data, $rules);
-    }
+    $this->validator->validate($data, ['name' => ['required']]);
+    $this->assertTrue($this->validator->fails());
+})->throws(ValidationException::class);
 
-    public function test_validated_returns_validated_data_when_no_errors(): void
-    {
-        $data = ['name' => 'Jane Doe'];
+test('fails returns false when validation passes', function () {
+    $data = ['name' => 'Jane Doe'];
 
-        $this->validator->validate($data, ['name' => ['required']]);
+    $this->validator->validate($data, ['name' => ['required']]);
 
-        $validatedData = $this->validator->validated();
+    expect($this->validator->fails())->toBeFalse();
+});
 
-        $this->assertSame($data, $validatedData);
-    }
+test('errors returns errors when validation fails', function () {
+    $data = ['name' => ''];
 
-    public function test_validated_throws_exception_when_errors_present(): void
-    {
-        $data = ['name' => ''];
+    $this->validator->validate($data, ['name' => ['required']]);
+    $errors = $this->validator->errors();
 
-        $this->expectException(ValidationException::class);
+    expect($errors)->toHaveKey('name')
+        ->and($errors['name'])->not->toBeEmpty()
+        ->and($errors['name'])->toBe('Name is required.');
+})->throws(ValidationException::class);
 
-        $this->validator->validate($data, ['name' => ['required']]);
-        $this->validator->validated();
-    }
+test('errors returns empty array when validation passes', function () {
+    $data = ['name' => 'Jane Doe'];
 
-    public function test_fails_returns_true_when_validation_fails(): void
-    {
-        $data = ['name' => ''];
+    $this->validator->validate($data, ['name' => ['required']]);
 
-        $this->expectException(ValidationException::class);
-
-        $this->validator->validate($data, ['name' => ['required']]);
-        $this->assertTrue($this->validator->fails());
-    }
-    public function test_fails_returns_false_when_validation_passes(): void
-    {
-        $data = ['name' => 'Jane Doe'];
-
-        $this->validator->validate($data, ['name' => ['required']]);
-
-        $this->assertFalse($this->validator->fails());
-    }
-
-    public function test_errors_returns_errors_when_validation_fails(): void
-    {
-        $data = ['name' => ''];
-
-        $this->expectException(ValidationException::class);
-
-        $this->validator->validate($data, ['name' => ['required']]);
-        $errors = $this->validator->errors();
-
-        $this->assertArrayHasKey('name', $errors);
-        $this->assertNotEmpty($errors['name']);
-    }
-
-    public function test_errors_returns_empty_array_when_validation_passes(): void
-    {
-        $data = ['name' => 'Jane Doe'];
-
-        $this->validator->validate($data, ['name' => ['required']]);
-
-        $errors = $this->validator->errors();
-
-        $this->assertEmpty($errors);
-    }
-}
+    expect($this->validator->errors())->toBeEmpty();
+});
