@@ -30,19 +30,14 @@
             <div class="row">
                 <div class="col">
                     <form action="{{ url_for('login.post') }}" class="contact-form form-with-icons col-lg-6" method="post">
-                        {% if errors %}
-                            <div class="alert alert-danger">
-                                <div class="help-block">{{ errors | first }}</div>
-                            </div>
-                        {% endif %}
-
                         <div class="row">
-                            <div class="form-group col-lg-12">
-                                <label for="username" class="form-label mb-1 text-2">Username</label>
+                            <div class="form-group col-lg-12 has-validation">
+                                <label for="username" class="form-label mb-1 text-2 {{ errors.username ? 'error' }}">Username</label>
                                 <div class="position-relative">
                                     <i class="icons icon-user text-color-primary text-3 position-absolute left-15 top-50pct transform3dy-n50"></i>
-                                    <input id="username" tabindex="1" type="text" data-msg-required="Please enter your username." maxlength="100" class="form-control text-3 h-auto py-2" name="UserNameInput" autofocus>
+                                    <input id="username" tabindex="1" type="text" data-msg-required="Please enter your username." maxlength="100" class="form-control text-3 h-auto py-2 {{ errors.username ? 'error mb-1' }}" name="username" autofocus value="{{ old.username }}">
                                 </div>
+                                <span class="text-danger">{{ errors.username }}</span>
                             </div>
                         </div>
 
@@ -51,7 +46,7 @@
                                 <label for="password" class="form-label mb-1 text-2">Password</label>
                                 <div class="position-relative">
                                     <i class="icons icon-lock text-color-primary text-3 position-absolute left-15 top-50pct transform3dy-n50"></i>
-                                    <input id="password" tabindex="2" type="password" data-msg-required="Please enter your password.'" class="form-control text-3 h-auto py-2" name="PasswordInput">
+                                    <input id="password" tabindex="2" type="password" data-msg-required="Please enter your password.'" class="form-control text-3 h-auto py-2" name="password">
                                 </div>
                             </div>
                         </div>
