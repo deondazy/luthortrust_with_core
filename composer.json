@@ -37,6 +37,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "mockery/mockery": "^1.6",
         "pestphp/pest": "^1.23",
         "phpunit/phpunit": "^9.5",
         "sebastian/phpcpd": "^6.0",
