@@ -4,9 +4,49 @@ declare(strict_types=1);
 
 namespace Denosys\Core\Http;
 
-use Slim\Psr7\Request;
+use Denosys\Core\Validation\Validator;
+use Psr\Http\Message\ServerRequestInterface;
 
-abstract class FormRequest extends Request
+abstract class FormRequest
 {
+    /**
+     * Validator instance
+     * 
+     * @var Validator
+     */
+    protected Validator $validator;
 
+    /**
+     * ServerRequestInterface instance
+     * 
+     * @var ServerRequestInterface
+     */
+    protected ServerRequestInterface $request;
+
+    /**
+     * Get the validation rules that apply to the request.
+     * 
+     * @return array
+     */
+    abstract public function rules(): array;
+
+    public function validate(): void
+    {
+        $rules = $this->rules();
+        $data = $this->request->getParsedBody();
+
+        $this->validator = new Validator();
+
+        $this->validator->validate($data, $rules);
+    }
+
+    public function validated(): array
+    {
+        return $this->validator->validated();
+    }
+
+    public function setServerRequest(ServerRequestInterface $request): void
+    {
+        $this->request = $request;
+    }
 }
