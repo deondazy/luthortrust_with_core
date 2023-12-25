@@ -25,9 +25,10 @@ class ContainerFactory
         $containerBuilder = new DIContainerAdapter(new ContainerBuilder());
         $containerBuilder->addDefinitions($definitions);
 
-        if ($isProduction) {
-            $containerBuilder->enableCompilation($cachePath);
-        }
+        // TODO: Figure out how to enable compilation for production
+        // if ($isProduction) {
+        //     $containerBuilder->enableCompilation($cachePath);
+        // }
 
         return $containerBuilder->build();
     }
