@@ -10,11 +10,9 @@ use Denosys\App\Database\Entities\User;
 use Denosys\App\DTO\UserDTO;
 use Denosys\Core\Security\CurrentUser;
 use Denosys\Core\Validation\ValidationException;
-use Denosys\Core\Validation\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Security\Core\Authentication\AuthenticationTrustResolverInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -29,35 +27,8 @@ class UserAuthenticationService
     ) {
     }
 
-    public function newUser(Request $request): void
+    public function register(UserDTO $data): void
     {
-        $data = $this->getUserData($request);
-
-        $rules = [
-            'username'      => ['required', 'alphaNum', 'min:3', 'max:50', 'unique:users'],
-            'password'      => ['required', 'min:8'],
-            'email'         => ['required', 'email', 'unique:users'],
-            'mobileNumber'  => ['required', 'unique:users'],
-            'firstName'     => ['required'],
-            'middleName'    => ['optional'],
-            'lastName'      => ['required'],
-            'gender'        => ['required'],
-            'dateOfBirth'   => ['required', 'dateFormat:Y-m-d'],
-            'country'       => ['required'],
-            'state'         => ['required'],
-            'city'          => ['required'],
-            'address'       => ['required'],
-            'passportPhoto' => ['optional'],
-            'requireCot'    => ['optional'],
-            'requireImf'    => ['optional'],
-            'requireTax'    => ['optional'],
-        ];
-
-        $validator = new Validator();
-        $validator->setValidationEntityManager($this->entityManager);
-        $validator->validate($data->toArray(), $rules);
-        // dd($validator->validated());
-
         $user = new User();
         $user
             ->setUsername($data->username)
