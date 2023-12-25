@@ -5,13 +5,22 @@ declare(strict_types=1);
 namespace Denosys\App\Requests\Auth;
 
 use Denosys\Core\Http\FormRequest;
+use Denosys\App\Services\UserAuthenticationService;
 
 class LoginRequest extends FormRequest
 {
+
+    protected UserAuthenticationService $auth;
+
+    public function __construct(UserAuthenticationService $auth)
+    {
+        $this->auth = $auth;
+    }
+
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email'],
+            'username' => ['required'],
             'password' => ['required']
         ];
     }
@@ -20,8 +29,6 @@ class LoginRequest extends FormRequest
     {
         $this->validate();
 
-        $this->authService->login($this->validated());
-
-        
+        $this->auth->login($this->validated());
     }
 }
