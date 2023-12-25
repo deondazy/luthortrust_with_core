@@ -24,22 +24,6 @@ class AuthController extends AbstractController
         return $this->redirectToRoute('account.index');
     }
 
-    // public function login(
-    //     ServerRequestInterface $request,
-    //     UserAuthenticationService $authService
-    // ): Response {
-    //     $formData = $request->getParsedBody();
-
-    //     // try {
-    //     $authService->login($formData);
-
-    //     return $this->redirectToRoute('account.index');
-    //     // } catch (AuthenticationException $e) {
-    //     //     return $this->redirectToRoute('login')
-    //     //         ->withFlash('error', $e->getMessage());
-    //     // }
-    // }
-
     public function showRegistrationForm(): Response
     {
         return $this->view('auth.register');
