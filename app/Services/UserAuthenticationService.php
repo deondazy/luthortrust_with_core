@@ -7,9 +7,9 @@ namespace Denosys\App\Services;
 use DateTime;
 use Denosys\App\Database\Entities\Country;
 use Denosys\App\Database\Entities\User;
-use Denosys\App\DataObjects\UserData;
 use Denosys\App\DTO\UserDTO;
 use Denosys\Core\Security\CurrentUser;
+use Denosys\Core\Validation\ValidationException;
 use Denosys\Core\Validation\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -17,7 +17,6 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Authentication\AuthenticationTrustResolverInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserAuthenticationService
@@ -26,7 +25,6 @@ class UserAuthenticationService
         private readonly EntityManagerInterface $entityManager,
         private readonly UserPasswordHasherInterface $passwordHasher,
         private readonly TokenStorageInterface $tokenStorage,
-        private readonly AuthenticationTrustResolverInterface $authChecker,
         private readonly ?CurrentUser $currentUser = null
     ) {
     }
@@ -93,22 +91,18 @@ class UserAuthenticationService
     public function login(array $credentials): void
     {
         $user = $this->entityManager->getRepository(User::class)->findOneBy([
-            'username' => $credentials['UserNameInput']
+            'username' => $credentials['username']
         ]);
 
         if (!$user instanceof UserInterface) {
-            throw new AuthenticationException('Invalid credentials.');
+            throw new ValidationException(['username' => 'These credentials do not match our records.']);
         }
 
-        if (!$this->passwordHasher->isPasswordValid($user, $credentials['PasswordInput'])) {
-            throw new AuthenticationException('Invalid credentials.');
+        if (!$this->passwordHasher->isPasswordValid($user, $credentials['password'])) {
+            throw new ValidationException(['username' => 'These credentials do not match our records.']);
         }
 
         $token = new UsernamePasswordToken($user, 'main', $user->getRoles());
-
-        if (!$this->authChecker->isAuthenticated($token)) {
-            throw new AuthenticationException('Access Denied.');
-        }
 
         $this->tokenStorage->setToken($token);
     }
