@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Denosys\Core\Controller;
 
+use Denosys\Core\Http\FormRequestResolver;
 use DI\Bridge\Slim\Bridge as BaseBridge;
 use Invoker\Invoker;
 use Invoker\ParameterResolver\AssociativeArrayResolver;
@@ -19,6 +20,8 @@ class Bridge extends BaseBridge
         $resolvers = [
             // Inject parameters by name first
             new AssociativeArrayResolver(),
+            // Then inject ServerRequest for FormRequest objects
+            new FormRequestResolver($container),
             // Then inject services by type-hints for those that weren't resolved
             new TypeHintContainerResolver($container),
             // Then fall back on parameters default values for optional route parameters
