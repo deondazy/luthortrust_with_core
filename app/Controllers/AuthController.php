@@ -17,9 +17,9 @@ class AuthController extends AbstractController
         return $this->view('auth.login');
     }
 
-    public function login(LoginRequest $request): Response {
-
-        $request->authenticate();
+    public function login(LoginRequest $loginRequest): Response 
+    {
+        $loginRequest->authenticate();
 
         return $this->redirectToRoute('account.index');
     }
