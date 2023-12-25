@@ -66,7 +66,7 @@ class Application
      *
      * @throws Exception
      */
-    public function __construct(protected string $basePath)
+    public function __construct(protected ?string $basePath = null)
     {
         $this->environmentLoader()->load($this->basePath());
         $this->container = $this->buildContainer();
@@ -90,7 +90,7 @@ class Application
         );
     }
 
-    protected function environmentLoader(): EnvironmentLoaderInterface
+    public function environmentLoader(): EnvironmentLoaderInterface
     {
         $builder = RepositoryBuilder::createWithDefaultAdapters();
         $builder = $builder->addAdapter(PutenvAdapter::class);
