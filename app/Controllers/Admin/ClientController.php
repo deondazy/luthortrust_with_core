@@ -6,6 +6,7 @@ namespace Denosys\App\Controllers\Admin;
 
 use Denosys\App\Repository\UserRepository;
 use Denosys\App\Repository\CountryRepository;
+use Denosys\App\Requests\CreateUserRequest;
 use Denosys\Core\Controller\AbstractController;
 use Denosys\App\Services\UserAuthenticationService;
 use Denosys\App\Services\UserUpdateService;
@@ -26,9 +27,9 @@ class ClientController extends AbstractController
         return $this->view('admin.client.create', compact('countries'));
     }
 
-    public function store(Request $request, UserAuthenticationService $userService): Response
+    public function store(CreateUserRequest $userRequest): Response
     {
-        $userService->newUser($request);
+        $userRequest->createUser();
 
         return $this->redirectToRoute('admin.client.index')
             ->withFlash('success', 'User created successfully');
