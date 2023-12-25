@@ -2,37 +2,38 @@
 
 declare(strict_types=1);
 
-use Denosys\App\Database\Entities\User;
-use Denosys\App\Services\UserAuthenticationService;
-use Denosys\Core\Config\ConfigurationInterface;
-use Denosys\Core\Encryption\Encrypter;
-use Denosys\Core\Encryption\EncrypterInterface;
-use Denosys\Core\Security\CurrentUser;
-use Denosys\Core\Security\EncryptedSessionTokenStorage;
-use Denosys\Core\Security\EntityUserProvider;
-use Denosys\Core\Session\SessionInterface;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\AbstractManagerRegistry;
-use Doctrine\Persistence\ManagerRegistry;
+use Valitron\Validator;
+use Denosys\Core\Http\FormRequest;
 use Psr\Container\ContainerInterface;
-use Psr\Http\Message\ResponseFactoryInterface;
+use Denosys\Core\Encryption\Encrypter;
+use Denosys\Core\Security\CurrentUser;
 use Slim\Psr7\Factory\ResponseFactory;
+use Denosys\App\Database\Entities\User;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
+use Denosys\Core\Session\SessionInterface;
+use Denosys\Core\Security\EntityUserProvider;
+use Psr\Http\Message\ResponseFactoryInterface;
+use Denosys\Core\Config\ConfigurationInterface;
+use Denosys\Core\Encryption\EncrypterInterface;
+use Doctrine\Persistence\AbstractManagerRegistry;
+use Denosys\App\Services\UserAuthenticationService;
+use Denosys\Core\Security\EncryptedSessionTokenStorage;
+use Symfony\Component\Security\Core\Role\RoleHierarchy;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\PasswordHasher\Hasher\NativePasswordHasher;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactory;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Security\Core\Authentication\AuthenticationTrustResolver;
-use Symfony\Component\Security\Core\Authentication\AuthenticationTrustResolverInterface;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Authorization\AccessDecisionManager;
+use Symfony\Component\Security\Core\Authorization\Voter\RoleVoter;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\Authorization\AccessDecisionManager;
 use Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter;
 use Symfony\Component\Security\Core\Authorization\Voter\RoleHierarchyVoter;
-use Symfony\Component\Security\Core\Authorization\Voter\RoleVoter;
-use Symfony\Component\Security\Core\Role\RoleHierarchy;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Valitron\Validator;
+use Symfony\Component\Security\Core\Authentication\AuthenticationTrustResolver;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\AuthenticationTrustResolverInterface;
 
 return [
     ResponseFactoryInterface::class => fn () => new ResponseFactory(),
@@ -52,7 +53,6 @@ return [
             $container->get(EntityManagerInterface::class),
             $container->get(UserPasswordHasherInterface::class),
             $container->get(TokenStorageInterface::class),
-            $container->get(AuthenticationTrustResolverInterface::class),
             $container->get(CurrentUser::class)
         ),
 
@@ -94,4 +94,8 @@ return [
         User::class,
         User::USER_IDENTIFIER
     ),
+
+    Psr\Http\Message\ServerRequestInterface::class => function ($container) {
+        return $container->get(Slim\Psr7\Factory\ServerRequestFactory::class)->createFromGlobals();
+    },
 ];
