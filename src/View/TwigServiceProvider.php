@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Denosys\Core\View;
 
-use Denosys\Core\Config\ConfigurationInterface;
 use Denosys\Core\Session\SessionInterface;
 use Denosys\Core\Support\ServiceProvider;
 use Denosys\Core\Support\Twig\AssetExtension;
