@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-use Denosys\Core\Config\ConfigurationInterface;
 use Denosys\Core\Support\Env;
-use Denosys\Core\Environment\EnvironmentLoaderInterface;
+use Denosys\Core\Http\RedirectResponse;
 use Denosys\Core\Support\ServiceProvider;
+use Fig\Http\Message\StatusCodeInterface;
+use Denosys\Core\Config\ConfigurationInterface;
+use Denosys\Core\Environment\EnvironmentLoaderInterface;
 
 if (!function_exists('app')) {
     function app(string $abstract = null): mixed
@@ -33,5 +35,22 @@ if (!function_exists('config')) {
     {
         $config = app()->getConfigurations();
         return $config->get($key, $default);
+    }
+}
+
+if (!function_exists('redirectToRoute')) {
+    function redirectToRoute(
+        string $routeName, 
+        array $data = [],
+        array $queryParam = [],
+        int $status = StatusCodeInterface::STATUS_FOUND
+    ): RedirectResponse {
+        $routeUrl = app('app')
+            ->getRouteCollector()
+            ->getRouteParser()
+            ->urlFor($routeName, $data, $queryParam);
+        
+        return new RedirectResponse($routeUrl, $status);
+
     }
 }
