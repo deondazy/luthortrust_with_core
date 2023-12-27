@@ -1,0 +1,45 @@
+<!-- Main sidebar -->
+<div class="sidebar sidebar-main sidebar-default">
+    <div class="sidebar-content">
+        <!-- Main navigation -->
+        <div class="sidebar-category sidebar-category-visible">
+            <div class="category-content no-padding">
+                <ul class="navigation navigation-main navigation-accordion">
+                    <li class="navigation-header"><span>Users</span></li>
+                    <li>
+                        <a href="{{ url_for('backend.client.create') }}">
+                            <span>Create Client</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('backend.client.index') }}">
+                            <span>View/Edit Clients</span>
+                        </a>
+                    </li>
+
+                    <li class="navigation-header"><span>Accounts</span></li>
+                    <li>
+                        <a href="{{ url_for('backend.accounts.index') }}">
+                            <span>Add/Edit Client Accounts</span>
+                        </a>
+                    </li>
+
+                    <li class="navigation-header"><span>Transactions</span></li>
+                    <li>
+                        <a href="#">
+                            <span>Add/Edit Client Transactions</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <form action="{{ url_for('logout') }}" method="POST">
+                            <button type="submit" class="bg-white no-border text-left btn-block">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /main navigation -->
+    </div>
+</div>
+<!-- /main sidebar -->
