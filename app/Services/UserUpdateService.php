@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Denosys\App\Services;
 
 use DateTime;
+use Denosys\App\Database\Entities\User;
 use Denosys\App\DTO\UserDTO;
 use Denosys\App\Repository\UserRepository;
 
@@ -14,20 +15,18 @@ class UserUpdateService
     {
     }
 
-    public function updateUser(int $userId, UserDTO $data): void
+    public function updateUser(User $user, UserDTO $data): void
     {
-        $user = $this->userRepository->find($userId);
-
-        if (!$user) {
-            throw new \Exception('User not found.');
-        }
-
         if ($user->getEmail() !== $data->email) {
             $user->setEmail($data->email);
         }
 
         if ($user->getUsername() !== $data->username) {
             $user->setUsername($data->username);
+        }
+
+        if ($user->getMobileNumber() !== $data->mobileNumber) {
+            $user->setMobileNumber($data->mobileNumber);
         }
 
         if ($user->getFirstName() !== $data->firstName) {
@@ -50,17 +49,34 @@ class UserUpdateService
             $user->setDateOfBirth(new DateTime($data->dateOfBirth));
         }
 
-        if ($user->getAddress() !== $data->address) {
-            $user->setAddress($data->address);
+        if ($user->getCountry()->getId() !== (int) $data->country) {
+            $user->setCountry($data->country);
+        }
+
+        if ($user->getState() !== $data->state) {
+            $user->setState($data->state);
         }
 
         if ($user->getCity() !== $data->city) {
             $user->setCity($data->city);
         }
 
-        if ($user->getCountry() !== $data->country) {
-            $user->setCountry($data->country);
+        if ($user->getAddress() !== $data->address) {
+            $user->setAddress($data->address);
         }
 
+        if ($user->getRequireCot() !== $data->requireCot) {
+            $user->setRequireCot($data->requireCot);
+        }
+
+        if ($user->getRequireImf() !== $data->requireImf) {
+            $user->setRequireImf($data->requireImf);
+        }
+
+        if ($user->getRequireTax() !== $data->requireTax) {
+            $user->setRequireTax($data->requireTax);
+        }
+
+        $this->userRepository->save($user);
     }
 }
