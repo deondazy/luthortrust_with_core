@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Denosys\App\Requests;
 
 use Denosys\App\DTO\UserDTO;
-use Denosys\App\Services\UserAuthenticationService;
+use Denosys\App\Services\UserRegistrationService;
 use Denosys\Core\Http\FormRequest;
 
 class CreateUserRequest extends FormRequest
 {
-    public function __construct(private readonly UserAuthenticationService $userAuthenticationService)
+    public function __construct(private readonly UserRegistrationService $userAuthenticationService)
     {
     }
 
