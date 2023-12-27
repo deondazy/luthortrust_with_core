@@ -1,18 +1,20 @@
 <?php
 
-use Denosys\App\Database\Entities\User;
-use Doctrine\ORM\EntityManagerInterface;
+use Denosys\App\Controllers\Auth\AuthController;
+use Denosys\App\Controllers\Backend\ClientController;
+use Denosys\App\Controllers\Backend\DashboardController;
+use Denosys\App\Controllers\Frontend\Account\AccountController;
+use Denosys\App\Controllers\Frontend\HomeController;
 use Denosys\App\Database\Entities\Country;
-use Denosys\App\Middleware\AuthMiddleware;
-use Denosys\App\Controllers\AuthController;
-use Denosys\App\Controllers\HomeController;
-use Denosys\App\Middleware\GuestMiddleware;
-use Denosys\App\Controllers\AccountController;
+use Denosys\App\Database\Entities\User;
 use Denosys\App\Middleware\AdminAccessMiddleware;
+use Denosys\App\Middleware\AuthMiddleware;
+use Denosys\App\Middleware\GuestMiddleware;
+use Doctrine\ORM\EntityManagerInterface;
 use Slim\Interfaces\RouteCollectorProxyInterface;
-use Denosys\App\Controllers\Admin\ClientController;
-use Denosys\App\Controllers\Admin\DashboardController;
+use Slim\Psr7\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Denosys\App\Controllers\Backend\AccountController as BackendAccountController;
 
 return function (RouteCollectorProxyInterface $router) {
     $router->get('/', [HomeController::class, 'index'])->setName('home');
@@ -35,7 +37,6 @@ return function (RouteCollectorProxyInterface $router) {
 
     $router->post('/logout', [AuthController::class, 'logout'])->setName('logout');
 
-
     $router->group('/account', function (RouteCollectorProxyInterface $router) {
         $router->get('', [AccountController::class, 'index'])->setName('account.index');
         $router->get('/profile', [AccountController::class, 'profile'])->setName('account.profile');
@@ -43,16 +44,24 @@ return function (RouteCollectorProxyInterface $router) {
 
     // Admin Routes
     $router->group('/admin', function (RouteCollectorProxyInterface $router) {
-        $router->get('', [DashboardController::class, 'index'])->setName('admin.index');
+        $router->get('', [DashboardController::class, 'index'])->setName('backend.index');
 
         // Client Routes
-        $router->get('/clients[/{page}]', [ClientController::class, 'index'])->setName('admin.client.index');
-        $router->get('/client/new', [ClientController::class, 'create'])->setName('admin.client.create');
-        $router->post('/client/new', [ClientController::class, 'store'])->setName('admin.client.store');
-        $router->get('/client/edit/{id}', [ClientController::class, 'edit'])->setName('admin.client.edit');
-        $router->post('/client/edit/{id}', [ClientController::class, 'update'])->setName('admin.client.update');
-        $router->post('/client/delete/{id}', [ClientController::class, 'delete'])->setName('admin.client.delete');
-    })->add(AuthMiddleware::class)->add(AdminAccessMiddleware::class);
+        $router->get('/clients[/{page}]', [ClientController::class, 'index'])->setName('backend.client.index');
+        $router->get('/client/new', [ClientController::class, 'create'])->setName('backend.client.create');
+        $router->post('/client/new', [ClientController::class, 'store'])->setName('backend.client.store');
+        $router->get('/client/edit/{user}', [ClientController::class, 'edit'])->setName('backend.client.edit');
+        $router->post('/client/edit/{user}', [ClientController::class, 'update'])->setName('backend.client.update');
+        $router->post('/client/delete/{user}', [ClientController::class, 'delete'])->setName('backend.client.delete');
+
+        // Accounts Routes
+        $router->get('/accounts[/{page}]', [BackendAccountController::class, 'index'])->setName('backend.accounts.index');
+        $router->get('/account/new/{userId}', [BackendAccountController::class, 'create'])->setName('backend.accounts.create');
+        $router->post('/account/new/{userId}', [BackendAccountController::class,'store'])->setName('backend.accounts.store');
+        $router->get('/account/edit/{id}', [BackendAccountController::class, 'edit'])->setName('backend.accounts.edit');
+        $router->post('/account/edit/{id}', [BackendAccountController::class, 'update'])->setName('backend.accounts.update');
+        $router->post('/account/delete/{id}', [BackendAccountController::class, 'delete'])->setName('backend.accounts.delete');
+    })->add(AdminAccessMiddleware::class)->add(AuthMiddleware::class);
 
     $router->get('/add-user', function (
         EntityManagerInterface $entityManager,
@@ -91,4 +100,10 @@ return function (RouteCollectorProxyInterface $router) {
     //    $response->getBody()->write('Hello World');
     //    return $response;
     //});
+
+    $router->get('/phpinfo', function (Response $response) {
+        phpinfo();
+
+        return $response->withBody($response->getBody());
+    });
 };
