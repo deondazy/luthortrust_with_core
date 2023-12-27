@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1703544511">
-  <project timestamp="1703544511">
+<coverage generated="1703699126">
+  <project timestamp="1703699126">
     <file name="/Users/deon/Sites/denosyscore.dev/src/Application.php">
       <class name="Denosys\Core\Application" namespace="global">
         <metrics complexity="27" methods="19" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="58" coveredstatements="38" elements="77" coveredelements="49"/>
@@ -286,18 +286,22 @@
     </file>
     <file name="/Users/deon/Sites/denosyscore.dev/src/Controller/Bridge.php">
       <class name="Denosys\Core\Controller\Bridge" namespace="global">
-        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="9" coveredelements="9"/>
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="13" coveredelements="13"/>
       </class>
-      <line num="18" type="method" name="createControllerInvoker" visibility="protected" complexity="1" crap="1" count="1"/>
-      <line num="20" type="stmt" count="1"/>
-      <line num="22" type="stmt" count="1"/>
+      <line num="22" type="method" name="createControllerInvoker" visibility="protected" complexity="1" crap="1" count="1"/>
       <line num="24" type="stmt" count="1"/>
       <line num="26" type="stmt" count="1"/>
+      <line num="27" type="stmt" count="1"/>
       <line num="28" type="stmt" count="1"/>
       <line num="29" type="stmt" count="1"/>
       <line num="31" type="stmt" count="1"/>
       <line num="33" type="stmt" count="1"/>
-      <metrics loc="36" ncloc="32" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="9" coveredelements="9"/>
+      <line num="35" type="stmt" count="1"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="40" type="stmt" count="1"/>
+      <line num="42" type="stmt" count="1"/>
+      <metrics loc="45" ncloc="40" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="13" coveredelements="13"/>
     </file>
     <file name="/Users/deon/Sites/denosyscore.dev/src/Controller/ControllerInvoker.php">
       <class name="Denosys\Core\Controller\ControllerInvoker" namespace="global">
@@ -313,20 +317,20 @@
     </file>
     <file name="/Users/deon/Sites/denosyscore.dev/src/Database/DatabaseServiceProvider.php">
       <class name="Denosys\Core\Database\DatabaseServiceProvider" namespace="global">
-        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="2" elements="11" coveredelements="2"/>
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="11" coveredelements="11"/>
       </class>
-      <line num="15" type="method" name="register" visibility="public" complexity="1" crap="1.51" count="1"/>
+      <line num="15" type="method" name="register" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="17" type="stmt" count="1"/>
-      <line num="18" type="stmt" count="0"/>
-      <line num="20" type="stmt" count="0"/>
-      <line num="21" type="stmt" count="0"/>
-      <line num="22" type="stmt" count="0"/>
-      <line num="23" type="stmt" count="0"/>
-      <line num="24" type="stmt" count="0"/>
-      <line num="25" type="stmt" count="0"/>
-      <line num="26" type="stmt" count="0"/>
+      <line num="18" type="stmt" count="1"/>
+      <line num="20" type="stmt" count="1"/>
+      <line num="21" type="stmt" count="1"/>
+      <line num="22" type="stmt" count="1"/>
+      <line num="23" type="stmt" count="1"/>
+      <line num="24" type="stmt" count="1"/>
+      <line num="25" type="stmt" count="1"/>
+      <line num="26" type="stmt" count="1"/>
       <line num="27" type="stmt" count="1"/>
-      <metrics loc="30" ncloc="30" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="2" elements="11" coveredelements="2"/>
+      <metrics loc="30" ncloc="30" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="11" coveredelements="11"/>
     </file>
     <file name="/Users/deon/Sites/denosyscore.dev/src/Database/Entities/Traits/HasTimestamps.php">
       <class name="Denosys\Core\Database\Entities\Traits\HasTimestamps" namespace="global">
@@ -509,10 +513,10 @@
       <line num="26" type="stmt" count="1"/>
       <line num="27" type="stmt" count="1"/>
       <line num="28" type="stmt" count="1"/>
-      <line num="29" type="stmt" count="1"/>
+      <line num="29" type="stmt" count="0"/>
       <line num="30" type="stmt" count="1"/>
       <line num="31" type="stmt" count="1"/>
-      <line num="32" type="stmt" count="0"/>
+      <line num="32" type="stmt" count="1"/>
       <line num="33" type="stmt" count="1"/>
       <line num="34" type="stmt" count="1"/>
       <line num="35" type="stmt" count="0"/>
@@ -628,18 +632,21 @@
     </file>
     <file name="/Users/deon/Sites/denosyscore.dev/src/Http/FormRequest.php">
       <class name="Denosys\Core\Http\FormRequest" namespace="global">
-        <metrics complexity="3" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="9" coveredelements="0"/>
+        <metrics complexity="3" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="0" elements="12" coveredelements="0"/>
       </class>
-      <line num="33" type="method" name="validate" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="35" type="stmt" count="0"/>
-      <line num="36" type="stmt" count="0"/>
+      <line num="35" type="method" name="validate" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="37" type="stmt" count="0"/>
       <line num="38" type="stmt" count="0"/>
       <line num="40" type="stmt" count="0"/>
-      <line num="43" type="method" name="validated" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="41" type="stmt" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <line num="43" type="stmt" count="0"/>
       <line num="45" type="stmt" count="0"/>
-      <line num="48" type="method" name="setServerRequest" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="48" type="method" name="validated" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="50" type="stmt" count="0"/>
-      <metrics loc="53" ncloc="38" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="9" coveredelements="0"/>
+      <line num="53" type="method" name="setServerRequest" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="55" type="stmt" count="0"/>
+      <metrics loc="58" ncloc="43" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="0" elements="12" coveredelements="0"/>
     </file>
     <file name="/Users/deon/Sites/denosyscore.dev/src/Http/FormRequestResolver.php">
       <class name="Denosys\Core\Http\FormRequestResolver" namespace="global">
@@ -799,6 +806,35 @@
       <line num="64" type="method" name="redirect" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="66" type="stmt" count="0"/>
       <metrics loc="69" ncloc="69" classes="1" methods="11" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="22" coveredelements="0"/>
+    </file>
+    <file name="/Users/deon/Sites/denosyscore.dev/src/Routing/RouteEntityBindingResolver.php">
+      <class name="Denosys\Core\Routing\RouteEntityBindingResolver" namespace="global">
+        <metrics complexity="14" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="1" elements="23" coveredelements="2"/>
+      </class>
+      <line num="16" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="20" type="stmt" count="1"/>
+      <line num="22" type="method" name="getParameters" visibility="public" complexity="11" crap="132" count="0"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="30" type="stmt" count="0"/>
+      <line num="31" type="stmt" count="0"/>
+      <line num="34" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="36" type="stmt" count="0"/>
+      <line num="39" type="stmt" count="0"/>
+      <line num="40" type="stmt" count="0"/>
+      <line num="43" type="stmt" count="0"/>
+      <line num="45" type="stmt" count="0"/>
+      <line num="46" type="stmt" count="0"/>
+      <line num="48" type="stmt" count="0"/>
+      <line num="49" type="stmt" count="0"/>
+      <line num="52" type="stmt" count="0"/>
+      <line num="54" type="stmt" count="0"/>
+      <line num="55" type="stmt" count="0"/>
+      <line num="57" type="stmt" count="0"/>
+      <line num="63" type="stmt" count="0"/>
+      <line num="72" type="method" name="isDoctrineEntity" visibility="private" complexity="2" crap="6" count="0"/>
+      <line num="74" type="stmt" count="0"/>
+      <metrics loc="77" ncloc="68" classes="1" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="1" elements="23" coveredelements="2"/>
     </file>
     <file name="/Users/deon/Sites/denosyscore.dev/src/Routing/RoutingServiceProvider.php">
       <class name="Denosys\Core\Routing\RoutingServiceProvider" namespace="global">
@@ -1127,15 +1163,20 @@
       <metrics loc="24" ncloc="21" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
     </file>
     <file name="/Users/deon/Sites/denosyscore.dev/src/Support/Functions.php">
-      <line num="13" type="stmt" count="1"/>
       <line num="15" type="stmt" count="1"/>
-      <line num="16" type="stmt" count="1"/>
-      <line num="19" type="stmt" count="1"/>
-      <line num="26" type="stmt" count="1"/>
-      <line num="27" type="stmt" count="1"/>
-      <line num="34" type="stmt" count="1"/>
-      <line num="35" type="stmt" count="1"/>
-      <metrics loc="38" ncloc="38" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="8" coveredelements="8"/>
+      <line num="17" type="stmt" count="1"/>
+      <line num="18" type="stmt" count="1"/>
+      <line num="21" type="stmt" count="1"/>
+      <line num="28" type="stmt" count="1"/>
+      <line num="29" type="stmt" count="1"/>
+      <line num="36" type="stmt" count="1"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="48" type="stmt" count="0"/>
+      <line num="49" type="stmt" count="0"/>
+      <line num="50" type="stmt" count="0"/>
+      <line num="51" type="stmt" count="0"/>
+      <line num="53" type="stmt" count="0"/>
+      <metrics loc="57" ncloc="57" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="8" elements="13" coveredelements="8"/>
     </file>
     <file name="/Users/deon/Sites/denosyscore.dev/src/Support/ServiceProvider.php">
       <class name="Denosys\Core\Support\ServiceProvider" namespace="global">
@@ -1550,6 +1591,6 @@
       <line num="43" type="stmt" count="1"/>
       <metrics loc="48" ncloc="47" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="17" elements="18" coveredelements="18"/>
     </file>
-    <metrics files="77" loc="4202" ncloc="3367" classes="54" methods="237" coveredmethods="56" conditionals="0" coveredconditionals="0" statements="889" coveredstatements="259" elements="1126" coveredelements="315"/>
+    <metrics files="78" loc="4312" ncloc="3467" classes="55" methods="240" coveredmethods="58" conditionals="0" coveredconditionals="0" statements="921" coveredstatements="272" elements="1161" coveredelements="330"/>
   </project>
 </coverage>
