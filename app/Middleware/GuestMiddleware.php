@@ -23,7 +23,7 @@ class GuestMiddleware implements MiddlewareInterface
         $token = $this->tokenStorage->getToken();
 
         if ($token !== null && $token->getUser() instanceof UserInterface) {
-            return new RedirectResponse('/account');
+            return redirectToRoute('account.index');
         }
 
         return $handler->handle($request);
