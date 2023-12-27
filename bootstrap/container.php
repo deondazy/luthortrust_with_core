@@ -9,6 +9,8 @@ use Denosys\Core\Encryption\Encrypter;
 use Denosys\Core\Security\CurrentUser;
 use Slim\Psr7\Factory\ResponseFactory;
 use Denosys\App\Database\Entities\User;
+use Denosys\App\Repository\CountryRepository;
+use Denosys\App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Denosys\Core\Session\SessionInterface;
@@ -18,6 +20,7 @@ use Denosys\Core\Config\ConfigurationInterface;
 use Denosys\Core\Encryption\EncrypterInterface;
 use Doctrine\Persistence\AbstractManagerRegistry;
 use Denosys\App\Services\UserAuthenticationService;
+use Denosys\App\Services\UserRegistrationService;
 use Denosys\Core\Security\EncryptedSessionTokenStorage;
 use Symfony\Component\Security\Core\Role\RoleHierarchy;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
@@ -50,9 +53,16 @@ return [
 
     UserAuthenticationService::class => fn (ContainerInterface $container)
         => new UserAuthenticationService(
-            $container->get(EntityManagerInterface::class),
+            $container->get(UserRepository::class),
             $container->get(UserPasswordHasherInterface::class),
             $container->get(TokenStorageInterface::class),
+        ),
+
+    UserRegistrationService::class => fn (ContainerInterface $container)
+        => new UserRegistrationService(
+            $container->get(UserRepository::class),
+            $container->get(CountryRepository::class),
+            $container->get(UserPasswordHasherInterface::class),
             $container->get(CurrentUser::class)
         ),
 
