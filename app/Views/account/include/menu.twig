@@ -37,7 +37,7 @@
                     <li class="navigation-header"><span>Self Service</span></li>
                     {% if is_granted('ROLE_ADMIN') %}
                         <li>
-                            <a href="{{ url_for('admin.index') }}">
+                            <a href="{{ url_for('backend.index') }}">
                                 <span>Admin Dashboard</span>
                             </a>
                         </li>
