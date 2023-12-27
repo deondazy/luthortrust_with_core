@@ -47,7 +47,7 @@
         <!-- Main navbar -->
         <div class="navbar navbar-inverse bg-white">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{ url_for('admin.index') }}"><img src="{{ asset('assets/images/logo.svg') }}" alt=""></a>
+                <a class="navbar-brand" href="{{ url_for('backend.index') }}"><img src="{{ asset('assets/images/logo.svg') }}" alt=""></a>
 
                 <ul class="nav navbar-nav visible-xs-block">
                     <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
@@ -75,7 +75,7 @@
             <!-- Page content -->
             <div class="page-content">
                 {% if url_is('/admin*', current_url()) %}
-                    {% include 'admin/include/menu.twig' %}
+                    {% include 'backend/include/menu.twig' %}
                 {% else %}
                     {% include 'account/include/menu.twig' %}
                 {% endif %}
