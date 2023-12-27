@@ -32,7 +32,7 @@ abstract class FormRequest
      */
     abstract public function rules(): array;
 
-    public function validate(): void
+    public function validate(): array
     {
         $rules = $this->rules();
         $data = $this->request->getParsedBody();
@@ -42,7 +42,7 @@ abstract class FormRequest
             app()->getContainer()->get(EntityManagerInterface::class)
         );
 
-        $this->validator->validate($data, $rules);
+        return $this->validator->validate($data, $rules);
     }
 
     public function validated(): array
