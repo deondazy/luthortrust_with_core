@@ -16,5 +16,7 @@ return [
 
     'build_dir' => __DIR__ . '/../public/build',
 
+    'storage_dir' => __DIR__ . '/../storage',
+
     'log_dir' => __DIR__ . '/../storage/logs',
 ];
