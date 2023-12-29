@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1703699126">
-  <project timestamp="1703699126">
+<coverage generated="1703844407">
+  <project timestamp="1703844407">
     <file name="/Users/deon/Sites/denosyscore.dev/src/Application.php">
       <class name="Denosys\Core\Application" namespace="global">
         <metrics complexity="27" methods="19" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="58" coveredstatements="38" elements="77" coveredelements="49"/>
@@ -513,10 +513,10 @@
       <line num="26" type="stmt" count="1"/>
       <line num="27" type="stmt" count="1"/>
       <line num="28" type="stmt" count="1"/>
-      <line num="29" type="stmt" count="0"/>
+      <line num="29" type="stmt" count="1"/>
       <line num="30" type="stmt" count="1"/>
       <line num="31" type="stmt" count="1"/>
-      <line num="32" type="stmt" count="1"/>
+      <line num="32" type="stmt" count="0"/>
       <line num="33" type="stmt" count="1"/>
       <line num="34" type="stmt" count="1"/>
       <line num="35" type="stmt" count="0"/>
@@ -811,30 +811,30 @@
       <class name="Denosys\Core\Routing\RouteEntityBindingResolver" namespace="global">
         <metrics complexity="14" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="1" elements="23" coveredelements="2"/>
       </class>
-      <line num="16" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="20" type="stmt" count="1"/>
-      <line num="22" type="method" name="getParameters" visibility="public" complexity="11" crap="132" count="0"/>
-      <line num="27" type="stmt" count="0"/>
+      <line num="15" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="19" type="stmt" count="1"/>
+      <line num="21" type="method" name="getParameters" visibility="public" complexity="11" crap="132" count="0"/>
+      <line num="26" type="stmt" count="0"/>
+      <line num="29" type="stmt" count="0"/>
       <line num="30" type="stmt" count="0"/>
-      <line num="31" type="stmt" count="0"/>
+      <line num="33" type="stmt" count="0"/>
       <line num="34" type="stmt" count="0"/>
       <line num="35" type="stmt" count="0"/>
-      <line num="36" type="stmt" count="0"/>
+      <line num="38" type="stmt" count="0"/>
       <line num="39" type="stmt" count="0"/>
-      <line num="40" type="stmt" count="0"/>
-      <line num="43" type="stmt" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <line num="44" type="stmt" count="0"/>
       <line num="45" type="stmt" count="0"/>
-      <line num="46" type="stmt" count="0"/>
+      <line num="47" type="stmt" count="0"/>
       <line num="48" type="stmt" count="0"/>
-      <line num="49" type="stmt" count="0"/>
-      <line num="52" type="stmt" count="0"/>
+      <line num="51" type="stmt" count="0"/>
+      <line num="53" type="stmt" count="0"/>
       <line num="54" type="stmt" count="0"/>
-      <line num="55" type="stmt" count="0"/>
-      <line num="57" type="stmt" count="0"/>
-      <line num="63" type="stmt" count="0"/>
-      <line num="72" type="method" name="isDoctrineEntity" visibility="private" complexity="2" crap="6" count="0"/>
-      <line num="74" type="stmt" count="0"/>
-      <metrics loc="77" ncloc="68" classes="1" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="1" elements="23" coveredelements="2"/>
+      <line num="56" type="stmt" count="0"/>
+      <line num="62" type="stmt" count="0"/>
+      <line num="71" type="method" name="isDoctrineEntity" visibility="private" complexity="2" crap="6" count="0"/>
+      <line num="73" type="stmt" count="0"/>
+      <metrics loc="76" ncloc="67" classes="1" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="1" elements="23" coveredelements="2"/>
     </file>
     <file name="/Users/deon/Sites/denosyscore.dev/src/Routing/RoutingServiceProvider.php">
       <class name="Denosys\Core\Routing\RoutingServiceProvider" namespace="global">
@@ -1140,6 +1140,27 @@
     </file>
     <file name="/Users/deon/Sites/denosyscore.dev/src/Support/Arrayable.php">
       <metrics loc="15" ncloc="10" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/Users/deon/Sites/denosyscore.dev/src/Support/Clockwork/ClockworkServiceProvider.php">
+      <class name="Denosys\Core\Support\Clockwork\ClockworkServiceProvider" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="5" elements="15" coveredelements="5"/>
+      </class>
+      <line num="17" type="method" name="register" visibility="public" complexity="1" crap="1.19" count="1"/>
+      <line num="19" type="stmt" count="1"/>
+      <line num="20" type="stmt" count="0"/>
+      <line num="22" type="stmt" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="0"/>
+      <line num="26" type="stmt" count="1"/>
+      <line num="29" type="stmt" count="1"/>
+      <line num="33" type="method" name="registerClockworkMiddleware" visibility="private" complexity="1" crap="1.30" count="1"/>
+      <line num="35" type="stmt" count="1"/>
+      <line num="36" type="stmt" count="0"/>
+      <line num="37" type="stmt" count="0"/>
+      <line num="38" type="stmt" count="0"/>
+      <line num="39" type="stmt" count="0"/>
+      <line num="40" type="stmt" count="1"/>
+      <metrics loc="42" ncloc="40" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="5" elements="15" coveredelements="5"/>
     </file>
     <file name="/Users/deon/Sites/denosyscore.dev/src/Support/Config.php">
       <class name="Denosys\Core\Support\Config" namespace="global">
@@ -1589,8 +1610,8 @@
       <line num="40" type="stmt" count="1"/>
       <line num="42" type="stmt" count="1"/>
       <line num="43" type="stmt" count="1"/>
-      <metrics loc="48" ncloc="47" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="17" elements="18" coveredelements="18"/>
+      <metrics loc="46" ncloc="46" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="17" elements="18" coveredelements="18"/>
     </file>
-    <metrics files="78" loc="4312" ncloc="3467" classes="55" methods="240" coveredmethods="58" conditionals="0" coveredconditionals="0" statements="921" coveredstatements="272" elements="1161" coveredelements="330"/>
+    <metrics files="79" loc="4351" ncloc="3505" classes="56" methods="242" coveredmethods="58" conditionals="0" coveredconditionals="0" statements="934" coveredstatements="277" elements="1176" coveredelements="335"/>
   </project>
 </coverage>
