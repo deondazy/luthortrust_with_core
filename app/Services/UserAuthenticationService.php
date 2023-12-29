@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Denosys\App\Services;
 
-use Denosys\App\Database\Entities\User;
 use Denosys\App\Repository\UserRepository;
-use Denosys\Core\Security\CurrentUser;
 use Denosys\Core\Validation\ValidationException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
