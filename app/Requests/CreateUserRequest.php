@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Denosys\App\Requests;
 
 use Denosys\App\DTO\UserDTO;
-use Denosys\App\Services\UserRegistrationService;
+use Denosys\App\Services\UserCreationService;
 use Denosys\Core\Http\FormRequest;
 
 class CreateUserRequest extends FormRequest
 {
-    public function __construct(private readonly UserRegistrationService $userAuthenticationService)
+    public function __construct(private readonly UserCreationService $userCreationService)
     {
     }
 
@@ -41,26 +41,8 @@ class CreateUserRequest extends FormRequest
     {
         $this->validate();
 
-        $userDto = new UserDTO(
-            email:         $this->validated()['email'],
-            username:      $this->validated()['username'],
-            password:      $this->validated()['password'],
-            mobileNumber:  $this->validated()['mobileNumber'],
-            firstName:     $this->validated()['firstName'],
-            middleName:    ($this->validated()['middleName']) ?? null,
-            lastName:      $this->validated()['lastName'],
-            gender:        $this->validated()['gender'],
-            dateOfBirth:   $this->validated()['dateOfBirth'],
-            address:       $this->validated()['address'],
-            city:          $this->validated()['city'],
-            state:         $this->validated()['state'],
-            country:       $this->validated()['country'],
-            passportPhoto: null,
-            requireCot: isset($validatedData['requireCot']) ? (bool) $validatedData['requireCot'] : null,
-            requireImf: isset($validatedData['requireImf']) ? (bool) $validatedData['requireImf'] : null,
-            requireTax: isset($validatedData['requireTax']) ? (bool) $validatedData['requireTax'] : null,
-        );
+        $userDto = UserDTO::createFromArray($this->validated());
 
-        $this->userAuthenticationService->register($userDto);
+        $this->userCreationService->createUser($userDto);
     }
 }
