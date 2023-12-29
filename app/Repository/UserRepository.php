@@ -23,10 +23,9 @@ class UserRepository extends ServiceEntityRepository
     public function findLatest(int $page = 1): Paginator
     {
         $queryBuilder = $this->createQueryBuilder('user')
-            ->where('user.createdAt <= :now')
-            ->orderBy('user.createdAt', 'DESC')
-            ->setParameter('now', new DateTime())
-        ;
+            ->select('user', 'country ')
+            ->leftJoin('user.country', 'country') 
+            ->orderBy('user.createdAt', 'DESC');
 
         return (new Paginator($queryBuilder))->paginate($page);
     }
