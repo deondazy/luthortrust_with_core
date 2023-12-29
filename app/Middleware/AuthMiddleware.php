@@ -29,7 +29,7 @@ class AuthMiddleware implements MiddlewareInterface
         $token = $this->tokenStorage->getToken();
 
         if ($token === null) {
-            return new RedirectResponse('/login');
+            return redirectToRoute('login');
         }
 
         $accessDecisionManager = new AccessDecisionManager([
@@ -41,7 +41,7 @@ class AuthMiddleware implements MiddlewareInterface
         ]);
 
         if (!$accessDecisionManager->decide($token, [User::ROLE_USER])) {
-            return new RedirectResponse('/login');
+            return redirectToRoute('login');
         }
 
         return $handler->handle($request);
