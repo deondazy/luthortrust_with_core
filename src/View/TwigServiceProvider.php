@@ -41,7 +41,5 @@ class TwigServiceProvider extends ServiceProvider
 
             return $twig;
         });
-
-        //        $this->container->set('view', $this->container->get(Twig::class));
     }
 }
