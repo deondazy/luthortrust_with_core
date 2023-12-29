@@ -4,15 +4,18 @@ declare(strict_types=1);
 
 namespace Denosys\App\Services;
 
-use DateTime;
-use Denosys\App\Database\Entities\User;
+use Carbon\Carbon;
 use Denosys\App\DTO\UserDTO;
+use Denosys\App\Database\Entities\User;
 use Denosys\App\Repository\UserRepository;
+use Denosys\App\Repository\CountryRepository;
 
 class UserUpdateService
 {
-    public function __construct(private readonly UserRepository $userRepository)
-    {
+    public function __construct(
+        private readonly UserRepository $userRepository,
+        private readonly CountryRepository $countryRepository,
+    ) {
     }
 
     public function updateUser(User $user, UserDTO $data): void
@@ -46,11 +49,11 @@ class UserUpdateService
         }
 
         if ($user->getDateOfBirth() !== $data->dateOfBirth) {
-            $user->setDateOfBirth(new DateTime($data->dateOfBirth));
+            $user->setDateOfBirth(Carbon::createFromFormat('Y-m-d', $data->dateOfBirth));
         }
 
         if ($user->getCountry()->getId() !== (int) $data->country) {
-            $user->setCountry($data->country);
+            $user->setCountry($this->countryRepository->find($data->country));
         }
 
         if ($user->getState() !== $data->state) {
