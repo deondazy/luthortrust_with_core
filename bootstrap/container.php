@@ -9,15 +9,11 @@ use Denosys\Core\Security\CurrentUser;
 use Slim\Psr7\Factory\ResponseFactory;
 use Denosys\App\Database\Entities\User;
 use Doctrine\ORM\EntityManagerInterface;
-use Denosys\App\Repository\UserRepository;
 use Denosys\Core\Session\SessionInterface;
-use Denosys\App\Repository\CountryRepository;
 use Denosys\Core\Security\EntityUserProvider;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Denosys\Core\Config\ConfigurationInterface;
 use Denosys\Core\Encryption\EncrypterInterface;
-use Denosys\App\Services\UserRegistrationService;
-use Denosys\App\Services\UserAuthenticationService;
 use Denosys\Core\Security\EncryptedSessionTokenStorage;
 use Symfony\Component\Security\Core\Role\RoleHierarchy;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
@@ -47,21 +43,6 @@ return [
                 User::class => new NativePasswordHasher(),
             ]
         )),
-
-    UserAuthenticationService::class => fn (ContainerInterface $container)
-        => new UserAuthenticationService(
-            $container->get(UserRepository::class),
-            $container->get(UserPasswordHasherInterface::class),
-            $container->get(TokenStorageInterface::class),
-        ),
-
-    UserRegistrationService::class => fn (ContainerInterface $container)
-        => new UserRegistrationService(
-            $container->get(UserRepository::class),
-            $container->get(CountryRepository::class),
-            $container->get(UserPasswordHasherInterface::class),
-            $container->get(CurrentUser::class)
-        ),
 
     TokenStorageInterface::class => fn (ContainerInterface $container)
         => new EncryptedSessionTokenStorage(
