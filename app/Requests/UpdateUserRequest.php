@@ -41,27 +41,7 @@ class UpdateUserRequest extends FormRequest
     {
         $this->validate();
 
-        $validatedData = $this->validated();
-
-        $userDto = new UserDTO(
-            email: $validatedData['email'],
-            username: $validatedData['username'],
-            password: null,
-            mobileNumber: $validatedData['mobileNumber'],
-            firstName: $validatedData['firstName'],
-            middleName: ($validatedData['middleName']) ?? null,
-            lastName: $validatedData['lastName'],
-            gender: $validatedData['gender'],
-            dateOfBirth: $validatedData['dateOfBirth'],
-            address: $validatedData['address'],
-            city: $validatedData['city'],
-            state: $validatedData['state'],
-            country: $validatedData['country'],
-            passportPhoto: null,
-            requireCot: isset($validatedData['requireCot']),
-            requireImf: isset($validatedData['requireImf']),
-            requireTax: isset($validatedData['requireTax']),
-        );
+        $userDto = UserDTO::createFromArray($this->validated());
 
         $this->userUpdateService->updateUser($user, $userDto);
     }
