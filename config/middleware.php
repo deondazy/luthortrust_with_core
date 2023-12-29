@@ -9,4 +9,5 @@ return [
     Denosys\App\Middleware\GetValidationExceptionMiddleware::class,
     Denosys\App\Middleware\SessionEncryptMiddleware::class,
     Denosys\App\Middleware\SessionStartMiddleware::class,
+    Clockwork\Support\Slim\ClockworkMiddleware::class,
 ];
