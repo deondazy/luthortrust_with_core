@@ -23,9 +23,9 @@ class UserDTO extends DataTransferObject
         public readonly ?string $state,
         public readonly ?string $country,
         public readonly ?string $passportPhoto,
-        public readonly ?bool $requireCot,
-        public readonly ?bool $requireImf,
-        public readonly ?bool $requireTax,
+        public readonly bool $requireCot = false,
+        public readonly bool $requireImf = false,
+        public readonly bool $requireTax = false,
     ) {
     }
 }
