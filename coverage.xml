@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1703844407">
-  <project timestamp="1703844407">
+<coverage generated="1703849647">
+  <project timestamp="1703849647">
     <file name="/Users/deon/Sites/denosyscore.dev/src/Application.php">
       <class name="Denosys\Core\Application" namespace="global">
         <metrics complexity="27" methods="19" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="58" coveredstatements="38" elements="77" coveredelements="49"/>
@@ -1138,9 +1138,6 @@
       <line num="28" type="stmt" count="1"/>
       <metrics loc="31" ncloc="31" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="7" elements="11" coveredelements="9"/>
     </file>
-    <file name="/Users/deon/Sites/denosyscore.dev/src/Support/Arrayable.php">
-      <metrics loc="15" ncloc="10" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
-    </file>
     <file name="/Users/deon/Sites/denosyscore.dev/src/Support/Clockwork/ClockworkServiceProvider.php">
       <class name="Denosys\Core\Support\Clockwork\ClockworkServiceProvider" namespace="global">
         <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="5" elements="15" coveredelements="5"/>
@@ -1174,14 +1171,27 @@
     </file>
     <file name="/Users/deon/Sites/denosyscore.dev/src/Support/DataTransferObject.php">
       <class name="Denosys\Core\Support\DataTransferObject" namespace="global">
-        <metrics complexity="2" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+        <metrics complexity="8" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="14" elements="18" coveredelements="15"/>
       </class>
-      <line num="13" type="method" name="toArray" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="15" type="stmt" count="0"/>
-      <line num="17" type="stmt" count="0"/>
-      <line num="18" type="stmt" count="0"/>
-      <line num="21" type="stmt" count="0"/>
-      <metrics loc="24" ncloc="21" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+      <line num="12" type="method" name="createFromArray" visibility="public" complexity="6" crap="6.17" count="3"/>
+      <line num="15" type="stmt" count="3"/>
+      <line num="16" type="stmt" count="3"/>
+      <line num="17" type="stmt" count="3"/>
+      <line num="20" type="stmt" count="3"/>
+      <line num="21" type="stmt" count="3"/>
+      <line num="22" type="stmt" count="3"/>
+      <line num="23" type="stmt" count="3"/>
+      <line num="24" type="stmt" count="3"/>
+      <line num="27" type="stmt" count="3"/>
+      <line num="32" type="stmt" count="3"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="34" type="stmt" count="0"/>
+      <line num="41" type="method" name="toArray" visibility="public" complexity="2" crap="2" count="1"/>
+      <line num="43" type="stmt" count="1"/>
+      <line num="45" type="stmt" count="1"/>
+      <line num="46" type="stmt" count="1"/>
+      <line num="49" type="stmt" count="1"/>
+      <metrics loc="52" ncloc="46" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="14" elements="18" coveredelements="15"/>
     </file>
     <file name="/Users/deon/Sites/denosyscore.dev/src/Support/Functions.php">
       <line num="15" type="stmt" count="1"/>
@@ -1612,6 +1622,6 @@
       <line num="43" type="stmt" count="1"/>
       <metrics loc="46" ncloc="46" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="17" elements="18" coveredelements="18"/>
     </file>
-    <metrics files="79" loc="4351" ncloc="3505" classes="56" methods="242" coveredmethods="58" conditionals="0" coveredconditionals="0" statements="934" coveredstatements="277" elements="1176" coveredelements="335"/>
+    <metrics files="78" loc="4364" ncloc="3520" classes="56" methods="243" coveredmethods="59" conditionals="0" coveredconditionals="0" statements="946" coveredstatements="291" elements="1189" coveredelements="350"/>
   </project>
 </coverage>
