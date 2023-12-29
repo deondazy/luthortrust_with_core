@@ -3,24 +3,21 @@
 declare(strict_types=1);
 
 use Valitron\Validator;
-use Denosys\Core\Http\FormRequest;
 use Psr\Container\ContainerInterface;
 use Denosys\Core\Encryption\Encrypter;
 use Denosys\Core\Security\CurrentUser;
 use Slim\Psr7\Factory\ResponseFactory;
 use Denosys\App\Database\Entities\User;
-use Denosys\App\Repository\CountryRepository;
-use Denosys\App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
+use Denosys\App\Repository\UserRepository;
 use Denosys\Core\Session\SessionInterface;
+use Denosys\App\Repository\CountryRepository;
 use Denosys\Core\Security\EntityUserProvider;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Denosys\Core\Config\ConfigurationInterface;
 use Denosys\Core\Encryption\EncrypterInterface;
-use Doctrine\Persistence\AbstractManagerRegistry;
-use Denosys\App\Services\UserAuthenticationService;
 use Denosys\App\Services\UserRegistrationService;
+use Denosys\App\Services\UserAuthenticationService;
 use Denosys\Core\Security\EncryptedSessionTokenStorage;
 use Symfony\Component\Security\Core\Role\RoleHierarchy;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
