@@ -36,8 +36,45 @@ class ServiceEntityRepository extends EntityRepository implements ServiceEntityR
      *
      * @throws LogicException If the entity manager for the given class is not found.
      */
-    public function __construct(EntityManagerInterface $entityManger, string $entityClass)
+    public function __construct(EntityManagerInterface $entityManager, string $entityClass)
     {
-        parent::__construct($entityManger, $entityManger->getClassMetadata($entityClass));
+        parent::__construct($entityManager, $entityManager->getClassMetadata($entityClass));
+    }
+
+    public function save(object $entity): void
+    {
+        $this->validateEntityType($entity);
+
+        $this->getEntityManager()->persist($entity);
+        $this->getEntityManager()->flush();
+    }
+
+    public function delete(object $entity): void
+    {
+        $this->validateEntityType($entity);
+
+        $this->getEntityManager()->remove($entity);
+        $this->getEntityManager()->flush();
+    }
+
+    /**
+     * Validates that the given entity object is of the expected entity type.
+     *
+     * @param object $entity The entity object to validate.
+     *
+     * @throws LogicException If the entity is not of the expected type.
+     */
+    private function validateEntityType(object $entity): void
+    {
+        $expectedEntity = $this->getEntityName();
+        if (!$entity instanceof $expectedEntity) {
+            throw new InvalidEntityTypeException(
+                sprintf(
+                    'Expected an entity of type "%s", but got "%s".',
+                    $this->getEntityName(),
+                    get_debug_type($entity)
+                )
+            );
+        }
     }
 }
