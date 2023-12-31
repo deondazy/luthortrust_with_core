@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Denosys\App\Repository;
 
-use DateTime;
 use Denosys\Core\Pagination\Paginator;
 use Denosys\App\Database\Entities\User;
 use Denosys\Core\Database\Repository\ServiceEntityRepository;
