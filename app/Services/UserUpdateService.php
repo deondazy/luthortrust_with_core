@@ -48,7 +48,7 @@ class UserUpdateService
             $user->setGender($data->gender);
         }
 
-        if ($user->getDateOfBirth() !== $data->dateOfBirth) {
+        if (Carbon::make($user->getDateOfBirth())->format('Y-m-d') !== $data->dateOfBirth) {
             $user->setDateOfBirth(Carbon::createFromFormat('Y-m-d', $data->dateOfBirth));
         }
 
