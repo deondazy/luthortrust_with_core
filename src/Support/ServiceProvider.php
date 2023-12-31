@@ -12,7 +12,7 @@ abstract class ServiceProvider
 {
     private static ?Application $app = null;
 
-    public function __construct(protected ContainerInterface $container)
+    public function __construct(protected readonly ContainerInterface $container)
     {
     }
 
