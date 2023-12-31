@@ -77,11 +77,12 @@ return [
             $container->get(UserProviderInterface::class)
         ),
 
-    UserProviderInterface::class => fn (ContainerInterface $container) => new EntityUserProvider(
-        $container->get(EntityManagerInterface::class),
-        User::class,
-        User::USER_IDENTIFIER
-    ),
+    UserProviderInterface::class => fn (ContainerInterface $container) 
+        => new EntityUserProvider(
+            $container->get(EntityManagerInterface::class),
+            User::class,
+            User::USER_IDENTIFIER
+        ),
 
     Psr\Http\Message\ServerRequestInterface::class => function ($container) {
         return $container->get(Slim\Psr7\Factory\ServerRequestFactory::class)->createFromGlobals();
