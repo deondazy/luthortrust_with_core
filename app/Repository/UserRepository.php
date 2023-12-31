@@ -23,22 +23,10 @@ class UserRepository extends ServiceEntityRepository
     public function findLatest(int $page = 1): Paginator
     {
         $queryBuilder = $this->createQueryBuilder('user')
-            ->select('user', 'country ')
+            ->select('user', 'country')
             ->leftJoin('user.country', 'country') 
             ->orderBy('user.createdAt', 'DESC');
 
         return (new Paginator($queryBuilder))->paginate($page);
-    }
-
-    public function save(User $user): void
-    {
-        $this->getEntityManager()->persist($user);
-        $this->getEntityManager()->flush();
-    }
-
-    public function delete(User $user): void
-    {
-        $this->getEntityManager()->remove($user);
-        $this->getEntityManager()->flush();
     }
 }
