@@ -12,7 +12,6 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
-use Denosys\Core\Http\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class AdminAccessMiddleware implements MiddlewareInterface
@@ -35,7 +34,7 @@ class AdminAccessMiddleware implements MiddlewareInterface
 
         if ($userRolesInSession !== $userRolesInStorage) {
             $this->tokenStorage->setToken(null);
-            return new RedirectResponse('/login');
+            return redirectToRoute('login');
         }
 
         if (!$this->authorization->isGranted(User::ROLE_ADMIN)) {
