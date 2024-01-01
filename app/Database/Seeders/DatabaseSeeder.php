@@ -8,7 +8,7 @@ class DatabaseSeeder
 {
     public function run(): void
     {
-        echo "DatabaseSeeder is running...\n";
-        sleep(3);
+        (new CountrySeeder())->run();
+        (new UserSeeder())->run();
     }
 }
