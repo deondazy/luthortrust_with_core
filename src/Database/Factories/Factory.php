@@ -115,34 +115,6 @@ abstract class Factory
         return $entities;
     }
 
-    public function oldCreate(array $attributes = [])
-    {
-        $data = array_merge($this->definition(), $attributes);
-        $entity = new $this->entity();
-
-        foreach ($data as $attribute => $value) {
-            $setter = $this->getSetter($attribute);
-
-            if (method_exists($entity, $setter)) {
-                $entity->$setter($value);
-            }
-        }
-
-        $this->getEntityManager()->persist($entity);
-        $this->getEntityManager()->flush();
-
-        return $entity;
-    }
-
-    public function oldCreateMany(int $number, array $attributes = []): array
-    {
-        $entities = [];
-        for ($i = 0; $i < $number; $i++) {
-            $entities[] = $this->create($attributes);
-        }
-        return $entities;
-    }
-
     public static function factoryForEntity(string $entity): Factory
     {
         $factoryClass = static::resolveFactoryClass($entity);
