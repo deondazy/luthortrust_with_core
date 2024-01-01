@@ -1,7 +1,6 @@
 <?php
 
 use Denosys\Core\Application;
-use Denosys\Core\Environment\EnvironmentLoaderInterface;
 
 beforeEach(function () {
     $this->basePath = __DIR__ . '/../../';
