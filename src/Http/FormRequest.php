@@ -39,7 +39,7 @@ abstract class FormRequest
 
         $this->validator = new Validator();
         $this->validator->setValidationEntityManager(
-            app()->getContainer()->get(EntityManagerInterface::class)
+            container(EntityManagerInterface::class)
         );
 
         return $this->validator->validate($data, $rules);
