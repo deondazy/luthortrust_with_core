@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 #[ORM\Entity(repositoryClass: CountryRepository::class)]
 #[ORM\Table(name: 'countries')]
 class Country
-{
+{   
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: Types::BIGINT, length: 20)]
@@ -71,7 +71,7 @@ class Country
         return $this->iso;
     }
 
-    public function setIso3(string $iso3): Country
+    public function setIso3(?string $iso3): Country
     {
         $this->iso3 = $iso3;
 
@@ -83,7 +83,7 @@ class Country
         return $this->iso3;
     }
 
-    public function setNumCode(int $numCode): Country
+    public function setNumCode(?int $numCode): Country
     {
         $this->numCode = $numCode;
 
