@@ -2,12 +2,10 @@
 
 declare(strict_types=1);
 
-use Denosys\Core\Support\Env;
+use Denosys\Core\Environment\EnvironmentLoader;
 use Denosys\Core\Http\RedirectResponse;
 use Denosys\Core\Support\ServiceProvider;
 use Fig\Http\Message\StatusCodeInterface;
-use Denosys\Core\Config\ConfigurationInterface;
-use Denosys\Core\Environment\EnvironmentLoaderInterface;
 
 if (!function_exists('app')) {
     function app(string $abstract = null): mixed
@@ -25,8 +23,7 @@ if (!function_exists('app')) {
 if (!function_exists('env')) {
     function env(string $key, mixed $default = null): mixed
     {
-        $environmentLoader = app(EnvironmentLoaderInterface::class);
-        return $environmentLoader->get($key, $default);
+        return EnvironmentLoader::get($key, $default);
     }
 }
 
