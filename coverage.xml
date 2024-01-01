@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1703983515">
-  <project timestamp="1703983515">
+<coverage generated="1704116098">
+  <project timestamp="1704116098">
     <file name="/Users/deon/Sites/denosyscore.dev/src/Application.php">
       <class name="Denosys\Core\Application" namespace="global">
         <metrics complexity="27" methods="19" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="58" coveredstatements="38" elements="77" coveredelements="49"/>
@@ -262,27 +262,27 @@
       <class name="Denosys\Core\Controller\AbstractController" namespace="global">
         <metrics complexity="8" methods="7" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="20" coveredelements="0"/>
       </class>
-      <line num="21" type="method" name="setContainer" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="23" type="stmt" count="0"/>
-      <line num="36" type="method" name="view" visibility="protected" complexity="2" crap="6" count="0"/>
-      <line num="38" type="stmt" count="0"/>
+      <line num="20" type="method" name="setContainer" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="22" type="stmt" count="0"/>
+      <line num="35" type="method" name="view" visibility="protected" complexity="2" crap="6" count="0"/>
+      <line num="37" type="stmt" count="0"/>
+      <line num="40" type="stmt" count="0"/>
       <line num="41" type="stmt" count="0"/>
       <line num="42" type="stmt" count="0"/>
-      <line num="43" type="stmt" count="0"/>
-      <line num="53" type="method" name="setFlash" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="55" type="stmt" count="0"/>
-      <line num="65" type="method" name="getFlash" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="67" type="stmt" count="0"/>
-      <line num="78" type="method" name="redirect" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="80" type="stmt" count="0"/>
-      <line num="93" type="method" name="redirectToRoute" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="99" type="stmt" count="0"/>
-      <line num="102" type="method" name="urlFor" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="52" type="method" name="setFlash" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="54" type="stmt" count="0"/>
+      <line num="64" type="method" name="getFlash" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="66" type="stmt" count="0"/>
+      <line num="77" type="method" name="redirect" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="79" type="stmt" count="0"/>
+      <line num="92" type="method" name="redirectToRoute" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="98" type="stmt" count="0"/>
+      <line num="101" type="method" name="urlFor" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="103" type="stmt" count="0"/>
       <line num="104" type="stmt" count="0"/>
       <line num="105" type="stmt" count="0"/>
       <line num="106" type="stmt" count="0"/>
-      <line num="107" type="stmt" count="0"/>
-      <metrics loc="110" ncloc="69" classes="1" methods="7" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="20" coveredelements="0"/>
+      <metrics loc="109" ncloc="68" classes="1" methods="7" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="20" coveredelements="0"/>
     </file>
     <file name="/Users/deon/Sites/denosyscore.dev/src/Controller/Bridge.php">
       <class name="Denosys\Core\Controller\Bridge" namespace="global">
@@ -1646,6 +1646,6 @@
       <line num="43" type="stmt" count="1"/>
       <metrics loc="46" ncloc="46" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="17" elements="18" coveredelements="18"/>
     </file>
-    <metrics files="79" loc="4406" ncloc="3561" classes="56" methods="246" coveredmethods="59" conditionals="0" coveredconditionals="0" statements="961" coveredstatements="291" elements="1207" coveredelements="350"/>
+    <metrics files="79" loc="4405" ncloc="3560" classes="56" methods="246" coveredmethods="59" conditionals="0" coveredconditionals="0" statements="961" coveredstatements="291" elements="1207" coveredelements="350"/>
   </project>
 </coverage>
