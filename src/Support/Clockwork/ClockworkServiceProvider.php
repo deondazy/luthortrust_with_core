@@ -20,11 +20,14 @@ class ClockworkServiceProvider extends ServiceProvider
             $clockwork = new Clockwork();
 
             $clockwork->storage(new FileStorage(config('paths.storage_dir') . '/clockwork'));
-            $clockwork->addDataSource(new DoctrineDataSource($this->container->get(EntityManagerInterface::class)));
+            $clockwork->addDataSource(new DoctrineDataSource(
+                $this->container->get(EntityManagerInterface::class))
+            );
 
             return $clockwork;
         });
 
+        // TODO: find efficient way to register middleware only in local environment
         // if ($this->getApplication()->isLocal()) {
             $this->registerClockworkMiddleware();
         // }
