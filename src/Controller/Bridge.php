@@ -23,10 +23,7 @@ class Bridge extends BaseBridge
     {
         $resolvers = [
             // Inject route entity bindings first
-            new RouteEntityBindingResolver(
-                $container->get(EntityManagerInterface::class),
-                $container->get(ServerRequestInterface::class),
-            ),
+            new RouteEntityBindingResolver($container),
             // Then inject parameters by name
             new AssociativeArrayResolver(),
             // Then inject ServerRequest for FormRequest objects
