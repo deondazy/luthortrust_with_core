@@ -1,8 +1,5 @@
 <?php
 
-use Denosys\App\Database\Entities\User;
-use Doctrine\ORM\EntityManagerInterface;
-use Denosys\App\Database\Entities\Country;
 use Denosys\App\Middleware\AuthMiddleware;
 use Denosys\App\Middleware\GuestMiddleware;
 use Denosys\App\Controllers\Auth\AuthController;
@@ -12,7 +9,6 @@ use Denosys\App\Controllers\Frontend\HomeController;
 use Denosys\App\Controllers\Backend\ClientController;
 use Denosys\App\Controllers\Backend\DashboardController;
 use Denosys\App\Controllers\Frontend\Account\AccountController;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Denosys\App\Controllers\Backend\AccountController as BackendAccountController;
 
 return function (RouteCollectorProxyInterface $router) {
@@ -61,32 +57,4 @@ return function (RouteCollectorProxyInterface $router) {
         $router->post('/account/edit/{id}', [BackendAccountController::class, 'update'])->setName('backend.accounts.update');
         $router->post('/account/delete/{id}', [BackendAccountController::class, 'delete'])->setName('backend.accounts.delete');
     })->add(AdminAccessMiddleware::class);
-
-    $router->get('/add-user', function (
-        EntityManagerInterface $entityManager,
-        UserPasswordHasherInterface $passwordHasher
-    ) {
-        $user = new User();
-        $user->setFirstName('William')
-            ->setLastName('Smith')
-            ->setEmail('willismith@zoho.com')
-            ->setUsername('willismith')
-            ->setGender('male')
-            ->setDateOfBirth(new DateTime('1965-02-08'))
-            ->setAddress('123 Main Street, New York, NY 10001')
-            ->setCity('New York')
-            ->setState('NY')
-            ->setCountry($entityManager->getReference(Country::class, 226)) // USA
-            ->setMobileNumber('212-555-1212')
-            ->setPassword($passwordHasher->hashPassword($user, 'password'))
-            ->setIsActive(true)
-            ->setRoles(['ROLE_ADMIN'])
-            ->setPin('0424')
-            ->setStatus('active');
-
-        $entityManager->persist($user);
-        $entityManager->flush();
-
-        return 'User added successfully';
-    });
 };
