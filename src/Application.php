@@ -10,11 +10,8 @@ use Denosys\Core\Config\ConfigurationManager;
 use Denosys\Core\Container\ContainerFactory;
 use Denosys\Core\Controller\Bridge;
 use Denosys\Core\Environment\EnvironmentLoader;
-use Denosys\Core\Environment\EnvironmentLoaderInterface;
 use Denosys\Core\Exceptions\Handler;
 use Denosys\Core\Support\ServiceProvider;
-use Dotenv\Repository\Adapter\PutenvAdapter;
-use Dotenv\Repository\RepositoryBuilder;
 use Exception;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
@@ -68,7 +65,7 @@ class Application
      */
     public function __construct(protected ?string $basePath = null)
     {
-        $this->environmentLoader()->load($this->basePath());
+        EnvironmentLoader::load($this->basePath());
         $this->container = $this->buildContainer();
         $this->loadBaseBindings();
         ServiceProvider::setApplication($this);
@@ -88,15 +85,6 @@ class Application
             $this->basePath('storage/cache/container'),
             $this->isProduction()
         );
-    }
-
-    public function environmentLoader(): EnvironmentLoaderInterface
-    {
-        $builder = RepositoryBuilder::createWithDefaultAdapters();
-        $builder = $builder->addAdapter(PutenvAdapter::class);
-        $repository = $builder->immutable()->make();
-
-        return new EnvironmentLoader($repository);
     }
 
     public function getConfigurations(): ConfigurationInterface
@@ -129,7 +117,6 @@ class Application
 
     protected function loadBaseBindings(): void
     {
-        $this->container->set(EnvironmentLoaderInterface::class, $this->environmentLoader());
         $this->container->set(ConfigurationInterface::class, $this->getConfigurations());
     }
 
@@ -225,12 +212,12 @@ class Application
 
     public function isProduction(): bool
     {
-        return $this->environmentLoader()->get('APP_ENV', 'production') === 'production';
+        return EnvironmentLoader::get('APP_ENV', 'production') === 'production';
     }
 
     public function isLocal(): bool
     {
-        return $this->environmentLoader()->get('APP_ENV', 'production') === 'local';
+        return EnvironmentLoader::get('APP_ENV', 'production') === 'local';
     }
 
     public function run(): void
