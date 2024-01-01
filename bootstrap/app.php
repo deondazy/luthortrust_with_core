@@ -2,9 +2,6 @@
 
 /**
  * The Denosys Core Bootstrap File
- *
- * @package Denosys\Core
- * @version 1.0.0
  */
 
 require __DIR__ . '/../vendor/autoload.php';
