@@ -16,9 +16,11 @@ class DatabaseServiceProvider extends ServiceProvider
     {
         $this->container->set(EntityManagerInterface::class, function () {
             $config = $this->getApplication()->getConfigurations();
+            $defaultConnection = $config->get('database.default');
+            $configParams = $config->get('database.connections.'. $defaultConnection);
 
             return new EntityManager(
-                DriverManager::getConnection($config->get('database.mysql')),
+                DriverManager::getConnection($configParams),
                 ORMSetup::createAttributeMetadataConfiguration(
                     $config->get('paths.entity_dir'),
                     $config->get('app.debug')
