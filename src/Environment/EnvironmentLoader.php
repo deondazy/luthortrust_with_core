@@ -6,22 +6,39 @@ namespace Denosys\Core\Environment;
 
 use Dotenv\Dotenv;
 use PhpOption\Option;
+use Dotenv\Repository\RepositoryBuilder;
 use Dotenv\Repository\RepositoryInterface;
+use Dotenv\Repository\Adapter\PutenvAdapter;
 
-class EnvironmentLoader implements EnvironmentLoaderInterface
+class EnvironmentLoader
 {
-    public function __construct(private readonly RepositoryInterface $repository)
+
+    /**
+     * The environment repository instance.
+     * 
+     * @var RepositoryInterface|null
+     */
+    protected static $repository;
+
+    public static function load(string $path): void
     {
+        Dotenv::create(static::getRepository(), $path)->load();
     }
 
-    public function load(string $path): void
+    public static function getRepository(): RepositoryInterface
     {
-        Dotenv::createImmutable($path)->load();
+        if (static::$repository === null) {
+            $builder = RepositoryBuilder::createWithDefaultAdapters();
+            $builder = $builder->addAdapter(PutenvAdapter::class);
+            static::$repository = $builder->immutable()->make();
+        }
+
+        return static::$repository;
     }
 
-    public function get(string $key, mixed $default = null): mixed
+    public static function get(string $key, mixed $default = null): mixed
     {
-        return Option::fromValue($this->repository->get($key))
+        return Option::fromValue(static::getRepository()->get($key))
             ->map(function ($value) {
                 switch (strtolower($value)) {
                     case 'true':
