@@ -103,7 +103,7 @@ class RedirectResponse extends Response
      */
     public function withFlash(string $key, string|array|null $messages = null): self
     {
-        $flash = app(SessionInterface::class)->getFlash();
+        $flash = container(SessionInterface::class)->getFlash();
 
         $flash->add($key, $messages);
 
