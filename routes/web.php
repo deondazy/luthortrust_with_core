@@ -1,18 +1,17 @@
 <?php
 
+use Denosys\App\Database\Entities\User;
+use Doctrine\ORM\EntityManagerInterface;
+use Denosys\App\Database\Entities\Country;
+use Denosys\App\Middleware\AuthMiddleware;
+use Denosys\App\Middleware\GuestMiddleware;
 use Denosys\App\Controllers\Auth\AuthController;
+use Denosys\App\Middleware\AdminAccessMiddleware;
+use Slim\Interfaces\RouteCollectorProxyInterface;
+use Denosys\App\Controllers\Frontend\HomeController;
 use Denosys\App\Controllers\Backend\ClientController;
 use Denosys\App\Controllers\Backend\DashboardController;
 use Denosys\App\Controllers\Frontend\Account\AccountController;
-use Denosys\App\Controllers\Frontend\HomeController;
-use Denosys\App\Database\Entities\Country;
-use Denosys\App\Database\Entities\User;
-use Denosys\App\Middleware\AdminAccessMiddleware;
-use Denosys\App\Middleware\AuthMiddleware;
-use Denosys\App\Middleware\GuestMiddleware;
-use Doctrine\ORM\EntityManagerInterface;
-use Slim\Interfaces\RouteCollectorProxyInterface;
-use Slim\Psr7\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Denosys\App\Controllers\Backend\AccountController as BackendAccountController;
 
@@ -61,7 +60,7 @@ return function (RouteCollectorProxyInterface $router) {
         $router->get('/account/edit/{id}', [BackendAccountController::class, 'edit'])->setName('backend.accounts.edit');
         $router->post('/account/edit/{id}', [BackendAccountController::class, 'update'])->setName('backend.accounts.update');
         $router->post('/account/delete/{id}', [BackendAccountController::class, 'delete'])->setName('backend.accounts.delete');
-    })->add(AdminAccessMiddleware::class)->add(AuthMiddleware::class);
+    })->add(AdminAccessMiddleware::class);
 
     $router->get('/add-user', function (
         EntityManagerInterface $entityManager,
@@ -89,21 +88,5 @@ return function (RouteCollectorProxyInterface $router) {
         $entityManager->flush();
 
         return 'User added successfully';
-    });
-
-    //$router->get('/test', function (\Psr\Http\Message\ResponseInterface $response): \Psr\Http\Message\ResponseInterface {
-    //    $messages = null;
-    //
-    //    dd(empty($messages));
-    //
-    //
-    //    $response->getBody()->write('Hello World');
-    //    return $response;
-    //});
-
-    $router->get('/phpinfo', function (Response $response) {
-        phpinfo();
-
-        return $response->withBody($response->getBody());
     });
 };
