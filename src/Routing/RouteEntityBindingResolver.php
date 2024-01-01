@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace Denosys\Core\Routing;
 
-use Doctrine\ORM\EntityManagerInterface;
-use Invoker\ParameterResolver\ParameterResolver;
-use Psr\Http\Message\ServerRequestInterface;
 use ReflectionFunctionAbstract;
+use Psr\Container\ContainerInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Slim\Exception\HttpNotFoundException;
+use Psr\Http\Message\ServerRequestInterface;
+use Invoker\ParameterResolver\ParameterResolver;
 
 class RouteEntityBindingResolver implements ParameterResolver
 {
-    public function __construct(
-        private readonly EntityManagerInterface $entityManager,
-        private readonly ServerRequestInterface $request,
-    ) {
+    public function __construct(private readonly ContainerInterface $container) 
+    {
     }
 
     public function getParameters(
@@ -48,12 +47,13 @@ class RouteEntityBindingResolver implements ParameterResolver
                         continue; // Skip to the next parameter if not a Doctrine entity
                     }
 
-                    $entity = $this->entityManager->find($entityClass, $entityId);
+                    $entity = $this->getEntityManager()->find($entityClass, $entityId);
 
                     if ($entity) {
                         $resolvedParameters[$index] = $entity;
                     } else {
-                        throw new HttpNotFoundException($this->request, 'Entity not found');
+                        $request = $this->container->get(ServerRequestInterface::class);
+                        throw new HttpNotFoundException($request, 'Entity not found');
                     }
                 }
             }
@@ -70,6 +70,11 @@ class RouteEntityBindingResolver implements ParameterResolver
      */
     private function isDoctrineEntity(string $className): bool
     {
-        return class_exists($className) && !empty($this->entityManager->getClassMetadata($className));
+        return class_exists($className) && !empty($this->getEntityManager()->getClassMetadata($className));
+    }
+
+    private function getEntityManager(): EntityManagerInterface
+    {
+        return $this->container->get(EntityManagerInterface::class);
     }
 }
