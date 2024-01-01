@@ -14,7 +14,6 @@ use Denosys\Core\Exceptions\Handler;
 use Denosys\Core\Support\ServiceProvider;
 use Exception;
 use Psr\Container\ContainerInterface;
-use Psr\Log\LoggerInterface;
 use RuntimeException;
 use Slim\App;
 use Slim\Views\Twig;
@@ -33,14 +32,14 @@ class Application
      *
      * @var App
      */
-    protected App $slimApp;
+    protected $slimApp;
 
     /**
      * The container instance.
      *
      * @var ContainerInterface
      */
-    protected ContainerInterface $container;
+    protected static $container;
 
     /**
      * The application's environment file.
@@ -66,7 +65,8 @@ class Application
     public function __construct(protected ?string $basePath = null)
     {
         EnvironmentLoader::load($this->basePath());
-        $this->container = $this->buildContainer();
+        $this->registerExceptionHandler();
+        $this->buildContainer();
         $this->loadBaseBindings();
         ServiceProvider::setApplication($this);
         $this->getSlimApp();
@@ -80,11 +80,17 @@ class Application
      */
     private function buildContainer(): ContainerInterface
     {
-        return ContainerFactory::build(
+        if (static::$container !== null) {
+            return static::$container;
+        }
+
+        static::$container = ContainerFactory::build(
             $this->basePath('/bootstrap/container.php'),
             $this->basePath('storage/cache/container'),
             $this->isProduction()
         );
+
+        return static::$container;
     }
 
     public function getConfigurations(): ConfigurationInterface
@@ -94,20 +100,18 @@ class Application
 
         $configurations = new ArrayFileConfiguration($configurationManager);
 
-        $this->container->set(ConfigurationInterface::class, $configurations);
-
         return $configurations;
     }
 
-    public function getContainer(): ContainerInterface
+    public static function getContainer(): ContainerInterface
     {
-        return $this->container;
+        return static::$container;
     }
 
     public function getSlimApp(): App
     {
         if (!isset($this->slimApp)) {
-            $slimApp = Bridge::create($this->container);
+            $slimApp = Bridge::create(static::$container);
             $slimApp->addRoutingMiddleware();
             $this->slimApp = $slimApp;
         }
@@ -117,7 +121,7 @@ class Application
 
     protected function loadBaseBindings(): void
     {
-        $this->container->set(ConfigurationInterface::class, $this->getConfigurations());
+        static::$container->set(ConfigurationInterface::class, $this->getConfigurations());
     }
 
     public function registerMiddleware(): void
@@ -125,16 +129,13 @@ class Application
         $middleware = require $this->basePath('config/middleware.php');
 
         foreach ($middleware as $middlewareClass) {
-            $this->getSlimApp()->add($this->container->get($middlewareClass));
+            $this->getSlimApp()->add(static::$container->get($middlewareClass));
         }
     }
 
     public function registerExceptionHandler(): Handler
     {
-        return new Handler(
-            $this->container->get(ConfigurationInterface::class),
-            $this->container->get(LoggerInterface::class)
-        );
+        return new Handler($this->getConfigurations());
     }
 
     /**
@@ -234,7 +235,7 @@ class Application
         ];
 
         foreach ($aliases as $key => $alias) {
-            $this->container->set($key, $this->container->get($alias));
+            static::$container->set($key, static::$container->get($alias));
         }
     }
 }
