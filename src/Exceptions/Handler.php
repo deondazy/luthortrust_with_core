@@ -8,7 +8,6 @@ use Denosys\Core\Application;
 use Denosys\Core\Config\ConfigurationInterface;
 use Fig\Http\Message\StatusCodeInterface;
 use JetBrains\PhpStorm\NoReturn;
-use Psr\Log\LoggerInterface;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
@@ -21,10 +20,8 @@ class Handler
         StatusCodeInterface::STATUS_INTERNAL_SERVER_ERROR,
     ];
 
-    public function __construct(
-        private readonly ConfigurationInterface $config,
-        private readonly LoggerInterface $logger
-    ) {
+    public function __construct(private readonly ConfigurationInterface $config)
+    {
         $this->registerErrorHandling();
     }
 
@@ -70,14 +67,14 @@ class Handler
         $whoops->pushHandler($prettyPageHandler);
         $whoops->register();
 
-        // Log the error
-        $whoops->pushHandler(
-            fn ($exception) =>
-            $this->logger->error($exception->getMessage(), [
-                'file' => $exception->getFile(),
-                'line' => $exception->getLine()
-            ])
-        );
+        // TODO: Log the error
+        // $whoops->pushHandler(
+        //     fn ($exception) =>
+        //     $this->logger->error($exception->getMessage(), [
+        //         'file' => $exception->getFile(),
+        //         'line' => $exception->getLine()
+        //     ])
+        // );
     }
 
     private function registerProductionHandlers(): void
@@ -102,16 +99,18 @@ class Handler
             return;
         }
 
-        $this->logger->error($message, ['file' => $file, 'line' => $line]);
+        // TODO: Log the error
+        // $this->logger->error($message, ['file' => $file, 'line' => $line]);
     }
 
     #[NoReturn]
     private function handleException($exception): void
     {
-        $this->logger->error($exception->getMessage(), [
-            'file' => $exception->getFile(),
-            'line' => $exception->getLine()
-        ]);
+        // TODO: Log the error
+        // $this->logger->error($exception->getMessage(), [
+        //     'file' => $exception->getFile(),
+        //     'line' => $exception->getLine()
+        // ]);
 
         if (in_array($exception->getCode(), $this->statusCode)) {
             http_response_code($exception->getCode());
