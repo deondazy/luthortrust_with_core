@@ -20,6 +20,10 @@
                 <ul class="media-list media-list-bordered">
                     {% for client in latestClients.results %}
                         <li class="media">
+                            <div class="media-left pull-left">
+                                <img class="img-circle" src="{{ client.passport }}" alt="{{ client.username }}'s passport" width="50" height="50">
+                            </div>
+
                             <div class="media-body">
                                 <div>
                                     <a class="media-heading pull-left text-semibold">{{ client.username }} ({{ client.email }})</a>
