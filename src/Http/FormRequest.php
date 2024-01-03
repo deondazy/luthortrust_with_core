@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Denosys\Core\Http;
 
 use Denosys\Core\Validation\Validator;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
