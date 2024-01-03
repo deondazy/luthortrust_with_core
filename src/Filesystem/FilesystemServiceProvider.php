@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Denosys\Core\Filesystem;
 
-use Denosys\Core\Application;
 use Denosys\Core\Filesystem\Drivers\LocalFilesystemDriverFactory;
 use Denosys\Core\Support\ServiceProvider;
 use Denosys\Core\Filesystem\Drivers\AwsS3V3FilesystemDriverFactory;
