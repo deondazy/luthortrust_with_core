@@ -10,6 +10,7 @@ use Denosys\Core\Security\CurrentUser;
 use Denosys\App\Database\Entities\User;
 use Denosys\App\Repository\UserRepository;
 use Denosys\App\Repository\CountryRepository;
+use Denosys\Core\Filesystem\FilesystemManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserCreationService
@@ -19,12 +20,27 @@ class UserCreationService
         private readonly CountryRepository $countryRepository,
         private readonly UserPasswordHasherInterface $passwordHasher,
         private readonly CurrentUser $currentUser,
+        private readonly FilesystemManager $filesystemManager,
     ) {
     }
 
     public function createUser(UserDTO $data): void
     {
         $user = new User();
+
+        if ($data->passportPhoto) {
+            $filesystem = $this->filesystemManager->disk();
+            $originalName = $data->passportPhoto->getClientFilename();
+            $extension = pathinfo($originalName, PATHINFO_EXTENSION);
+
+            $fileName = uniqid('passport_', true) . '.' . $extension;
+            
+            $filesystem->writeStream('passports-photos/' . $fileName, $data->passportPhoto->getStream()->detach());
+
+            $data->passportPhoto->getStream()->close();
+            
+            $user->setPassport($fileName);
+        }
 
         $user
             ->setUsername($data->username)
@@ -39,7 +55,6 @@ class UserCreationService
             ->setState($data->state)
             ->setCity($data->city)
             ->setAddress($data->address)
-            ->setPassport($data->passportPhoto)
             ->setRequireCot((bool) $data->requireCot)
             ->setRequireImf((bool) $data->requireImf)
             ->setRequireTax((bool) $data->requireTax)
