@@ -68,9 +68,9 @@ class Application
         $this->registerExceptionHandler();
         $this->buildContainer();
         $this->loadBaseBindings();
-        ServiceProvider::setApplication($this);
         $this->getSlimApp();
         $this->registerContainerAliases();
+        ServiceProvider::setApplication($this);
     }
 
     /**
@@ -231,7 +231,6 @@ class Application
         $aliases = [
             'app' => App::class,
             'config' => ConfigurationInterface::class,
-            'view' => Twig::class,
         ];
 
         foreach ($aliases as $key => $alias) {
