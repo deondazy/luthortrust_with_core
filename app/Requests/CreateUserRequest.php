@@ -30,7 +30,7 @@ class CreateUserRequest extends FormRequest
             'state'         => ['required'],
             'city'          => ['required'],
             'address'       => ['required'],
-            'passportPhoto' => ['optional'],
+            'passportPhoto' => ['optional', 'mimes:jpeg,jpg,png', 'max:2048'],
             'requireCot'    => ['optional'],
             'requireImf'    => ['optional'],
             'requireTax'    => ['optional'],
