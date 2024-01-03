@@ -30,7 +30,6 @@ class CreateUserRequest extends FormRequest
             'state'         => ['required'],
             'city'          => ['required'],
             'address'       => ['required'],
-            'passportPhoto' => ['optional', 'mimes:jpeg,jpg,png', 'max:2048'],
             'requireCot'    => ['optional'],
             'requireImf'    => ['optional'],
             'requireTax'    => ['optional'],
@@ -39,9 +38,17 @@ class CreateUserRequest extends FormRequest
 
     public function createUser()
     {
-        $this->validate();
+        $validatedData = $this->validate();
 
-        $userDto = UserDTO::createFromArray($this->validated());
+        if ($this->hasFile('passportPhoto')) {
+            $this->validate([
+                'passportPhoto' => ['image', 'max:1024'],
+            ]);
+
+            $validatedData['passportPhoto'] = $this->file('passportPhoto');
+        }
+
+        $userDto = UserDTO::createFromArray($validatedData);
 
         $this->userCreationService->createUser($userDto);
     }
