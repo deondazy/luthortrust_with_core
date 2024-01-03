@@ -7,13 +7,15 @@ use Denosys\Core\View\TwigServiceProvider;
 use Denosys\Core\Routing\RoutingServiceProvider;
 use Denosys\Core\Session\SessionServiceProvider;
 use Denosys\Core\Database\DatabaseServiceProvider;
+use Denosys\Core\Filesystem\FilesystemServiceProvider;
 use Denosys\Core\Support\Clockwork\ClockworkServiceProvider;
 
 return [
-    DatabaseServiceProvider::class,
+    LogServiceProvider::class,
+    TwigServiceProvider::class,
     SessionServiceProvider::class,
     RoutingServiceProvider::class,
-    TwigServiceProvider::class,
-    LogServiceProvider::class,
+    DatabaseServiceProvider::class,
     ClockworkServiceProvider::class,
+    FilesystemServiceProvider::class,
 ];
