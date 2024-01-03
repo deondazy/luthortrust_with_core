@@ -22,7 +22,7 @@ class UserDTO extends DataTransferObject
         public readonly ?string $city,
         public readonly ?string $state,
         public readonly ?string $country,
-        public readonly ?string $passportPhoto,
+        public readonly ?array $passportPhoto,
         public readonly bool $requireCot = false,
         public readonly bool $requireImf = false,
         public readonly bool $requireTax = false,
