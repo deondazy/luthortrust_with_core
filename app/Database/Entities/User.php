@@ -3,16 +3,20 @@
 namespace Denosys\App\Database\Entities;
 
 use DateTime;
-use Denosys\App\Repository\UserRepository;
-use Denosys\Core\Database\Factories\HasFactory;
-use Doctrine\Common\Collections\ArrayCollection;
+use Denosys\Core\Application;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Denosys\App\Repository\UserRepository;
+use Denosys\Core\Config\ConfigurationInterface;
 use Doctrine\Common\Collections\Collection;
+use Denosys\Core\Filesystem\FilesystemManager;
+use Denosys\Core\Database\Factories\HasFactory;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\Common\Collections\ArrayCollection;
 use Denosys\Core\Database\Entities\Traits\HasUuid;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Denosys\Core\Database\Entities\Traits\HasTimestamps;
+use Denosys\Core\Support\ServiceProvider;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -358,9 +362,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPassport(): ?string
+    public function getPassport(): string
     {
-        return $this->passport;
+        if ($this->passport) {
+            $passportPhotoPath = '/passports-photos/' . $this->passport;
+            return $passportPhotoPath;
+        }
+
+        return 'https://ui-avatars.com/api/?name=' . $this->getFirstName() . '+' . $this->getLastName() . '&font-size=0.33';
     }
 
     public function setPassport(?string $passport): User
