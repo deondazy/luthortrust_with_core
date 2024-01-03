@@ -14,15 +14,15 @@ class LocalFilesystemDriverFactory implements FilesystemFactoryInterface
 {
     public function make(array $config): Filesystem
     {
-        $visibility = PortableVisibilityConverter::fromArray(
-            $config['permissions'] ?? [],
-            $config['directory_visibility'] ?? $config['visibility'] ?? Visibility::PRIVATE
-        );
+        // $visibility = PortableVisibilityConverter::fromArray(
+        //     $config['permissions'] ?? [],
+        //     $config['directory_visibility'] ?? $config['visibility'] ?? Visibility::PRIVATE
+        // );
 
         // TODO: add support for symlinks
         $adapter = new LocalFilesystemAdapter(
             $config['root'],
-            $visibility,
+            null,
             $config['lock'] ?? LOCK_EX
         );
         
