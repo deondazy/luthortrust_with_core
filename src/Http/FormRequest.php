@@ -20,6 +20,13 @@ abstract class FormRequest
     protected Validator $validator;
 
     /**
+     * Rules for validation
+     * 
+     * @var array
+     */
+    private array $rules = [];
+
+    /**
      * ServerRequestInterface instance
      * 
      * @var ServerRequestInterface
@@ -82,17 +89,9 @@ abstract class FormRequest
         return $this->file($key) !== null;
     }
 
-    public function validate(): array
+    public function validate(array $rules = []): array
     {
-        // $rules = $this->rules();
-        // $data = $this->request->getParsedBody();
-
-        // $this->validator = new Validator();
-        // $this->validator->setValidationEntityManager(
-        //     container(EntityManagerInterface::class)
-        // );
-
-        // return $this->validator->validate($data, $rules);
+        $this->rules = $rules;
 
         $this->validateBody();
         $this->validateFiles();
@@ -118,7 +117,8 @@ abstract class FormRequest
 
     private function validateBody(): array
     {
-        $rules = $this->rules();
+        $rules = $this->getRules();
+
         $data = $this->request->getParsedBody();
 
         $this->validator = new Validator();
@@ -139,7 +139,7 @@ abstract class FormRequest
         $errors = [];
         $files = $this->files();
 
-        foreach ($this->rules() as $field => $rules) {
+        foreach ($this->getRules() as $field => $rules) {
             // TODO: use Arr class to check if the field is an array.
             if (array_key_exists($field, $files)) {
                 $file = $files[$field];
@@ -183,5 +183,15 @@ abstract class FormRequest
         }
 
         return $errors;
+    }
+
+    /**
+     * Merge and return the rules.
+     *
+     * @return array
+     */
+    private function getRules(): array
+    {
+        return array_merge($this->rules(), $this->rules);
     }
 }
