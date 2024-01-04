@@ -7,6 +7,8 @@ namespace Denosys\App\Requests;
 use Denosys\App\DTO\UserDTO;
 use Denosys\App\Services\UserCreationService;
 use Denosys\Core\Http\FormRequest;
+use Denosys\Core\Validation\ValidationException;
+use Psr\Http\Message\UploadedFileInterface;
 
 class CreateUserRequest extends FormRequest
 {
@@ -41,15 +43,22 @@ class CreateUserRequest extends FormRequest
         $validatedData = $this->validate();
 
         if ($this->hasFile('passportPhoto')) {
-            $this->validate([
-                'passportPhoto' => ['image', 'max:1024'],
-            ]);
-
-            $validatedData['passportPhoto'] = $this->file('passportPhoto');
+            $validatedData['passportPhoto'] = $this->getPassportPhoto($this->file('passportPhoto'));
         }
 
         $userDto = UserDTO::createFromArray($validatedData);
 
         $this->userCreationService->createUser($userDto);
+    }
+
+    private function getPassportPhoto(UploadedFileInterface $file): ?UploadedFileInterface
+    {
+        $this->validate(['passportPhoto' => ['optional']]);
+            
+        if ($file->getError() === UPLOAD_ERR_OK) {
+            return $file;
+        }
+
+        return null;
     }
 }
