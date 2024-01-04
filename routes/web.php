@@ -56,5 +56,5 @@ return function (RouteCollectorProxyInterface $router) {
         $router->get('/account/edit/{id}', [BackendAccountController::class, 'edit'])->setName('backend.accounts.edit');
         $router->post('/account/edit/{id}', [BackendAccountController::class, 'update'])->setName('backend.accounts.update');
         $router->post('/account/delete/{id}', [BackendAccountController::class, 'delete'])->setName('backend.accounts.delete');
-    })->add(AdminAccessMiddleware::class);
+    })->add(AdminAccessMiddleware::class)->add(AuthMiddleware::class);
 };
