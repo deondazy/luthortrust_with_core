@@ -34,6 +34,11 @@ class UserAuthenticationService
             throw new ValidationException(['username' => 'These credentials do not match our records.']);
         }
 
+        if ($this->passwordHasher->needsRehash($user)) {
+            $user->setPassword($this->passwordHasher->hashPassword($user, $credentials['password']));
+            $this->userRepository->save($user);
+        }
+
         $token = new UsernamePasswordToken($user, 'main', $user->getRoles());
 
         $this->tokenStorage->setToken($token);
