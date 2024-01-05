@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Denosys\Core\Http;
 
-use Denosys\Core\Validation\Validator;
-use Doctrine\ORM\EntityManagerInterface;
 use Psr\Http\Message\UploadedFileInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Denosys\Core\Validation\ValidatorInterface;
 use Denosys\Core\Validation\ValidationException;
 
 abstract class FormRequest
@@ -15,9 +14,9 @@ abstract class FormRequest
     /**
      * Validator instance
      * 
-     * @var Validator
+     * @var ValidatorInterface
      */
-    protected Validator $validator;
+    protected ValidatorInterface $validator;
 
     /**
      * Rules for validation
@@ -121,10 +120,7 @@ abstract class FormRequest
 
         $data = $this->request->getParsedBody();
 
-        $this->validator = new Validator();
-        $this->validator->setValidationEntityManager(
-            container(EntityManagerInterface::class)
-        );
+        $this->validator = container(ValidatorInterface::class);
 
         try {
             return $this->validator->validate($data, $rules);
