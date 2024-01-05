@@ -3,20 +3,16 @@
 namespace Denosys\App\Database\Entities;
 
 use DateTime;
-use Denosys\Core\Application;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Denosys\App\Repository\UserRepository;
-use Denosys\Core\Config\ConfigurationInterface;
 use Doctrine\Common\Collections\Collection;
-use Denosys\Core\Filesystem\FilesystemManager;
 use Denosys\Core\Database\Factories\HasFactory;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\Common\Collections\ArrayCollection;
 use Denosys\Core\Database\Entities\Traits\HasUuid;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Denosys\Core\Database\Entities\Traits\HasTimestamps;
-use Denosys\Core\Support\ServiceProvider;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
