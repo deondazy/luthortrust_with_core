@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Denosys\Core\Filesystem;
 
-use Denosys\Core\Config\ConfigurationInterface;
-
 class FilesystemManager
 {
     protected $disks = [];
