@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace Denosys\Core\Filesystem\Drivers;
 
 use League\Flysystem\Filesystem;
-use League\Flysystem\Visibility;
 use League\Flysystem\Local\LocalFilesystemAdapter;
 use Denosys\Core\Filesystem\FilesystemFactoryInterface;
-use League\Flysystem\UnixVisibility\PortableVisibilityConverter;
 
 class LocalFilesystemDriverFactory implements FilesystemFactoryInterface
 {
