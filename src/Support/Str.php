@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Denosys\Core\Support;
 
+use Symfony\Component\String\ByteString;
 use Symfony\Component\String\UnicodeString;
 
 /**
@@ -42,5 +43,16 @@ class Str
     {
         $string = new UnicodeString($subject);
         return $string->after($search)->toString();
+    }
+
+    /**
+     * Generate a more truly "random" alpha-numeric string.
+     *
+     * @param  int  $length
+     * @return string
+     */
+    public static function random($length = 16)
+    {
+        return ByteString::fromRandom($length)->toString();
     }
 }
