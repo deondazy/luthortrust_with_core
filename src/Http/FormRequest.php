@@ -85,7 +85,7 @@ abstract class FormRequest
      */
     public function hasFile(string $key): bool
     {
-        return $this->file($key) !== null;
+        return $this->file($key) !== null && $this->file($key)->getError() !== UPLOAD_ERR_NO_FILE;
     }
 
     public function validate(array $rules = []): array
