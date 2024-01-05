@@ -369,7 +369,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             return $passportPhotoPath;
         }
 
-        return 'https://ui-avatars.com/api/?name=' . $this->getFirstName() . '+' . $this->getLastName() . '&font-size=0.33';
+        $name = $this->firstName .' '. $this->lastName;
+
+        return 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=7F9CF5&background=EBF4FF&font-size=0.45';
     }
 
     public function setPassport(?string $passport): User
