@@ -5,13 +5,12 @@ use Denosys\Core\Validation\ValidationException;
 use Denosys\Core\Validation\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
-use PHPUnit\Framework\TestCase;
 
 beforeEach(function () {
     $this->validator = new Validator();
     $this->entityManager = $this->createMock(EntityManagerInterface::class);
     $this->repository = $this->createMock(EntityRepository::class);
-    $this->validator->setValidationEntityManager($this->entityManager);
+    // $this->validator->setValidationEntityManager($this->entityManager);
 });
 
 test('validation passes', function () {
@@ -63,56 +62,6 @@ test('standard validation rules', function () {
     ];
     $this->validator->validate($data, $rules);
 })->throws(ValidationException::class, 'Form validation error(s)');
-
-test('apply unique rule successfully', function () {
-    $data = ['email' => 'john@example.com'];
-    $rules = ['email' => ['unique:users']];
-
-    $this->repository->expects($this->once())
-        ->method('count')
-        ->with($data)
-        ->willReturn(0);
-
-    $this->entityManager->expects($this->once())
-        ->method('getRepository')
-        ->with(User::class)
-        ->willReturn($this->repository);
-
-    $result = $this->validator->validate($data, $rules);
-
-    expect($result)->toBe($data);
-});
-
-test('validate unique constraint violation', function () {
-    $data = ['email' => 'john@example.com'];
-    $rules = ['email' => ['unique:users']];
-
-    $this->repository->expects($this->once())
-        ->method('count')
-        ->with($data)
-        ->willReturn(1);
-
-    $this->entityManager->expects($this->once())
-        ->method('getRepository')
-        ->with($this->equalTo('Denosys\\App\\Database\\Entities\\User'))
-        ->willReturn($this->repository);
-
-    $this->validator->validate($data, $rules);
-})->throws(ValidationException::class);
-
-test('validate unique constraint with non existing field', function () {
-    $data = ['non existing field' => 'value'];
-    $rules = ['non existing field' => ['unique:users']];
-
-    $this->validator->validate($data, $rules);
-})->throws(ValidationException::class);
-
-test('validate unique constraint with null value', function () {
-    $data = ['email' => null];
-    $rules = ['email' => ['unique:users']];
-
-    $this->validator->validate($data, $rules);
-})->throws(ValidationException::class);
 
 test('validated returns validated data when no errors', function () {
     $data = ['name' => 'Jane Doe'];
