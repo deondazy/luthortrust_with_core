@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Valitron\Validator;
+use Denosys\Core\Http\UploadedFile;
 use Psr\Container\ContainerInterface;
 use Denosys\Core\Encryption\Encrypter;
 use Denosys\Core\Security\CurrentUser;
@@ -10,6 +11,8 @@ use Slim\Psr7\Factory\ResponseFactory;
 use Denosys\App\Database\Entities\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Denosys\Core\Session\SessionInterface;
+use Denosys\Core\Http\ServerRequestFactory;
+use Psr\Http\Message\ServerRequestInterface;
 use Denosys\Core\Security\EntityUserProvider;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Denosys\Core\Config\ConfigurationInterface;
@@ -84,7 +87,7 @@ return [
             User::USER_IDENTIFIER
         ),
 
-    Psr\Http\Message\ServerRequestInterface::class => function ($container) {
-        return $container->get(Slim\Psr7\Factory\ServerRequestFactory::class)->createFromGlobals();
+    ServerRequestInterface::class => function ($container) {
+        return $container->get(ServerRequestFactory::class)->createFromGlobals();
     },
 ];
