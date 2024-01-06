@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Denosys\App\DTO;
 
-use Denosys\Core\Support\DataTransferObject;
 use Psr\Http\Message\UploadedFileInterface;
+use Denosys\Core\Support\DataTransferObject;
 
 class UserDTO extends DataTransferObject
 {
