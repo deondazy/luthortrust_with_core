@@ -6,7 +6,6 @@ namespace Denosys\App\Services;
 
 use Carbon\Carbon;
 use Denosys\App\DTO\UserDTO;
-use Denosys\Core\Support\Str;
 use Denosys\Core\Security\CurrentUser;
 use Denosys\App\Database\Entities\User;
 use Denosys\App\Repository\UserRepository;
@@ -30,21 +29,7 @@ class UserCreationService
         $user = new User();
 
         if ($data->passportPhoto) {
-            $filesystem = $this->filesystemManager->disk();
-            $originalName = $data->passportPhoto->getClientFilename();
-            $extension = pathinfo($originalName, PATHINFO_EXTENSION);
-
-            $fileName = Str::random(40) . '.' . $extension;
-
-            $stream = $data->passportPhoto->getStream()->detach();
-            
-            $filesystem->writeStream('passports-photos/' . $fileName, $stream);
-
-            if (is_resource($stream)) {
-                $data->passportPhoto->getStream()->close();
-            }
-            
-            $user->setPassport($fileName);
+            $user->updateProfilePhoto($data->passportPhoto);
         }
 
         $user
