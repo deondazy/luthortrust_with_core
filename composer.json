@@ -30,6 +30,7 @@
         "slim/slim": "^4.11",
         "slim/twig-view": "^3.3",
         "symfony/cache": "^6.3",
+        "symfony/mime": "^7.0",
         "symfony/security-core": "^6.3",
         "symfony/string": "^6.3",
         "symfony/yaml": "^6.1",
