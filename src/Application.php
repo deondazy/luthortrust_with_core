@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Denosys\Core;
 
+use Slim\App;
+use Exception;
+use RuntimeException;
+use Denosys\Core\Controller\Bridge;
+use Denosys\Core\Exceptions\Handler;
+use Psr\Container\ContainerInterface;
+use Denosys\Core\Support\ServiceProvider;
+use Denosys\Core\Container\ContainerFactory;
+use Denosys\Core\Config\ConfigurationManager;
 use Denosys\Core\Config\ArrayFileConfiguration;
 use Denosys\Core\Config\ConfigurationInterface;
-use Denosys\Core\Config\ConfigurationManager;
-use Denosys\Core\Container\ContainerFactory;
-use Denosys\Core\Controller\Bridge;
 use Denosys\Core\Environment\EnvironmentLoader;
-use Denosys\Core\Exceptions\Handler;
-use Denosys\Core\Support\ServiceProvider;
-use Exception;
-use Psr\Container\ContainerInterface;
-use RuntimeException;
-use Slim\App;
-use Slim\Views\Twig;
+use Denosys\Core\Http\ServerRequestCreatorFactory;
 
 class Application
 {
@@ -223,7 +223,10 @@ class Application
 
     public function run(): void
     {
-        $this->slimApp->run();
+        $serverRequestCreator = ServerRequestCreatorFactory::create();
+        $request = $serverRequestCreator->createServerRequestFromGlobals();
+        
+        $this->slimApp->run($request);
     }
 
     protected function registerContainerAliases(): void
