@@ -142,7 +142,7 @@ abstract class FormRequest
                 // $errors[$field] = $this->validateSingleFile($file, $rules);
 
                 // Check if a file was uploaded and is valid
-                if ($file instanceof UploadedFileInterface) {
+                if ($file instanceof UploadedFile) {
                     // if ($file->getError() === UPLOAD_ERR_NO_FILE) {
                     //     if (in_array('required', $rules)) {
                     //         $errors[$field] = 'The file is required.';
