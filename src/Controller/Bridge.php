@@ -7,15 +7,12 @@ namespace Denosys\Core\Controller;
 use Denosys\Core\Http\FormRequestResolver;
 use Denosys\Core\Routing\RouteEntityBindingResolver;
 use DI\Bridge\Slim\Bridge as BaseBridge;
-use Doctrine\ORM\EntityManagerInterface;
 use Invoker\Invoker;
 use Invoker\ParameterResolver\AssociativeArrayResolver;
 use Invoker\ParameterResolver\Container\TypeHintContainerResolver;
 use Invoker\ParameterResolver\DefaultValueResolver;
 use Invoker\ParameterResolver\ResolverChain;
 use Psr\Container\ContainerInterface;
-use Psr\Http\Message\ResponseFactoryInterface;
-use Psr\Http\Message\ServerRequestInterface;
 
 class Bridge extends BaseBridge
 {
