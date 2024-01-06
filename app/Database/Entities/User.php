@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Denosys\Core\Database\Entities\Traits\HasUuid;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Denosys\Core\Database\Entities\Traits\HasTimestamps;
+use Denosys\Core\Leap\HasProfilePhoto;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -23,6 +24,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     use HasTimestamps;
     use HasUuid;
     use HasFactory;
+    use HasProfilePhoto;
 
     public const USER_IDENTIFIER = 'username';
 
