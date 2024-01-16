@@ -10,7 +10,6 @@ use Denosys\Core\Security\CurrentUser;
 use Denosys\App\Database\Entities\User;
 use Denosys\App\Repository\UserRepository;
 use Denosys\App\Repository\CountryRepository;
-use Denosys\Core\Filesystem\FilesystemManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserCreationService
@@ -20,7 +19,6 @@ class UserCreationService
         private readonly CountryRepository $countryRepository,
         private readonly UserPasswordHasherInterface $passwordHasher,
         private readonly CurrentUser $currentUser,
-        private readonly FilesystemManager $filesystemManager,
     ) {
     }
 
