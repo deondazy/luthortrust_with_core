@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Denosys\Core\Security;
 
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class Authorization
 {
@@ -40,7 +40,7 @@ class Authorization
     {
         $token = $this->getToken();
 
-        if ($token === null) {
+        if (null === $token) {
             throw new AccessDeniedException();
         }
 
