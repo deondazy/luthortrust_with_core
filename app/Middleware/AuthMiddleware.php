@@ -16,7 +16,6 @@ use Symfony\Component\Security\Core\Authorization\Voter\RoleHierarchyVoter;
 use Symfony\Component\Security\Core\Authorization\Voter\RoleVoter;
 use Symfony\Component\Security\Core\Role\RoleHierarchy;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
-use Denosys\Core\Http\RedirectResponse;
 
 class AuthMiddleware implements MiddlewareInterface
 {
