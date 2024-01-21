@@ -21,7 +21,7 @@ class AuthController extends AbstractController
     {
         $loginRequest->authenticate();
 
-        return $this->redirectToRoute('account.index');
+        return redirectToRoute('account.index');
     }
 
     public function showRegistrationForm(): Response
@@ -37,7 +37,7 @@ class AuthController extends AbstractController
 
         $authenticationService->register($formData);
 
-        return $this->redirectToRoute('login');
+        return redirectToRoute('login');
     }
 
     public function forgotPassword(): Response
@@ -49,6 +49,6 @@ class AuthController extends AbstractController
     {
         $authenticationService->logout();
 
-        return $this->redirectToRoute('home');
+        return redirectToRoute('home');
     }
 }
