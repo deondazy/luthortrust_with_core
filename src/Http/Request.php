@@ -8,7 +8,7 @@ use Slim\Psr7\Request as SlimRequest;
 use Denosys\Core\Session\SessionInterface;
 use Denosys\Core\Session\SessionNotFoundException;
 
-class Request extends SlimRequest
+class Request extends SlimRequest implements ServerRequestInterface
 {
     /**
      * @var SessionInterface|null
@@ -56,7 +56,7 @@ class Request extends SlimRequest
     {
         $clone = clone $this;
         $clone->session = $session;
-        
+
         return $clone;
     }
 }
