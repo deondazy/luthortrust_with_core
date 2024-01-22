@@ -6,7 +6,6 @@ namespace Denosys\App\Middleware;
 
 use Denosys\Core\Config\ConfigurationInterface;
 use Denosys\Core\Encryption\DecryptException;
-use Denosys\Core\Encryption\Encrypter;
 use Denosys\Core\Encryption\EncrypterInterface;
 use Denosys\Core\Http\RedirectResponse;
 use Psr\Http\Message\ResponseInterface;
@@ -41,7 +40,10 @@ class SessionStartMiddleware implements MiddlewareInterface
             $this->session->start();
         }
 
+        $request = $request->withSession($this->session);
+
         $response = $handler->handle($request);
+
         $this->session->save();
 
         return $response;
