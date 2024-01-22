@@ -26,12 +26,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     use HasFactory;
     use HasProfilePhoto;
 
-    public const USER_IDENTIFIER = 'username';
+    public const USER_IDENTIFIER      = 'username';
 
-    final public const ROLE_USER = 'ROLE_USER';
-    final public const ROLE_ADMIN = 'ROLE_ADMIN';
+    final public const ROLE_USER      = 'ROLE_USER';
+    final public const ROLE_ADMIN     = 'ROLE_ADMIN';
     final public const STATUS_PENDING = 'pending';
-    final public const STATUS_ACTIVE = 'active';
+    final public const STATUS_ACTIVE  = 'active';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -480,13 +480,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->password = null;
     }
 
+    public function getFullName(): string
+    {
+        return trim($this->firstName .' '. $this->middleName .' '. $this->lastName);
+    }
+
     public function __serialize(): array
     {
-        return [$this->id, $this->referenceId, $this->username];
+        return [
+            $this->id,
+            $this->referenceId,
+            $this->username,
+            $this->firstName,
+            $this->middleName,
+            $this->lastName,
+            $this->email,
+            $this->gender,
+            $this->dateOfBirth,
+        ];
     }
 
     public function __unserialize(array $data): void
     {
-        [$this->id, $this->referenceId, $this->username] = $data;
+        [
+            $this->id,
+            $this->referenceId,
+            $this->username,
+            $this->firstName,
+            $this->middleName,
+            $this->lastName,
+        ] = $data;
     }
 }
