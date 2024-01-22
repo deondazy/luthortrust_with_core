@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Denosys\Core\Cookie\CookieServiceProvider;
 use Denosys\Core\Log\LogServiceProvider;
 use Denosys\Core\View\TwigServiceProvider;
 use Denosys\Core\Routing\RoutingServiceProvider;
@@ -20,4 +21,5 @@ return [
     ClockworkServiceProvider::class,
     FilesystemServiceProvider::class,
     ValidationServiceProvider::class,
+    CookieServiceProvider::class,
 ];
