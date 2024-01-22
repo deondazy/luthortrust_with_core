@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{% endblock %} | {{ config('app.name', 'Luthor Trust') }}</title>
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="{{ asset('assets/images/favicon.svg') }}" />
+
+        <!-- Global stylesheets -->
+        <link href="{{ asset('assets/dashboard/fonts/inter/inter.css') }}?version={{ env('APP_VERSION') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('assets/dashboard/icons/phosphor/styles.min.css') }}?version={{ env('APP_VERSION') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('assets/dashboard/css/ltr/all.min.css') }}?version={{ env('APP_VERSION') }}" rel="stylesheet" type="text/css">
+        <!-- /global stylesheets -->
+
+        <!-- Core JS files -->
+        <script src="{{ asset('assets/dashboard/js/bootstrap/bootstrap.bundle.min.js') }}?version={{ env('APP_VERSION') }}"></script>
+        <script src="{{ asset('assets/dashboard/js/app.js') }}?version={{ env('APP_VERSION') }}"></script>
+        <!-- /core JS files -->
+
+        {{ vite(['assets/js/app.js']) }}
+    </head>
+
+    <body>
+        <!-- Main navbar -->
+        <div class="navbar navbar-dark navbar-expand-lg navbar-static border-bottom border-bottom-white border-opacity-10">
+            <div class="container-fluid">
+                <div class="d-flex d-lg-none me-2">
+                    <button type="button" class="navbar-toggler sidebar-mobile-main-toggle rounded-pill">
+                        <i class="ph-list"></i>
+                    </button>
+                </div>
+
+                <div class="navbar-brand flex-1 flex-lg-0">
+                    <a class="d-inline-flex align-items-center" href="{{ url_for('backend.index') }}"><img src="{{ asset('assets/images/logo.svg') }}" alt="{{ config('app.name') }}"></a>
+                </div>
+
+                <ul class="nav flex-row justify-content-end order-1 order-lg-2">
+                    <li class="nav-item nav-item-dropdown-lg dropdown ms-lg-2">
+                        <a href="#" class="navbar-nav-link align-items-center rounded-pill p-1" data-bs-toggle="dropdown">
+                            <div class="status-indicator-container">
+                                <img src="{{ app.user.passport }}" class="w-32px h-32px rounded-pill" alt="">
+                                <span class="status-indicator bg-success"></span>
+                            </div>
+                            <span class="d-none d-lg-inline-block mx-lg-2">{{ app.user.fullName }}</span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <a href="#" class="dropdown-item">
+                                <i class="ph-user-circle me-2"></i>
+                                My profile
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="ph-currency-circle-dollar me-2"></i>
+                                My subscription
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="ph-shopping-cart me-2"></i>
+                                My orders
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="ph-envelope-open me-2"></i>
+                                My inbox
+                                <span class="badge bg-primary rounded-pill ms-auto">26</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                                <i class="ph-gear me-2"></i>
+                                Account settings
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="ph-sign-out me-2"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /main navbar -->
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            {% if url_is('/admin*', current_url()) %}
+                {% include 'backend/include/menu.twig' %}
+            {% else %}
+                {% include 'account/include/menu.twig' %}
+            {% endif %}
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Content Inner -->
+                <div class="content-inner">
+                    <!-- Content area -->
+                    <div class=" content">
+                        {% block content %}{% endblock %}
+                    </div>
+                    <!-- /content area -->
+
+                    <!-- Footer -->
+                    <div class="navbar navbar-default navbar-fixed-bottom footer">
+                        <div class="navbar-text text-muted">
+                            &copy; {{ 'now' | date('Y') }} {{ config('app.name') }}. All rights reserved.
+                        </div>
+                    </div>
+                    <!-- /footer -->
+                </div>
+                <!-- /content Inner -->
+            </div>
+            <!-- /main content -->
+    
+        </div>
+        <!-- /page content -->
+    </body>
+</html>
