@@ -6,7 +6,7 @@
 
     <div>Hello World</div>
 
-    <div>{{ user.firstName }}</div>
-    <div>{{ user.roles|first }}</div>
+    <div>{{ app.user.fullName }}</div>
+    <div>{{ dump(app.user.roles) }}</div>
 
 {% endblock %}
