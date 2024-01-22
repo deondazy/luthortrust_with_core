@@ -13,20 +13,21 @@ use Psr\Http\Server\MiddlewareInterface;
 use Denosys\Core\Session\SessionManagerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Slim\Psr7\Cookies;
 
 class SessionStartMiddleware implements MiddlewareInterface
 {
     public function __construct(
         private readonly SessionManagerInterface $session,
         private readonly EncrypterInterface $encrypter,
-        private readonly ConfigurationInterface $config
     ) {
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        if (isset($_COOKIE[$this->config->get('session')['name']])) {
-            $encryptedSessionId = $_COOKIE[$this->config->get('session')['name']];
+        $sessionName = config('session.name');
+        if (container('cookie')->get($sessionName) !== null) {
+            $encryptedSessionId = $_COOKIE[$sessionName];
 
             try {
                 $decryptedSessionId = $this->encrypter->decrypt($encryptedSessionId);
