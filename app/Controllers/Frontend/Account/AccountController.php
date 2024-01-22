@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace Denosys\App\Controllers\Frontend\Account;
 
 use Denosys\Core\Controller\AbstractController;
-use Denosys\Core\Security\CurrentUser;
 use Psr\Http\Message\ResponseInterface;
 
 class AccountController extends AbstractController
 {
-    public function index(CurrentUser $user): ResponseInterface
+    public function index(): ResponseInterface
     {
-        return $this->view('account.index', ['user' => $user->getUser()]);
+        return $this->view('account.index');
     }
 
     public function profile(): ResponseInterface
