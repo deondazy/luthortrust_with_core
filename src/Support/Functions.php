@@ -37,6 +37,16 @@ if (!function_exists('config')) {
 }
 
 if (!function_exists('redirectToRoute')) {
+    /**
+     * Redirects to a specified route.
+     *
+     * @param string $routeName The name of the route to redirect to.
+     * @param array $data Optional data to be used in generating the route URL.
+     * @param array $queryParam Optional query parameters to be appended to the route URL.
+     * @param int $status The HTTP status code to be used for the redirect response.
+     * 
+     * @return RedirectResponse The redirect response object.
+     */
     function redirectToRoute(
         string $routeName, 
         array $data = [],
