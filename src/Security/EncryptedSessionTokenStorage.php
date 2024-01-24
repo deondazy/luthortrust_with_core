@@ -37,9 +37,8 @@ class EncryptedSessionTokenStorage implements AuthenticatedTokenStorageInterface
      */
     public function setToken(?TokenInterface $token): void
     {
-        
         $this->session->regenerateId();
-
+        
         $encryptedToken = $this->encrypter->encrypt($token);
 
         $this->session->set($this->cookieName, $encryptedToken);
