@@ -8,11 +8,12 @@ use Doctrine\ORM\QueryBuilder as DoctrineQueryBuilder;
 use Doctrine\ORM\Tools\Pagination\CountWalker;
 use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
 use Traversable;
+
 use function count;
 
 class Paginator
 {
-    final public const PAGE_SIZE = 10;
+    final public const PAGE_SIZE = 15;
 
     private int $currentPage;
     private int $numResults;
@@ -21,6 +22,8 @@ class Paginator
      * @var Traversable<int, object>
      */
     private Traversable $results;
+
+    private array $meta = [];
 
     public function __construct(
         private readonly DoctrineQueryBuilder $queryBuilder,
@@ -55,8 +58,30 @@ class Paginator
 
         $this->results = $paginator->getIterator();
         $this->numResults = $paginator->count();
+        $this->meta = $this->getMeta();
 
         return $this;
+    }
+
+    public function getMeta(): array
+    {
+        $meta = [];
+        $lastPage = $this->getLastPage();
+        $currentPage = $this->getCurrentPage();
+
+        $meta['previous'] = $this->getPreviousPage();
+
+        for ($i = 1; $i <= $lastPage; $i++) {
+            if ($i == 1 || $i == $lastPage || ($i >= $currentPage - 4 && $i <= $currentPage + 4)) {
+                $meta['links'][] = $i;
+            } elseif (count($meta['links']) && end($meta['links']) != '...') {
+                $meta['links'][] = '...';
+            }
+        }
+
+        $meta['next'] = $this->getNextPage();
+
+        return $meta;
     }
 
     public function getCurrentPage(): int
@@ -79,9 +104,9 @@ class Paginator
         return $this->currentPage > 1;
     }
 
-    public function getPreviousPage(): int
+    public function getPreviousPage(): ?int
     {
-        return max(1, $this->currentPage - 1);
+        return ($this->currentPage - 1 > 0) ? $this->currentPage - 1 : null;
     }
 
     public function hasNextPage(): bool
@@ -89,9 +114,9 @@ class Paginator
         return $this->currentPage < $this->getLastPage();
     }
 
-    public function getNextPage(): int
+    public function getNextPage(): ?int
     {
-        return min($this->getLastPage(), $this->currentPage + 1);
+        return ($this->currentPage + 1 <= $this->getLastPage()) ? $this->currentPage + 1 : null;
     }
 
     public function hasToPaginate(): bool
