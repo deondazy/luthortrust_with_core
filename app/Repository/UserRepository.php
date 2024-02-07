@@ -23,7 +23,7 @@ class UserRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('user')
             ->select('user', 'country')
-            ->leftJoin('user.country', 'country') 
+            ->leftJoin('user.country', 'country')
             ->orderBy('user.createdAt', 'DESC');
 
         return (new Paginator($queryBuilder))->paginate($page);
