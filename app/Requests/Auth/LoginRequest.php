@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Denosys\App\Requests\Auth;
 
+use Denosys\App\Services\User\UserAuthenticationService;
 use Denosys\Core\Http\FormRequest;
-use Denosys\App\Services\UserAuthenticationService;
 
 class LoginRequest extends FormRequest
 {
