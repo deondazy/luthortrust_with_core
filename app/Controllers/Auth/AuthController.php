@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Denosys\App\Controllers\Auth;
 
 use Denosys\App\Requests\Auth\LoginRequest;
-use Denosys\App\Services\UserAuthenticationService;
+use Denosys\App\Services\User\UserAuthenticationService;
 use Denosys\Core\Controller\AbstractController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface;
