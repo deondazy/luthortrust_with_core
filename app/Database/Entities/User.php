@@ -363,13 +363,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getPassport(): string
     {
         if ($this->passport) {
-            $passportPhotoPath = '/passports-photos/' . $this->passport;
-            return $passportPhotoPath;
+            return '/' . $this->passport;
         }
 
-        $name = $this->firstName .' '. $this->lastName;
-
-        return 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=7F9CF5&background=EBF4FF&font-size=0.45';
+        return 'https://ui-avatars.com/api/?name=' .
+            urlencode($this->getFullName()) . '&color=7F9CF5&background=EBF4FF&font-size=0.45';
     }
 
     public function setPassport(?string $passport): User
@@ -482,7 +480,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getFullName(): string
     {
-        return trim($this->firstName .' '. $this->middleName .' '. $this->lastName);
+        return trim($this->firstName . ' ' . $this->middleName . ' ' . $this->lastName);
     }
 
     public function __serialize(): array
