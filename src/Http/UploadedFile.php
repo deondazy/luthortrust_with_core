@@ -10,26 +10,26 @@ use Slim\Psr7\UploadedFile as SlimUploadedFile;
 
 class UploadedFile extends SlimUploadedFile
 {
-    public function storePublicly(string $path, mixed $name, array $options = []): string|false
+    public function storePublicly(string $path, mixed $name, array $options = []): void
     {
         $options = $this->parseOptions($options);
 
         $options['visibility'] = 'public';
 
-        return $this->storeAs($path, $name, $options);
+        $this->storeAs($path, $name, $options);
     }
 
-    public function storeAs(string $path, mixed $name = null, array $options = []): string|false
+    public function storeAs(string $path, mixed $name = null, array $options = []): void
     {
         $options = $this->parseOptions($options);
 
         $disk = $this->getDiskFromOptions($options, 'disk');
 
-        return Application::getContainer()->get(FilesystemManager::class)->disk($disk)->writeStream(
+        Application::getContainer()->get(FilesystemManager::class)->disk($disk)->writeStream(
             $path,
             $name
         );
-        
+
         // return Application::getContainer()->get(FilesystemManager::class)->disk($disk)->writeStream(
         //     $path,
         //     $this,
@@ -42,7 +42,7 @@ class UploadedFile extends SlimUploadedFile
      * Parse and format the given options.
      *
      * @param  array|string  $options
-     * 
+     *
      * @return array
      */
     protected function parseOptions(array|string $options): array
