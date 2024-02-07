@@ -6,8 +6,10 @@ namespace Denosys\App\Requests;
 
 use Denosys\App\Database\Entities\User;
 use Denosys\App\DTO\UserDTO;
+use Denosys\App\Services\User\UserUpdateService;
 use Denosys\Core\Http\FormRequest;
-use Denosys\App\Services\UserUpdateService;
+use Exception;
+use Psr\Http\Message\UploadedFileInterface;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -37,12 +39,30 @@ class UpdateUserRequest extends FormRequest
         ];
     }
 
+    /**
+     * @throws Exception
+     */
     public function updateUser(User $user): void
     {
-        $this->validate();
+        $validatedData = $this->validate();
 
-        $userDto = UserDTO::createFromArray($this->validated());
+        if ($this->hasFile('passportPhoto')) {
+            $validatedData['passportPhoto'] = $this->validatePassportPhoto($this->file('passportPhoto'));
+        }
+
+        $userDto = UserDTO::createFromArray($validatedData);
 
         $this->userUpdateService->updateUser($user, $userDto);
+    }
+
+    private function validatePassportPhoto(UploadedFileInterface $file): ?UploadedFileInterface
+    {
+        $this->validate(['passportPhoto' => ['optional']]);
+
+        if ($file->getError() === UPLOAD_ERR_OK) {
+            return $file;
+        }
+
+        return null;
     }
 }
