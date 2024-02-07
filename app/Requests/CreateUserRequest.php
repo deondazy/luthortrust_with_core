@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace Denosys\App\Requests;
 
 use Denosys\App\DTO\UserDTO;
+use Denosys\App\Services\User\UserCreationService;
 use Denosys\Core\Http\FormRequest;
+use Exception;
 use Psr\Http\Message\UploadedFileInterface;
-use Denosys\App\Services\UserCreationService;
 
 class CreateUserRequest extends FormRequest
 {
@@ -37,7 +38,10 @@ class CreateUserRequest extends FormRequest
         ];
     }
 
-    public function createUser()
+    /**
+     * @throws Exception
+     */
+    public function createUser(): void
     {
         $validatedData = $this->validate();
 
@@ -53,7 +57,7 @@ class CreateUserRequest extends FormRequest
     private function validatePassportPhoto(UploadedFileInterface $file): ?UploadedFileInterface
     {
         $this->validate(['passportPhoto' => ['optional']]);
-            
+
         if ($file->getError() === UPLOAD_ERR_OK) {
             return $file;
         }
