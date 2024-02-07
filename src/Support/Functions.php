@@ -44,11 +44,11 @@ if (!function_exists('redirectToRoute')) {
      * @param array $data Optional data to be used in generating the route URL.
      * @param array $queryParam Optional query parameters to be appended to the route URL.
      * @param int $status The HTTP status code to be used for the redirect response.
-     * 
+     *
      * @return RedirectResponse The redirect response object.
      */
     function redirectToRoute(
-        string $routeName, 
+        string $routeName,
         array $data = [],
         array $queryParam = [],
         int $status = StatusCodeInterface::STATUS_FOUND
@@ -57,7 +57,7 @@ if (!function_exists('redirectToRoute')) {
             ->getRouteCollector()
             ->getRouteParser()
             ->urlFor($routeName, $data, $queryParam);
-        
+
         return new RedirectResponse($routeUrl, $status);
     }
 }
@@ -93,7 +93,7 @@ if (!function_exists('fake') && class_exists(\Faker\Factory::class)) {
 if (!function_exists('entityManager')) {
     /**
      * Get the entity manager instance.
-     * 
+     *
      * @return \Doctrine\ORM\EntityManagerInterface
      */
     function entityManager(): \Doctrine\ORM\EntityManagerInterface
