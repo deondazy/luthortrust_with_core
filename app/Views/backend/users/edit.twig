@@ -1,0 +1,188 @@
+{% extends "layouts/dashboard.twig" %}
+
+{% block title 'Edit User | Admin'|title %}
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Edit User</h5>
+        </div>
+
+        <form method="post" action="{{ url_for('backend.users.update', {user: user.id}) }}" enctype="multipart/form-data" autocomplete="off">
+            <div class="card-body">
+                <!-- USERNAME -->
+                <div class="row mb-3">
+                    <label for="username" class="col-form-label col-lg-3">Username</label>
+                    <div class="col-lg-9">
+                        <input id="username" type="text" class="form-control {{ errors.username ? 'is-invalid' }}" name="username" value="{{ user.username }}" autofocus>
+                        <span class="invalid-feedback">{{ errors.username | first }}</span>
+                    </div>
+                </div>
+
+                <!-- EMAIL -->
+                <div class="row mb-3">
+                    <label for="email" class="col-form-label col-lg-3">Email</label>
+                    <div class="col-lg-9">
+                        <input id="email" type="email" class="form-control {{ errors.email ? 'is-invalid' }}" name="email" required value="{{ user.email }}">
+                        <span class="invalid-feedback">{{ errors.email | first }}</span>
+                    </div>
+                </div>
+
+                <!-- MOBILE NUMBER -->
+                <div class="row mb-3">
+                    <label for="mobileNumber" class="col-form-label col-lg-3">Mobile number</label>
+                    <div class="col-lg-9">
+                        <input id="mobileNumber" type="tel" class="form-control {{ errors.mobileNumber ? 'is-invalid' }}" name="mobileNumber" required value="{{ user.mobileNumber }}">
+                        <span class="invalid-feedback">{{ errors.mobileNumber | first }}</span>
+                    </div>
+                </div>
+
+                <!-- FIRST NAME -->
+                <div class="row mb-3">
+                    <label for="firstName" class="col-form-label col-lg-3">First name</label>
+                    <div class="col-lg-9">
+                        <input id="firstName" type="text" class="form-control {{ errors.firstName ? 'is-invalid' }}" name="firstName" required value="{{ user.firstName }}">
+                        <span class="invalid-feedback">{{ errors.firstName | first }}</span>
+                    </div>
+                </div>
+
+                <!-- MIDDLE NAME -->
+                <div class="row mb-3">
+                    <label for="middleName" class="col-form-label col-lg-3">Middle name <em>(optional)</em></label>
+                    <div class="col-lg-9">
+                        <input id="middleName" type="text" class="form-control {{ errors.middleName ? 'is-invalid' }}" name="middleName" value="{{ user.middleName }}">
+                        <span class="invalid-feedback">{{ errors.middleName | first }}</span>
+                    </div>
+                </div>
+
+                <!-- LAST NAME -->
+                <div class="row mb-3">
+                    <label for="lastName" class="col-form-label col-lg-3">Last name</label>
+                    <div class="col-lg-9">
+                        <input id="lastName" type="text" class="form-control {{ errors.lastName ? 'is-invalid' }}" name="lastName" required value="{{ user.lastName }}">
+                        <span class="invalid-feedback">{{ errors.lastName | first }}</span>
+                    </div>
+                </div>
+
+                <!-- GENDER -->
+                <div class="row mb-3">
+                    <label for="gender" class="col-form-label col-lg-3">Gender</label>
+                    <div class="col-lg-9">
+                        <select id="gender" class="form-select {{ errors.gender ? 'is-invalid' }}" name="gender">
+                            <option value="male" {% if user.gender == 'male' %}selected{% endif %}>Male</option>
+                            <option value="female" {% if user.gender == 'female' %}selected{% endif %}>Female</option>
+                        </select>
+                        <span class="invalid-feedback">{{ errors.gender | first }}</span>
+                    </div>
+                </div>
+
+                <!-- DATE OF BIRTH -->
+                <div class="row mb-3">
+                    <label for="dateOfBirth" class="col-form-label col-lg-3">Date of birth</label>
+                    <div class="col-lg-9">
+                        <input id="dateOfBirth" type="date" class="form-control {{ errors.dateOfBirth ? 'is-invalid' }}" name="dateOfBirth" required value="{{ user.dateOfBirth|date('Y-m-d') }}">
+                        <span class="invalid-feedback">{{ errors.dateOfBirth | first }}</span>
+                    </div>
+                </div>
+
+                <!-- COUNTRY -->
+                <div class="row mb-3">
+                    <label for="country" class="col-form-label col-lg-3">Country</label>
+                    <div class="col-lg-9">
+                        <select id="country" class="form-select {{ errors.country ? 'is-invalid' }}" name="country">
+                            {% for country in countries %}
+                                <option value="{{ country.id }}" {% if user.country.id == country.id %}selected{% endif %}>{{ country.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="invalid-feedback">{{ errors.country | first }}</span>
+                    </div>
+                </div>
+
+                <!-- STATE -->
+                <div class="row mb-3">
+                    <label for="state" class="col-form-label col-lg-3">State</label>
+                    <div class="col-lg-9">
+                        <input id="state" type="text" class="form-control {{ errors.state ? 'is-invalid' }}" name="state" required value="{{ user.state }}">
+                        <span class="invalid-feedback">{{ errors.state | first }}</span>
+                    </div>
+                </div>
+
+                <!-- CITY -->
+                <div class="row mb-3">
+                    <label for="city" class="col-form-label col-lg-3">City</label>
+                    <div class="col-lg-9">
+                        <input id="city" type="text" class="form-control {{ errors.city ? 'is-invalid' }}" name="city" required value="{{ user.city }}">
+                        <span class="invalid-feedback">{{ errors.city | first }}</span>
+                    </div>
+                </div>
+
+                <!-- ADDRESS -->
+                <div class="row mb-3">
+                    <label for="address" class="col-form-label col-lg-3">Address</label>
+                    <div class="col-lg-9">
+                        <input id="address" type="text" class="form-control {{ errors.address ? 'is-invalid' }}" name="address" required value="{{ user.address }}">
+                        <span class="invalid-feedback">{{ errors.address | first }}</span>
+                    </div>
+                </div>
+
+                <!-- PASSPORT PHOTO -->
+                <div class="row mb-3">
+                    <label for="passportPhoto" class="col-form-label col-lg-3">Passport Photo</label>
+                    <div class="col-lg-9">
+                        <div class="d-flex gap-3">
+                            {% if user.passport %} <img src="{{ user.passport }}" alt="Passport Photo" class="w-40px h-40px rounded-pill mb-2"> {% endif %}
+
+                            <div class="flex-fill">
+                                <input id="passportPhoto" name="passportPhoto" type="file" class="form-control {{ errors.passportPhoto ? 'is-invalid' }}">
+                                <span class="invalid-feedback">{{ errors.passportPhoto | first }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fw-bold border-bottom pb-2 mb-3">Outward Transfer Options</div>
+
+                <!-- REQUIRE COT CODE -->
+                <div class="form-check-horizontal">
+                    <label for="requireCot" class="form-check mb-0">
+                        <input id="requireCot" type="checkbox" name="requireCot" class="form-check-input {{ errors.requireCot ? 'is-invalid' }}" {% if user.requireCot %}checked{% endif %}>
+                        Require COT Code?
+                    </label>
+                    <div class="invalid-feedback">{{ errors.requireCot | first }}</div>
+                </div>
+
+                <!-- REQUIRE IMF CERTIFICATE CODE -->
+                <div class="form-check-horizontal">
+                    <label for="requireImf" class="form-check mb-0">
+                        <input id="requireImf" type="checkbox" name="requireImf" class="form-check-input {{ errors.requireImf ? 'is-invalid' }}" {% if user.requireImf %}checked{% endif %}>
+                        Require IMF certificate Code?
+                    </label>
+                    <div class="invalid-feedback">{{ errors.requireImf | first }}</div>
+                </div>
+
+                <!-- REQUIRE TAX CODE -->
+                <div class="form-check-horizontal">
+                    <label for="requireTax" class="form-check mb-0">
+                        <input id="requireTax" type="checkbox" name="requireTax" class="form-check-input {{ errors.requireTax ? 'is-invalid' }}" {% if user.requireTax %}checked{% endif %}>
+                        Require Tax Code?
+                    </label>
+                    <div class="invalid-feedback">{{ errors.requireTax | first }}</div>
+                </div>
+            </div>
+
+            <div class="card-footer d-flex justify-content-end gap-2">
+                <a class="btn btn-secondary" href="{{ url_for('backend.users.index') }}">
+                    <i class="ph-arrow-circle-left me-2"></i>
+                    Cancel
+                </a>
+
+                <button class="btn btn-primary" type="submit">
+                    <i class="ph-floppy-disk me-2"></i>
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
