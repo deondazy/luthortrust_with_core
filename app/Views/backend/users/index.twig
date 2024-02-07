@@ -1,0 +1,52 @@
+{% extends "layouts/dashboard.twig" %}
+
+{% block title 'Users | Admin'|title %}
+
+{% import "backend/include/macros/pagination.twig" as pagination %}
+
+{% block content %}
+
+    {% if has_flash('success') %}
+        <div class="alert alert-success">{{ get_flash('success') | first }}</div>
+    {% endif %}
+
+    <div class="card">
+
+        <div class="card-header">
+            <h5 class="mb-0">Users</h5>
+        </div>
+
+        <div class="list-group list-group-borderless py-2">
+            {% for client in latestClients.results %}
+                <div class="list-group-item hstack gap-3">
+                    <img class="w-40px h-40px rounded-pill" src="{{ client.passport }}" alt="{{ client.username }}'s passport" width="50" height="50">
+
+                    <div class="flex-fill">
+                        <div><span class="fw-semibold">{{ client.firstName }} {{ client.middleName }} {{ client.lastName }}</span></div>
+                        <span class="text-muted">{{ client.email }}</span>
+                    </div>
+
+                    <div class="align-self-center ms-3">
+                        <div class="d-inline-flex">
+                            <a data-bs-popup="tooltip" data-bs-trigger="hover" aria-label="Edit" data-bs-original-title="Edit" class="btn btn-success" href="{{ url_for('backend.users.edit', {'user': client.id}) }}">
+                                <i class="ph-note-pencil"></i>
+                            </a>
+
+                            <form action="{{ url_for('backend.users.delete', {'user': client.id}) }}" method="POST">
+                                <button data-bs-popup="tooltip" data-bs-trigger="hover" aria-label="Delete" data-bs-original-title="Delete" type="submit" class="mx-2 btn btn-danger" onclick="return confirm('Permanently delete {{ client.username }}\'s accounts?');">
+                                    <i class="ph-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            {% else %}
+                <div>No Clients</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {{ pagination.paginate(latestClients, 'backend.users.index') }}
+
+{% endblock %}
