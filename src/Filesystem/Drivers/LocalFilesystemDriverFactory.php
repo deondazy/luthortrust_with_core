@@ -23,7 +23,7 @@ class LocalFilesystemDriverFactory implements FilesystemFactoryInterface
             null,
             $config['lock'] ?? LOCK_EX
         );
-        
+
         return new Filesystem($adapter);
     }
 }
