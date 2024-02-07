@@ -1,17 +1,17 @@
 {% macro paginate(items, routeName) %}
-    <div class="text-center">
+    <div class="d-flex justify-content-center">
         {% if items.hasToPaginate %}
-            <ul class="pagination pagination-lg mb-10">
+            <ul class="pagination pagination-spaced">
                 {% if items.hasPreviousPage %}
-                    <li>
-                        <a href="{{ url_for(routeName, {page: 1}) }}">
-                            <span>«</span>
+                    <li class="page-item">
+                        <a class="page-link rounded" href="{{ url_for(routeName, {page: 1}) }}">
+                            <span>First</span>
                         </a>
                     </li>
 
-                    <li>
-                        <a href="{{ url_for(routeName, {page: items.previousPage}) }}" rel="previous">
-                            <i class="icon-arrow-left13"></i>
+                    <li class="page-item">
+                        <a class="page-link rounded" href="{{ url_for(routeName, {page: items.previousPage}) }}" rel="previous">
+                            Previous
                         </a>
                     </li>
                 {% endif %}
@@ -22,35 +22,28 @@
 
                 {% for i in startPage..endPage %}
                     {% if i == items.currentPage %}
-                        <li class="active">
-                            <span>{{ i }} <span class="sr-only">{{ 'Current' }}</span></span>
+                        <li class="page-item active">
+                            <span class="page-link rounded">{{ i }} <span class="sr-only">{{ 'Current' }}</span></span>
                         </li>
                     {% else %}
-                        <li><a href="{{ url_for(routeName, {page: i}) }}">{{ i }}</a></li>
+                        <li class="page-item"><a class="page-link rounded" href="{{ url_for(routeName, {page: i}) }}">{{ i }}</a></li>
                     {% endif %}
                 {% endfor %}
 
                 {% if items.hasNextPage %}
-                    <li>
-                        <a href="{{ url_for(routeName, {page: items.nextPage}) }}">
-                            <span><i class="icon-arrow-right14"></i></span>
+                    <li class="page-item">
+                        <a class="page-link rounded" href="{{ url_for(routeName, {page: items.nextPage}) }}">
+                            <span>Next</span>
                         </a>
                     </li>
 
-                    <li>
-                        <a href="{{ url_for(routeName, {page: items.lastPage}) }}">
-                            <span>»</span>
+                    <li class="page-item">
+                        <a class="page-link rounded" href="{{ url_for(routeName, {page: items.lastPage}) }}">
+                            <span>Last</span>
                         </a>
                     </li>
                 {% endif %}
             </ul>
         {% endif %}
-
-        <div class="page-item">
-            <form x-data="{}" @submit.prevent="window.location.href = '{{ url_for(routeName, {'page': 1}) }}'.slice(0, -1) + $event.target.elements.page.value">
-                <input class="form-control-plaintext" x-ref="page" type="number" name="page" min="1" max="{{ items.lastPage }}" placeholder="Go to page..." required>
-                <button type="submit" class="btn btn-secondary btn-sm">Go</button>
-            </form>
-        </div>
     </div>
 {% endmacro %}
