@@ -6,7 +6,7 @@ use Denosys\App\Controllers\Auth\AuthController;
 use Denosys\App\Middleware\AdminAccessMiddleware;
 use Slim\Interfaces\RouteCollectorProxyInterface;
 use Denosys\App\Controllers\Frontend\HomeController;
-use Denosys\App\Controllers\Backend\ClientController;
+use Denosys\App\Controllers\Backend\UserController;
 use Denosys\App\Controllers\Backend\DashboardController;
 use Denosys\App\Controllers\Frontend\Account\AccountController;
 use Denosys\App\Controllers\Backend\AccountController as BackendAccountController;
@@ -42,19 +42,25 @@ return function (RouteCollectorProxyInterface $router) {
         $router->get('', [DashboardController::class, 'index'])->setName('backend.index');
 
         // Client Routes
-        $router->get('/clients[/{page}]', [ClientController::class, 'index'])->setName('backend.client.index');
-        $router->get('/client/new', [ClientController::class, 'create'])->setName('backend.client.create');
-        $router->post('/client/new', [ClientController::class, 'store'])->setName('backend.client.store');
-        $router->get('/client/edit/{user}', [ClientController::class, 'edit'])->setName('backend.client.edit');
-        $router->post('/client/edit/{user}', [ClientController::class, 'update'])->setName('backend.client.update');
-        $router->post('/client/delete/{user}', [ClientController::class, 'delete'])->setName('backend.client.delete');
+        $router->get('/users[/{page:[0-9]+}]', [UserController::class, 'index'])->setName('backend.users.index');
+        $router->get('/users/new', [UserController::class, 'create'])->setName('backend.users.create');
+        $router->post('/users/new', [UserController::class, 'store'])->setName('backend.users.store');
+        $router->get('/users/edit/{user}', [UserController::class, 'edit'])->setName('backend.users.edit');
+        $router->post('/users/edit/{user}', [UserController::class, 'update'])->setName('backend.users.update');
+        $router->post('/users/delete/{user}', [UserController::class, 'delete'])->setName('backend.users.delete');
 
         // Accounts Routes
-        $router->get('/accounts[/{page}]', [BackendAccountController::class, 'index'])->setName('backend.accounts.index');
-        $router->get('/account/new/{userId}', [BackendAccountController::class, 'create'])->setName('backend.accounts.create');
-        $router->post('/account/new/{userId}', [BackendAccountController::class,'store'])->setName('backend.accounts.store');
-        $router->get('/account/edit/{id}', [BackendAccountController::class, 'edit'])->setName('backend.accounts.edit');
-        $router->post('/account/edit/{id}', [BackendAccountController::class, 'update'])->setName('backend.accounts.update');
-        $router->post('/account/delete/{id}', [BackendAccountController::class, 'delete'])->setName('backend.accounts.delete');
+        $router->get('/accounts[/{page}]', [BackendAccountController::class, 'index'])
+            ->setName('backend.accounts.index');
+        $router->get('/account/new/{userId}', [BackendAccountController::class, 'create'])
+            ->setName('backend.accounts.create');
+        $router->post('/account/new/{userId}', [BackendAccountController::class,'store'])
+            ->setName('backend.accounts.store');
+        $router->get('/account/edit/{id}', [BackendAccountController::class, 'edit'])
+            ->setName('backend.accounts.edit');
+        $router->post('/account/edit/{id}', [BackendAccountController::class, 'update'])
+            ->setName('backend.accounts.update');
+        $router->post('/account/delete/{id}', [BackendAccountController::class, 'delete'])
+            ->setName('backend.accounts.delete');
     })->add(AdminAccessMiddleware::class)->add(AuthMiddleware::class);
 };
