@@ -10,7 +10,6 @@ use Denosys\Core\Session\SessionServiceProvider;
 use Denosys\Core\Database\DatabaseServiceProvider;
 use Denosys\Core\Filesystem\FilesystemServiceProvider;
 use Denosys\Core\Validation\ValidationServiceProvider;
-use Denosys\Core\Support\Clockwork\ClockworkServiceProvider;
 
 return [
     LogServiceProvider::class,
@@ -18,7 +17,6 @@ return [
     SessionServiceProvider::class,
     RoutingServiceProvider::class,
     DatabaseServiceProvider::class,
-    ClockworkServiceProvider::class,
     FilesystemServiceProvider::class,
     ValidationServiceProvider::class,
     CookieServiceProvider::class,
