@@ -12,29 +12,37 @@
 
     <div class="card">
 
-        <div class="card-header">
-            <h5 class="mb-0">Users</h5>
+        <div class="card-header d-flex align-items-center py-0">
+            <h5 class="py-3 mb-0">Users</h5>
+
+            <div class="ms-auto my-auto">
+                <a href="{{ url_for('backend.users.create') }}" class="btn btn-primary">Create User</a>
+            </div>
         </div>
 
         <div class="list-group list-group-borderless py-2">
-            {% for client in latestClients.results %}
+            {% for user in latestClients.results %}
                 <div class="list-group-item hstack gap-3">
-                    <img class="w-40px h-40px rounded-pill" src="{{ client.passport }}" alt="{{ client.username }}'s passport" width="50" height="50">
+                    <img class="w-40px h-40px rounded-pill" src="{{ user.passport }}" alt="{{ user.username }}'s passport" width="50" height="50">
 
                     <div class="flex-fill">
-                        <div><span class="fw-semibold">{{ client.firstName }} {{ client.middleName }} {{ client.lastName }}</span></div>
-                        <span class="text-muted">{{ client.email }}</span>
+                        <div><span class="fw-semibold">{{ user.firstName }} {{ user.middleName }} {{ user.lastName }}</span></div>
+                        <span class="text-muted">{{ user.email }}</span>
                     </div>
 
                     <div class="align-self-center ms-3">
                         <div class="d-inline-flex">
-                            <a data-bs-popup="tooltip" data-bs-trigger="hover" aria-label="Edit" data-bs-original-title="Edit" class="btn btn-success" href="{{ url_for('backend.users.edit', {'user': client.id}) }}">
-                                <i class="ph-note-pencil"></i>
+                            <a data-bs-popup="tooltip" data-bs-trigger="hover" aria-label="Edit" data-bs-original-title="Edit" class="btn btn-success me-2" href="{{ url_for('backend.users.edit', {'user': user.id}) }}">
+                                Edit
                             </a>
 
-                            <form action="{{ url_for('backend.users.delete', {'user': client.id}) }}" method="POST">
-                                <button data-bs-popup="tooltip" data-bs-trigger="hover" aria-label="Delete" data-bs-original-title="Delete" type="submit" class="mx-2 btn btn-danger" onclick="return confirm('Permanently delete {{ client.username }}\'s accounts?');">
-                                    <i class="ph-trash"></i>
+                            <a data-bs-popup="tooltip" data-bs-trigger="hover" aria-label="Accounts" data-bs-original-title="Accounts" class="btn btn-success me-2" href="{{ url_for('backend.accounts.index', {'user': user.id}) }}">
+                                Accounts
+                            </a>
+
+                            <form action="{{ url_for('backend.users.delete', {'user': user.id}) }}" method="POST">
+                                <button data-bs-popup="tooltip" data-bs-trigger="hover" aria-label="Delete" data-bs-original-title="Delete" type="submit" class="btn btn-danger" onclick="return confirm('Permanently delete {{ user.username }}\'s accounts?');">
+                                    Delete
                                 </button>
                             </form>
                         </div>
@@ -42,7 +50,7 @@
                 </div>
 
             {% else %}
-                <div>No Clients</div>
+                <div class="card-body">No Users</div>
             {% endfor %}
         </div>
     </div>
