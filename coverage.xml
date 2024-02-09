@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1707484617">
-  <project timestamp="1707484617">
+<coverage generated="1707510029">
+  <project timestamp="1707510029">
     <file name="/Users/deon/Sites/denosyscore/src/Application.php">
       <class name="Denosys\Core\Application" namespace="global">
         <metrics complexity="27" methods="18" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="54" coveredstatements="35" elements="72" coveredelements="45"/>
@@ -1371,14 +1371,6 @@
       <line num="122" type="stmt" count="0"/>
       <metrics loc="125" ncloc="121" classes="1" methods="7" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="45" coveredstatements="0" elements="52" coveredelements="0"/>
     </file>
-    <file name="/Users/deon/Sites/denosyscore/src/Security/Password.php">
-      <class name="Denosys\Core\Security\Password" namespace="global">
-        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
-      </class>
-      <line num="11" type="method" name="hash" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="13" type="stmt" count="0"/>
-      <metrics loc="16" ncloc="16" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
-    </file>
     <file name="/Users/deon/Sites/denosyscore/src/Security/UserLoaderInterface.php">
       <metrics loc="18" ncloc="13" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
@@ -2110,6 +2102,6 @@
       <line num="48" type="stmt" count="0"/>
       <metrics loc="51" ncloc="51" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="2" elements="20" coveredelements="2"/>
     </file>
-    <metrics files="105" loc="5835" ncloc="4625" classes="77" methods="317" coveredmethods="48" conditionals="0" coveredconditionals="0" statements="1210" coveredstatements="272" elements="1527" coveredelements="320"/>
+    <metrics files="104" loc="5819" ncloc="4609" classes="76" methods="316" coveredmethods="48" conditionals="0" coveredconditionals="0" statements="1209" coveredstatements="272" elements="1525" coveredelements="320"/>
   </project>
 </coverage>
