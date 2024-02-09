@@ -40,13 +40,9 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
-        "itsgoingd/clockwork": "^5.1",
         "mockery/mockery": "^1.6",
         "pestphp/pest": "^1.23",
-        "phpunit/phpunit": "^9.5",
-        "sebastian/phpcpd": "^6.0",
-        "symfony/var-dumper": "^6.3",
-        "vimeo/psalm": "^5.12"
+        "symfony/var-dumper": "^6.3"
     },
     "autoload": {
         "psr-4": {
@@ -72,6 +68,6 @@
             "pestphp/pest-plugin": true
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
