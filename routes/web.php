@@ -41,26 +41,26 @@ return function (RouteCollectorProxyInterface $router) {
     $router->group('/admin', function (RouteCollectorProxyInterface $router) {
         $router->get('', [DashboardController::class, 'index'])->setName('backend.index');
 
-        // Client Routes
+        // Users Routes
         $router->get('/users[/{page:[0-9]+}]', [UserController::class, 'index'])->setName('backend.users.index');
-        $router->get('/users/new', [UserController::class, 'create'])->setName('backend.users.create');
-        $router->post('/users/new', [UserController::class, 'store'])->setName('backend.users.store');
+        $router->get('/users/create', [UserController::class, 'create'])->setName('backend.users.create');
+        $router->post('/users/create', [UserController::class, 'store'])->setName('backend.users.store');
         $router->get('/users/edit/{user}', [UserController::class, 'edit'])->setName('backend.users.edit');
         $router->post('/users/edit/{user}', [UserController::class, 'update'])->setName('backend.users.update');
         $router->post('/users/delete/{user}', [UserController::class, 'delete'])->setName('backend.users.delete');
 
         // Accounts Routes
-        $router->get('/accounts[/{page}]', [BackendAccountController::class, 'index'])
+        $router->get('/accounts/{user}[/{page:[0-9]+}]', [BackendAccountController::class, 'index'])
             ->setName('backend.accounts.index');
-        $router->get('/account/new/{userId}', [BackendAccountController::class, 'create'])
+        $router->get('/accounts/{user}/create', [BackendAccountController::class, 'create'])
             ->setName('backend.accounts.create');
-        $router->post('/account/new/{userId}', [BackendAccountController::class,'store'])
+        $router->post('/accounts/create/{user}', [BackendAccountController::class,'store'])
             ->setName('backend.accounts.store');
-        $router->get('/account/edit/{id}', [BackendAccountController::class, 'edit'])
+        $router->get('/accounts/edit/{id}', [BackendAccountController::class, 'edit'])
             ->setName('backend.accounts.edit');
-        $router->post('/account/edit/{id}', [BackendAccountController::class, 'update'])
+        $router->post('/accounts/edit/{id}', [BackendAccountController::class, 'update'])
             ->setName('backend.accounts.update');
-        $router->post('/account/delete/{id}', [BackendAccountController::class, 'delete'])
+        $router->post('/accounts/delete/{id}', [BackendAccountController::class, 'delete'])
             ->setName('backend.accounts.delete');
     })->add(AdminAccessMiddleware::class)->add(AuthMiddleware::class);
 };
