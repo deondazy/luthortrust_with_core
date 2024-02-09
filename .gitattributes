@@ -1,0 +1,10 @@
+* text=auto eol=lf
+
+*.twig diff=html
+*.css diff=css
+*.html diff=html
+*.php diff=php
+
+/.github export-ignore
+CHANGELOG.md export-ignore
+coverage.xml export-ignore
