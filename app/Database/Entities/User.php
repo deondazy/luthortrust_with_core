@@ -121,9 +121,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Session::class)]
     private Collection $sessions;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Account::class)]
+    private Collection $accounts;
+
     public function __construct()
     {
         $this->sessions = new ArrayCollection();
+        $this->accounts = new ArrayCollection();
     }
 
     public function getUserIdentifier(): string
@@ -246,6 +250,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function addSession(Session $session): User
     {
         $this->sessions->add($session);
+
+        return $this;
+    }
+
+    public function getAccounts(): Collection
+    {
+        return $this->accounts;
+    }
+
+    public function addAccount(Account $account): User
+    {
+        $this->accounts->add($account);
 
         return $this;
     }
