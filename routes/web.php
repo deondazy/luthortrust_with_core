@@ -54,7 +54,7 @@ return function (RouteCollectorProxyInterface $router) {
             ->setName('backend.accounts.index');
         $router->get('/accounts/{user}/create', [BackendAccountController::class, 'create'])
             ->setName('backend.accounts.create');
-        $router->post('/accounts/create/{user}', [BackendAccountController::class,'store'])
+        $router->post('/accounts/{user}/create', [BackendAccountController::class,'store'])
             ->setName('backend.accounts.store');
         $router->get('/accounts/edit/{id}', [BackendAccountController::class, 'edit'])
             ->setName('backend.accounts.edit');
