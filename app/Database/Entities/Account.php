@@ -27,6 +27,10 @@ class Account
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'accounts')]
     private ?User $user = null;
 
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: 'created_by', referencedColumnName: 'id')]
+    private User $createdBy;
+
     #[ORM\Column(type: Types::STRING)]
     private ?string $number = null;
 
@@ -35,13 +39,6 @@ class Account
 
     #[ORM\Column(type: Types::STRING)]
     private ?string $type = null;
-
-    #[ORM\Column(type: Types::STRING)]
-    private ?string $balance = null;
-
-    #[ORM\ManyToOne(targetEntity: User::class)]
-    #[ORM\JoinColumn(name: 'created_by', referencedColumnName: 'id')]
-    private User $createdBy;
 
     public function getId(): ?int
     {
@@ -96,18 +93,6 @@ class Account
     public function getType(): ?string
     {
         return $this->type;
-    }
-
-    public function setBalance(string $balance): Account
-    {
-        $this->balance = $balance;
-
-        return $this;
-    }
-
-    public function getBalance(): ?string
-    {
-        return $this->balance;
     }
 
     public function setCreatedBy(User $createdBy): Account
