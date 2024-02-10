@@ -58,7 +58,7 @@ class Application
     /**
      * Create the application instance.
      *
-     * @param string $basePath The base path of the application.
+     * @param string|null $basePath The base path of the application.
      *
      * @throws Exception
      */
@@ -78,10 +78,10 @@ class Application
      *
      * @throws Exception
      */
-    private function buildContainer(): ContainerInterface
+    private function buildContainer(): void
     {
         if (static::$container !== null) {
-            return static::$container;
+            return;
         }
 
         static::$container = ContainerFactory::build(
@@ -89,8 +89,6 @@ class Application
             $this->basePath('storage/cache/container'),
             $this->isProduction()
         );
-
-        return static::$container;
     }
 
     public function getConfigurations(): ConfigurationInterface
@@ -98,9 +96,7 @@ class Application
         $configurationManager = (new ConfigurationManager())
             ->loadConfigurationFiles($this->basePath('config/'));
 
-        $configurations = new ArrayFileConfiguration($configurationManager);
-
-        return $configurations;
+        return new ArrayFileConfiguration($configurationManager);
     }
 
     public static function getContainer(): ContainerInterface
@@ -225,7 +221,7 @@ class Application
     {
         $serverRequestCreator = ServerRequestCreatorFactory::create();
         $request = $serverRequestCreator->createServerRequestFromGlobals();
-        
+
         $this->slimApp->run($request);
     }
 
