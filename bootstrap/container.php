@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Valitron\Validator;
-use Denosys\Core\Http\UploadedFile;
 use Psr\Container\ContainerInterface;
 use Denosys\Core\Encryption\Encrypter;
 use Denosys\Core\Security\CurrentUser;
@@ -80,7 +79,7 @@ return [
             $container->get(UserProviderInterface::class)
         ),
 
-    UserProviderInterface::class => fn (ContainerInterface $container) 
+    UserProviderInterface::class => fn (ContainerInterface $container)
         => new EntityUserProvider(
             $container->get(EntityManagerInterface::class),
             User::class,
