@@ -1,0 +1,69 @@
+{% extends "layouts/dashboard.twig" %}
+
+{% block title 'Create Account | Admin'|title %}
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Create Account for {{ user.fullName }}</h5>
+        </div>
+
+        <form method="post" action="{{ url_for('backend.accounts.store', {'user': user.id}) }}" enctype="multipart/form-data" autocomplete="off">
+            <div class="card-body">
+                <!-- ACCOUNT NUMBER -->
+                <div class="row mb-3">
+                    <label for="accountNumber" class="col-form-label col-lg-3">Account Number</label>
+                    <div class="col-lg-9">
+                        <input id="accountNumber" type="text" class="form-control {{ errors.accountNumber ? 'is-invalid' }}" name="accountNumber" value="{{ old.accountNumber }}" autofocus>
+                        <span class="invalid-feedback">{{ errors.accountNumber | first }}</span>
+                    </div>
+                </div>
+
+                <!-- ACCOUNT TYPE -->
+                <div class="row mb-3">
+                    <label for="accountType" class="col-form-label col-lg-3">Account Type</label>
+                    <div class="col-lg-9">
+                        <select id="accountType" class="form-select {{ errors.accountType ? 'is-invalid' }}" name="accountType" required>
+                            <option>Select Type</option>
+                            <option value="savings" {% if old.accountType == 'savings' %}selected{% endif %}>Savings</option>
+                            <option value="current" {% if old.accountType == 'current' %}selected{% endif %}>Current</option>
+                            <option value="offshore" {% if old.accountType == 'offshore' %}selected{% endif %}>Offshore</option>
+                            <option value="checking" {% if old.accountType == 'checking' %}selected{% endif %}>Checking</option>
+                            <option value="fixed_deposit" {% if old.accountType == 'fixed_deposit' %}selected{% endif %}>Fixed Deposit</option>
+                            <option value="investment" {% if old.accountType == 'investment' %}selected{% endif %}>Investment</option>
+                        </select>
+                        <span class="invalid-feedback">{{ errors.accountType | first }}</span>
+                    </div>
+                </div>
+
+                <!-- ACCOUNT STATUS -->
+                <div class="row mb-3">
+                    <label for="accountStatus" class="col-form-label col-lg-3">Account Status</label>
+                    <div class="col-lg-9">
+                        <select id="accountStatus" class="form-select {{ errors.accountStatus ? 'is-invalid' }}" name="accountStatus" required>
+                            <option>Select Status</option>
+                            <option value="active" {% if old.accountStatus == 'active' %}selected{% endif %}>Active</option>
+                            <option value="dormant" {% if old.accountStatus == 'dormant' %}selected{% endif %}>Dormant</option>
+                            <option value="blocked" {% if old.accountStatus == 'blocked' %}selected{% endif %}>Blocked</option>
+                        </select>
+                        <span class="invalid-feedback">{{ errors.accountStatus | first }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer d-flex justify-content-end gap-2">
+                <a class="btn btn-secondary" href="{{ url_for('backend.users.index') }}">
+                    <i class="ph-arrow-circle-left me-2"></i>
+                    Cancel
+                </a>
+
+                <button class="btn btn-primary" type="submit">
+                    <i class="ph-floppy-disk me-2"></i>
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
