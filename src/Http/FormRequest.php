@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Denosys\Core\Http;
 
 use Psr\Http\Message\UploadedFileInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use Denosys\Core\Validation\ValidatorInterface;
 use Denosys\Core\Validation\ValidationException;
 
@@ -13,49 +12,49 @@ abstract class FormRequest
 {
     /**
      * Validator instance
-     * 
+     *
      * @var ValidatorInterface
      */
     protected ValidatorInterface $validator;
 
     /**
      * Rules for validation
-     * 
+     *
      * @var array
      */
     private array $rules = [];
 
     /**
      * ServerRequestInterface instance
-     * 
+     *
      * @var ServerRequestInterface
      */
     protected ServerRequestInterface $request;
 
     /**
      * Form field errors
-     * 
+     *
      * @var array
      */
     protected array $bodyErrors = [];
 
     /**
      * File errors
-     * 
+     *
      * @var array
      */
     protected array $fileErrors = [];
 
     /**
      * Get the validation rules that apply to the request.
-     * 
+     *
      * @return array
      */
     abstract public function rules(): array;
 
     /**
      * Get the uploaded files from the request.
-     * 
+     *
      * @return array
      */
     public function files(): array
@@ -65,20 +64,19 @@ abstract class FormRequest
 
     /**
      * Get specific uploaded file from the request.
-     * 
+     *
      * @param string $key
-
+     *
      * @return UploadedFileInterface|null
      */
     public function file(string $key): ?UploadedFileInterface
     {
-        $files = $this->files();
-        return $files[$key] ?? null;
+        return $this->files()[$key] ?? null;
     }
 
     /**
      * Determine if request has a given file.
-     * 
+     *
      * @param string $key
      *
      * @return bool
