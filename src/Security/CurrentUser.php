@@ -8,11 +8,11 @@ use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-class CurrentUser
+readonly class CurrentUser
 {
     public function __construct(
-        private readonly AuthenticatedTokenStorageInterface $tokenStorage,
-        private readonly UserProviderInterface $userProvider
+        private AuthenticatedTokenStorageInterface $tokenStorage,
+        private UserProviderInterface $userProvider
     ) {
     }
 
