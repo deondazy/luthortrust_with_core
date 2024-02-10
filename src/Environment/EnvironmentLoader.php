@@ -12,13 +12,12 @@ use Dotenv\Repository\Adapter\PutenvAdapter;
 
 class EnvironmentLoader
 {
-
     /**
      * The environment repository instance.
-     * 
+     *
      * @var RepositoryInterface|null
      */
-    protected static $repository;
+    protected static ?RepositoryInterface $repository = null;
 
     public static function load(string $path): void
     {
@@ -40,21 +39,13 @@ class EnvironmentLoader
     {
         return Option::fromValue(static::getRepository()->get($key))
             ->map(function ($value) {
-                switch (strtolower($value)) {
-                    case 'true':
-                    case '(true)':
-                        return true;
-                    case 'false':
-                    case '(false)':
-                        return false;
-                    case 'empty':
-                    case '(empty)':
-                        return '';
-                    case 'null':
-                    case '(null)':
-                        return null;
-                }
-                return $value;
+                return match (strtolower($value)) {
+                    'true', '(true)' => true,
+                    'false', '(false)' => false,
+                    'empty', '(empty)' => '',
+                    'null', '(null)' => null,
+                    default => $value,
+                };
             })
             ->getOrElse($default);
     }
