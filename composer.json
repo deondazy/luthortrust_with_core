@@ -59,10 +59,7 @@
         }
     },
     "scripts": {
-        "test-php": "./vendor/bin/pest --coverage-clover coverage.xml",
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ]
+        "test-php": "./vendor/bin/pest --coverage-clover coverage.xml"
     },
     "config": {
         "preferred-install": "dist",
