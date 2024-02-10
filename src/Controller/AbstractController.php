@@ -44,29 +44,6 @@ abstract class AbstractController
     }
 
     /**
-     * Sets a flash message in the session.
-     *
-     * @param string $key The key for the flash message.
-     * @param string|array|null $messages The message or messages to flash.
-     */
-    public function setFlash(string $key, string|array|null $messages = null): void
-    {
-        $this->container->get(Template::class)->setFlash($key, $messages);
-    }
-
-    /**
-     * Retrieves a flash message from the session.
-     *
-     * @param string $key The key for the flash message.
-     *
-     * @return array|null The flash messages under the given key, if any.
-     */
-    public function getFlash(string $key): array|null
-    {
-        return $this->container->get(Template::class)->getFlash($key);
-    }
-
-    /**
      * Redirect to a given url
      *
      * @param string $url
