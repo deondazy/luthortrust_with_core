@@ -27,7 +27,7 @@ interface ServerRequestInterface extends PsrServerRequestInterface
      * Returns a new instance of the server request with the provided session.
      *
      * @param SessionInterface $session The session to be associated with the server request.
-     * 
+     *
      * @return static
      */
     public function withSession(SessionInterface $session): static;
