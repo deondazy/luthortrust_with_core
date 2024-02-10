@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Denosys\Core\View;
 
-use Denosys\Core\Session\SessionInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Views\Twig;
@@ -16,7 +15,6 @@ class Template
 {
     public function __construct(
         private readonly Twig $twig,
-        private readonly SessionInterface $session,
         private readonly ResponseFactoryInterface $responseFactory,
         private readonly TemplatePathResolver $pathResolver,
         private readonly ErrorHandler $errorHandler
@@ -48,34 +46,6 @@ class Template
         } catch (RuntimeError $e) {
             throw new TemplateRuntimeException($e->getMessage());
         }
-    }
-
-    /**
-     * Sets a flash message in the session.
-     *
-     * @param string $key The key for the flash message.
-     * @param string|array|null $messages The message or messages to flash.
-     */
-    public function setFlash(string $key, string|array|null $messages = null): void
-    {
-        $flash = $this->session->getFlash();
-
-        if (!empty($messages)) {
-            $flash->set($key, is_array($messages) ? $messages : [$messages]);
-        }
-    }
-
-    /**
-     * Retrieves a flash message from the session.
-     *
-     * @param string $key The key for the flash message.
-     *
-     * @return array|null The flash messages under the given key, if any.
-     */
-    public function getFlash(string $key): array|null
-    {
-        $flash = $this->session->getFlash();
-        return $flash->get($key);
     }
 
     /**
