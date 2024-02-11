@@ -69,7 +69,7 @@ if (!function_exists('fake') && class_exists(\Faker\Factory::class)) {
      * @param  string|null  $locale
      * @return \Faker\Generator
      */
-    function fake($locale = null): \Faker\Generator
+    function fake(string $locale = null): \Faker\Generator
     {
         // TODO: Add support for locale from config
         if (container()->has('config')) {
@@ -94,9 +94,9 @@ if (!function_exists('entityManager')) {
     /**
      * Get the entity manager instance.
      *
-     * @return \Doctrine\ORM\EntityManagerInterface
+     * @return EntityManagerInterface
      */
-    function entityManager(): \Doctrine\ORM\EntityManagerInterface
+    function entityManager(): EntityManagerInterface
     {
         return container(EntityManagerInterface::class);
     }
