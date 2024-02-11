@@ -12,12 +12,12 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
-class ErrorHandler
+readonly class ErrorHandler
 {
     public function __construct(
-        private readonly ConfigurationInterface $config,
-        private readonly Twig $twig,
-        private readonly ResponseFactoryInterface $responseFactory
+        private ConfigurationInterface $config,
+        private Twig $twig,
+        private ResponseFactoryInterface $responseFactory
     ) {
     }
 
