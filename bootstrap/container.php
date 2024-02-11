@@ -6,14 +6,12 @@ use Valitron\Validator;
 use Psr\Container\ContainerInterface;
 use Denosys\Core\Encryption\Encrypter;
 use Denosys\Core\Security\CurrentUser;
-use Slim\Psr7\Factory\ResponseFactory;
 use Denosys\App\Database\Entities\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Denosys\Core\Session\SessionInterface;
 use Denosys\Core\Http\ServerRequestFactory;
 use Psr\Http\Message\ServerRequestInterface;
 use Denosys\Core\Security\EntityUserProvider;
-use Psr\Http\Message\ResponseFactoryInterface;
 use Denosys\Core\Config\ConfigurationInterface;
 use Denosys\Core\Encryption\EncrypterInterface;
 use Denosys\Core\Security\EncryptedSessionTokenStorage;
@@ -34,7 +32,6 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use Symfony\Component\Security\Core\Authentication\AuthenticationTrustResolverInterface;
 
 return [
-    ResponseFactoryInterface::class => fn () => new ResponseFactory(),
 
     UserPasswordHasherInterface::class => fn (ContainerInterface $container)
         => $container->get(UserPasswordHasher::class),
