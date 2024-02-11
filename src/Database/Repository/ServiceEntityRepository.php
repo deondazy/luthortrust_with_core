@@ -31,10 +31,9 @@ class ServiceEntityRepository extends EntityRepository implements ServiceEntityR
     /**
      * Constructor for the ServiceEntityRepository class.
      *
-     * @param ManagerRegistry $registry The manager registry.
+     * @param EntityManagerInterface $entityManager
      * @param class-string $entityClass The class name of the entity.
      *
-     * @throws LogicException If the entity manager for the given class is not found.
      */
     public function __construct(EntityManagerInterface $entityManager, string $entityClass)
     {
