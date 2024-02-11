@@ -11,13 +11,12 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
-class Template
+readonly class Template
 {
     public function __construct(
-        private readonly Twig $twig,
-        private readonly ResponseFactoryInterface $responseFactory,
-        private readonly TemplatePathResolver $pathResolver,
-        private readonly ErrorHandler $errorHandler
+        private Twig $twig,
+        private ResponseFactoryInterface $responseFactory,
+        private TemplatePathResolver $pathResolver,
     ) {
     }
 
@@ -27,9 +26,9 @@ class Template
      * @param string $template The template name.
      * @param array $data The data to pass to the template.
      *
-     * @throws TemplateNotFoundException
-     * @throws TemplateRuntimeException
-     * @throws TemplateSyntaxException
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      *
      * @return ResponseInterface The rendered template as a response.
      */
@@ -37,31 +36,6 @@ class Template
     {
         $templateFile = $this->pathResolver->resolve($template);
 
-        try {
-            return $this->twig->render($this->responseFactory->createResponse(), $templateFile, $data);
-        } catch (LoaderError $e) {
-            throw new TemplateNotFoundException($e->getMessage());
-        } catch (SyntaxError $e) {
-            throw new TemplateSyntaxException($e->getMessage());
-        } catch (RuntimeError $e) {
-            throw new TemplateRuntimeException($e->getMessage());
-        }
-    }
-
-    /**
-     * Handles a template exception.
-     *
-     * @param TemplateException $exception The template exception to handle.
-     *
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     * @throws TemplateException
-     *
-     * @return ResponseInterface The response to be sent.
-     */
-    public function handleTemplateException(TemplateException $exception): ResponseInterface
-    {
-        return $this->errorHandler->handleException($exception);
+        return $this->twig->render($this->responseFactory->createResponse(), $templateFile, $data);
     }
 }
