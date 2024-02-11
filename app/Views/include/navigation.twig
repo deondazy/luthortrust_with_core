@@ -1,4 +1,5 @@
-<header id="header" class="header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 85}">
+<header id="header" class="header-effect-shrink"
+        data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 85}">
     <div class="header-body border-0">
         <div class="header-container container" style="height: 115px;">
             <div class="header-row">
@@ -6,7 +7,8 @@
                     <div class="header-row">
                         <div class="header-logo">
                             <a href="{{ url_for('home') }}">
-                                <img alt="{{ config('app.name') }}" width="260" src="{{ asset('assets/images/logo.svg') }}">
+                                <img alt="{{ config('app.name') }}" width="260"
+                                     src="{{ asset('assets/images/logo.svg') }}">
                             </a>
                         </div>
                     </div>
@@ -14,49 +16,57 @@
                 <div class="header-column justify-content-end">
                     <div class="header-row">
                         <div class="header-nav header-nav-links">
-                            <div class="header-nav-main header-nav-main-text-capitalize header-nav-main-effect-2 header-nav-main-sub-effect-1">
+                            <div
+                                class="header-nav-main header-nav-main-text-capitalize header-nav-main-effect-2 header-nav-main-sub-effect-1">
                                 <nav class="collapse">
                                     <ul class="nav nav-pills" id="mainNav">
                                         <li>
-                                            <a class="nav-link {{ is_current_url('home') ? 'active' }}" href="{{ url_for('home') }}">
+                                            <a class="nav-link {{ is_current_url('home') ? 'active' }}"
+                                               href="{{ url_for('home') }}">
                                                 Home
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="nav-link {{ is_current_url('loans') ? 'active' }}" href="{{ url_for('loans') }}">
+                                            <a class="nav-link {{ is_current_url('loans') ? 'active' }}"
+                                               href="{{ url_for('loans') }}">
                                                 Loans
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="nav-link {{ is_current_url('mortgage') ? 'active' }}" href="{{ url_for('mortgage') }}">
+                                            <a class="nav-link {{ is_current_url('mortgage') ? 'active' }}"
+                                               href="{{ url_for('mortgage') }}">
                                                 Mortgage
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="nav-link {{ is_current_url('investments') ? 'active' }}" href="{{ url_for('investments') }}">
+                                            <a class="nav-link {{ is_current_url('investments') ? 'active' }}"
+                                               href="{{ url_for('investments') }}">
                                                 Investments
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="nav-link {{ is_current_url('digital-services') ? 'active' }}" href="{{ url_for('digital-services') }}">
+                                            <a class="nav-link {{ is_current_url('digital-services') ? 'active' }}"
+                                               href="{{ url_for('digital-services') }}">
                                                 Digital Services
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="nav-link {{ is_current_url('contact') ? 'active' }}" href="{{ url_for('contact') }}">
+                                            <a class="nav-link {{ is_current_url('contact') ? 'active' }}"
+                                               href="{{ url_for('contact') }}">
                                                 Contact
                                             </a>
                                         </li>
                                         <li class="d-md-none">
-                                            <a class="nav-link {{ is_current_url('login') ? 'active' }}" href="{{ url_for('login') }}">
+                                            <a class="nav-link {{ is_current_url('login') ? 'active' }}"
+                                               href="{{ url_for('login') }}">
                                                 Online Banking
                                             </a>
                                         </li>
-{#                                        <li class="d-md-none">#}
-{#                                                    <span class="language-switcher-form" style="padding-top:7px;display: flex;justify-content: end;">#}
-{#                                                        <?php include __DIR__ . '/include/language-switcher.php'; ?>#}
-{#                                                    </span>#}
-{#                                        </li>#}
+                                        {#                                        <li class="d-md-none"> #}
+                                        {#                                                    <span class="language-switcher-form" style="padding-top:7px;display: flex;justify-content: end;"> #}
+                                        {#                                                        <?php include __DIR__ . '/include/language-switcher.php'; ?> #}
+                                        {#                                                    </span> #}
+                                        {#                                        </li> #}
                                     </ul>
                                 </nav>
                             </div>
@@ -65,15 +75,17 @@
                             <li class="d-inline-flex ms-0">
                                 <div class="header-extra-info-text line-height-2 d-flex">
                                             <span class="language-switcher-form align-self-center me-3">
-{#                                                {% include 'include/language-switcher.twig' %}#}
+{#                                                {% include 'include/language-switcher.twig' %} #}
                                             </span>
                                 </div>
                                 <div class="header-extra-info-text line-height-2">
-                                    <a class="btn btn-primary text-white" href="{{ url_for('login') }}">Online Banking</a>
+                                    <a class="btn btn-primary text-white" href="{{ url_for('login') }}">Online
+                                        Banking</a>
                                 </div>
                             </li>
                         </ul>
-                        <button class="btn header-btn-collapse-nav" data-bs-toggle="collapse" data-bs-target=".header-nav-main nav">
+                        <button class="btn header-btn-collapse-nav" data-bs-toggle="collapse"
+                                data-bs-target=".header-nav-main nav">
                             <i class="fas fa-bars"></i>
                         </button>
                     </div>
