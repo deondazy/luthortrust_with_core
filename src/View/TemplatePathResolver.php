@@ -4,14 +4,8 @@ declare(strict_types=1);
 
 namespace Denosys\Core\View;
 
-use Denosys\Core\Config\ConfigurationInterface;
-
-class TemplatePathResolver
+readonly class TemplatePathResolver
 {
-    public function __construct(private readonly ConfigurationInterface $config)
-    {
-    }
-
     /**
      * Resolves the full path of a given template.
      *
@@ -27,10 +21,10 @@ class TemplatePathResolver
             $templateName = $template;
         }
 
-        foreach ($this->config->get('views.twig.extensions', []) as $extension) {
+        foreach (config('views.twig.extensions', []) as $extension) {
             $templateFile = $templateName . $extension;
 
-            if (file_exists($this->config->get('paths.views_dir') . DIRECTORY_SEPARATOR . $templateFile)) {
+            if (file_exists(config('paths.views_dir') . DIRECTORY_SEPARATOR . $templateFile)) {
                 return $templateFile;
             }
         }
