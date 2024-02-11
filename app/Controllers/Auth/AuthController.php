@@ -17,9 +17,9 @@ class AuthController extends AbstractController
         return $this->view('auth.login');
     }
 
-    public function login(LoginRequest $loginRequest): Response
+    public function login(LoginRequest $request): Response
     {
-        $loginRequest->authenticate();
+        $request->authenticate();
 
         return redirectToRoute('account.index');
     }
@@ -31,11 +31,11 @@ class AuthController extends AbstractController
 
     public function register(
         ServerRequestInterface $request,
-        UserAuthenticationService $authenticationService
+        UserAuthenticationService $authService
     ): Response {
         $formData = $request->getParsedBody();
 
-        $authenticationService->register($formData);
+        $authService->register($formData);
 
         return redirectToRoute('login');
     }
@@ -45,9 +45,9 @@ class AuthController extends AbstractController
         return $this->view('auth/forgot-password');
     }
 
-    public function logout(UserAuthenticationService $authenticationService): Response
+    public function logout(UserAuthenticationService $authService): Response
     {
-        $authenticationService->logout();
+        $authService->logout();
 
         return redirectToRoute('home');
     }
