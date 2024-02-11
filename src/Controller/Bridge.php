@@ -18,21 +18,25 @@ class Bridge extends BaseBridge
 {
     protected static function createControllerInvoker(ContainerInterface $container): ControllerInvoker
     {
-        $resolvers = [
+        $resolver = new ResolverChain([
             // Inject route entity bindings first
             new RouteEntityBindingResolver($container),
+
             // Then inject parameters by name
             new AssociativeArrayResolver(),
+
             // Then inject ServerRequest for FormRequest objects
             new FormRequestResolver($container),
+
             // Then inject services by type-hints for those that weren't resolved
             new TypeHintContainerResolver($container),
+
             // Then fall back on parameters default values for optional route parameters
             new DefaultValueResolver(),
-        ];
+        ]);
 
-        $invoker = new Invoker(new ResolverChain($resolvers), $container);
+        $invoker = new Invoker($resolver, $container);
 
-        return new ControllerInvoker($invoker, $container);
+        return new ControllerInvoker($invoker);
     }
 }
