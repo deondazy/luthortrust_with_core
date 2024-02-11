@@ -17,9 +17,9 @@ class Request extends SlimRequest implements ServerRequestInterface
 
     /**
      * Get the session.
-     * 
+     *
      * @return SessionInterface
-     * 
+     *
      * @throws SessionNotFoundException
      */
     public function getSession(): SessionInterface
@@ -37,7 +37,7 @@ class Request extends SlimRequest implements ServerRequestInterface
 
     /**
      * Check if the has a Session object.
-     * 
+     *
      * @return bool
      */
     public function hasSession(): bool
@@ -47,9 +47,9 @@ class Request extends SlimRequest implements ServerRequestInterface
 
     /**
      * Return a new instance with the specified session object.
-     * 
+     *
      * @param SessionInterface $session
-     * 
+     *
      * @return void
      */
     public function withSession(SessionInterface $session): static
