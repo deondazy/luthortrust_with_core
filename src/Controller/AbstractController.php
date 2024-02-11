@@ -9,19 +9,11 @@ use Denosys\Core\View\Template;
 use Denosys\Core\View\TemplateException;
 use Fig\Http\Message\StatusCodeInterface;
 use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 
 abstract class AbstractController
 {
-    protected ContainerInterface $container;
-
-    public function setContainer(ContainerInterface $container): void
-    {
-        $this->container = $container;
-    }
-
     /**
      * Render a view file template
      *
@@ -34,7 +26,7 @@ abstract class AbstractController
      */
     protected function view(string $view, array $data = []): Response
     {
-        $template = $this->container->get(Template::class);
+        $template = container(Template::class);
 
         try {
             return $template->render($view, $data);
@@ -77,7 +69,7 @@ abstract class AbstractController
 
     public function urlFor(string $routeName, array $data = [], array $queryParams = []): string
     {
-        return $this->container->get('app')
+        return container('app')
             ->getRouteCollector()
             ->getRouteParser()
             ->urlFor($routeName, $data, $queryParams);
