@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Denosys\Core\View;
 
-use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
+use Slim\Psr7\Response;
 use Slim\Views\Twig;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -13,11 +13,8 @@ use Twig\Error\SyntaxError;
 
 readonly class Template
 {
-    public function __construct(
-        private Twig $twig,
-        private ResponseFactoryInterface $responseFactory,
-        private TemplatePathResolver $pathResolver,
-    ) {
+    public function __construct(private TemplatePathResolver $pathResolver)
+    {
     }
 
     /**
@@ -36,6 +33,6 @@ readonly class Template
     {
         $templateFile = $this->pathResolver->resolve($template);
 
-        return $this->twig->render($this->responseFactory->createResponse(), $templateFile, $data);
+        return container(Twig::class)->render(new Response(), $templateFile, $data);
     }
 }
