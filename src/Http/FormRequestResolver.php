@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Denosys\Core\Http;
 
-use Slim\Routing\RouteContext;
 use ReflectionFunctionAbstract;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -12,7 +11,7 @@ use Invoker\ParameterResolver\ParameterResolver;
 
 class FormRequestResolver implements ParameterResolver
 {
-    private $serverRequest;
+    private ServerRequestInterface $serverRequest;
 
     public function __construct(private readonly ContainerInterface $container)
     {
@@ -32,7 +31,7 @@ class FormRequestResolver implements ParameterResolver
         }
 
         foreach ($parameters as $index => $parameter) {
-            $parameterClass = $parameter->getType()->getName();
+            $parameterClass = $parameter->getType()?->getName();
 
             if (is_subclass_of($parameterClass, FormRequest::class)) {
                 $resolvedParameters[$index] = $this->container->get($parameterClass);
