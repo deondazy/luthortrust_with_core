@@ -13,7 +13,7 @@ use Invoker\ParameterResolver\ParameterResolver;
 
 class RouteEntityBindingResolver implements ParameterResolver
 {
-    public function __construct(private readonly ContainerInterface $container) 
+    public function __construct(private readonly ContainerInterface $container)
     {
     }
 
