@@ -8,7 +8,7 @@ use Denosys\Core\Application;
 use Psr\Container\ContainerInterface;
 use RuntimeException;
 
-abstract class ServiceProvider
+abstract class ServiceProvider implements ServiceProviderInterface
 {
     private static ?Application $app = null;
 
