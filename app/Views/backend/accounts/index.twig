@@ -1,0 +1,55 @@
+{% extends "layouts/dashboard.twig" %}
+
+{% block title 'Accounts | Admin'|title %}
+
+{% import "backend/include/macros/pagination.twig" as pagination %}
+
+{% block content %}
+
+    {% if has_flash('success') %}
+        <div class="alert alert-success">{{ get_flash('success') | first }}</div>
+    {% endif %}
+
+    <div class="card">
+
+        <div class="card-header d-flex align-items-center py-0">
+            <h5 class="py-3 mb-0">{{ user.fullName }}'s Accounts</h5>
+
+            <div class="ms-auto my-auto">
+                <a href="{{ url_for('backend.accounts.create', {'user': user.id}) }}" class="btn btn-primary">Create Account</a>
+            </div>
+        </div>
+
+        <div class="list-group list-group-borderless py-2">
+            {% for account in accounts %}
+                <div class="list-group-item hstack gap-3">
+                    <div class="flex-fill">
+                        <div><span class="fw-semibold">{{ account.number }} </span></div>
+                        <span class="text-muted">{{ account.type }}</span>
+                    </div>
+
+{#                    <div class="align-self-center ms-3">#}
+{#                        <div class="d-inline-flex">#}
+{#                            <a data-bs-popup="tooltip" data-bs-trigger="hover" aria-label="Edit" data-bs-original-title="Edit" class="btn btn-success me-2" href="{{ url_for('backend.users.edit', {'user': user.id}) }}">#}
+{#                                Edit#}
+{#                            </a>#}
+
+{#                            <a data-bs-popup="tooltip" data-bs-trigger="hover" aria-label="Accounts" data-bs-original-title="Accounts" class="btn btn-success me-2" href="{{ url_for('backend.accounts.index', {'user': user.id}) }}">#}
+{#                                Accounts#}
+{#                            </a>#}
+
+{#                            <form action="{{ url_for('backend.users.delete', {'user': user.id}) }}" method="POST">#}
+{#                                <button data-bs-popup="tooltip" data-bs-trigger="hover" aria-label="Delete" data-bs-original-title="Delete" type="submit" class="btn btn-danger" onclick="return confirm('Permanently delete {{ user.username }}\'s accounts?');">#}
+{#                                    Delete#}
+{#                                </button>#}
+{#                            </form>#}
+{#                        </div>#}
+{#                    </div>#}
+                </div>
+
+            {% else %}
+                <div class="card-body">No Account</div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
