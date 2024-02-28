@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1707511119">
-  <project timestamp="1707511119">
+<coverage generated="1707575962">
+  <project timestamp="1707575962">
     <file name="/Users/deon/Sites/denosyscore/src/Application.php">
       <class name="Denosys\Core\Application" namespace="global">
         <metrics complexity="27" methods="18" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="52" coveredstatements="33" elements="70" coveredelements="43"/>
@@ -369,19 +369,19 @@
       <class name="Denosys\Core\Database\Entities\Traits\HasTimestamps" namespace="global">
         <metrics complexity="6" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="12" coveredelements="0"/>
       </class>
-      <line num="21" type="method" name="updateTimestamps" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="20" type="method" name="updateTimestamps" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="23" type="stmt" count="0"/>
       <line num="24" type="stmt" count="0"/>
-      <line num="25" type="stmt" count="0"/>
-      <line num="28" type="stmt" count="0"/>
-      <line num="31" type="method" name="getCreatedAt" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="33" type="stmt" count="0"/>
-      <line num="36" type="method" name="setCreatedAt" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="38" type="stmt" count="0"/>
-      <line num="41" type="method" name="getUpdatedAt" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="43" type="stmt" count="0"/>
-      <line num="46" type="method" name="setUpdatedAt" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="48" type="stmt" count="0"/>
-      <metrics loc="51" ncloc="51" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="12" coveredelements="0"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="30" type="method" name="getCreatedAt" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="35" type="method" name="setCreatedAt" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="37" type="stmt" count="0"/>
+      <line num="40" type="method" name="getUpdatedAt" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <line num="45" type="method" name="setUpdatedAt" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="47" type="stmt" count="0"/>
+      <metrics loc="50" ncloc="50" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="12" coveredelements="0"/>
     </file>
     <file name="/Users/deon/Sites/denosyscore/src/Database/Entities/Traits/HasUuid.php">
       <class name="Denosys\Core\Database\Entities\Traits\HasUuid" namespace="global">
@@ -858,55 +858,54 @@
     </file>
     <file name="/Users/deon/Sites/denosyscore/src/Http/FormRequest.php">
       <class name="Denosys\Core\Http\FormRequest" namespace="global">
-        <metrics complexity="19" methods="10" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="36" coveredstatements="0" elements="46" coveredelements="0"/>
+        <metrics complexity="19" methods="10" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="35" coveredstatements="0" elements="45" coveredelements="0"/>
       </class>
-      <line num="61" type="method" name="files" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="63" type="stmt" count="0"/>
-      <line num="73" type="method" name="file" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="75" type="stmt" count="0"/>
-      <line num="76" type="stmt" count="0"/>
-      <line num="86" type="method" name="hasFile" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="88" type="stmt" count="0"/>
-      <line num="91" type="method" name="validate" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="60" type="method" name="files" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="62" type="stmt" count="0"/>
+      <line num="72" type="method" name="file" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="74" type="stmt" count="0"/>
+      <line num="84" type="method" name="hasFile" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="86" type="stmt" count="0"/>
+      <line num="89" type="method" name="validate" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="91" type="stmt" count="0"/>
       <line num="93" type="stmt" count="0"/>
-      <line num="95" type="stmt" count="0"/>
+      <line num="94" type="stmt" count="0"/>
       <line num="96" type="stmt" count="0"/>
       <line num="98" type="stmt" count="0"/>
-      <line num="100" type="stmt" count="0"/>
-      <line num="101" type="stmt" count="0"/>
-      <line num="104" type="stmt" count="0"/>
-      <line num="107" type="method" name="validated" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="109" type="stmt" count="0"/>
-      <line num="112" type="method" name="setServerRequest" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="114" type="stmt" count="0"/>
-      <line num="117" type="method" name="validateBody" visibility="private" complexity="2" crap="6" count="0"/>
+      <line num="99" type="stmt" count="0"/>
+      <line num="102" type="stmt" count="0"/>
+      <line num="105" type="method" name="validated" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="107" type="stmt" count="0"/>
+      <line num="110" type="method" name="setServerRequest" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="112" type="stmt" count="0"/>
+      <line num="115" type="method" name="validateBody" visibility="private" complexity="2" crap="6" count="0"/>
+      <line num="117" type="stmt" count="0"/>
       <line num="119" type="stmt" count="0"/>
       <line num="121" type="stmt" count="0"/>
-      <line num="123" type="stmt" count="0"/>
+      <line num="124" type="stmt" count="0"/>
+      <line num="125" type="stmt" count="0"/>
       <line num="126" type="stmt" count="0"/>
       <line num="127" type="stmt" count="0"/>
-      <line num="128" type="stmt" count="0"/>
-      <line num="129" type="stmt" count="0"/>
-      <line num="133" type="method" name="validateFiles" visibility="private" complexity="5" crap="30" count="0"/>
-      <line num="135" type="stmt" count="0"/>
+      <line num="131" type="method" name="validateFiles" visibility="private" complexity="5" crap="30" count="0"/>
+      <line num="133" type="stmt" count="0"/>
+      <line num="134" type="stmt" count="0"/>
       <line num="136" type="stmt" count="0"/>
       <line num="138" type="stmt" count="0"/>
-      <line num="140" type="stmt" count="0"/>
-      <line num="141" type="stmt" count="0"/>
-      <line num="145" type="stmt" count="0"/>
+      <line num="139" type="stmt" count="0"/>
+      <line num="143" type="stmt" count="0"/>
+      <line num="157" type="stmt" count="0"/>
+      <line num="158" type="stmt" count="0"/>
       <line num="159" type="stmt" count="0"/>
-      <line num="160" type="stmt" count="0"/>
-      <line num="161" type="stmt" count="0"/>
+      <line num="165" type="stmt" count="0"/>
       <line num="167" type="stmt" count="0"/>
-      <line num="169" type="stmt" count="0"/>
-      <line num="172" type="method" name="validateSingleFile" visibility="private" complexity="3" crap="12" count="0"/>
-      <line num="174" type="stmt" count="0"/>
-      <line num="177" type="stmt" count="0"/>
-      <line num="178" type="stmt" count="0"/>
-      <line num="181" type="stmt" count="0"/>
-      <line num="189" type="method" name="getRules" visibility="private" complexity="1" crap="2" count="0"/>
-      <line num="191" type="stmt" count="0"/>
-      <metrics loc="194" ncloc="124" classes="1" methods="10" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="36" coveredstatements="0" elements="46" coveredelements="0"/>
+      <line num="170" type="method" name="validateSingleFile" visibility="private" complexity="3" crap="12" count="0"/>
+      <line num="172" type="stmt" count="0"/>
+      <line num="175" type="stmt" count="0"/>
+      <line num="176" type="stmt" count="0"/>
+      <line num="179" type="stmt" count="0"/>
+      <line num="187" type="method" name="getRules" visibility="private" complexity="1" crap="2" count="0"/>
+      <line num="189" type="stmt" count="0"/>
+      <metrics loc="192" ncloc="122" classes="1" methods="10" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="35" coveredstatements="0" elements="45" coveredelements="0"/>
     </file>
     <file name="/Users/deon/Sites/denosyscore/src/Http/FormRequestResolver.php">
       <class name="Denosys\Core\Http\FormRequestResolver" namespace="global">
@@ -2070,6 +2069,6 @@
       <line num="48" type="stmt" count="0"/>
       <metrics loc="51" ncloc="51" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="2" elements="20" coveredelements="2"/>
     </file>
-    <metrics files="103" loc="5761" ncloc="4554" classes="75" methods="314" coveredmethods="49" conditionals="0" coveredconditionals="0" statements="1185" coveredstatements="261" elements="1499" coveredelements="310"/>
+    <metrics files="103" loc="5758" ncloc="4551" classes="75" methods="314" coveredmethods="49" conditionals="0" coveredconditionals="0" statements="1184" coveredstatements="261" elements="1498" coveredelements="310"/>
   </project>
 </coverage>
